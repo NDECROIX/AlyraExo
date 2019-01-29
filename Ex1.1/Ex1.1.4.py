@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 import math
+
 class Cercle:
     """
 	    Classe définissant un cercle caractérisé par :
@@ -12,7 +13,7 @@ class Cercle:
     
     def __init__(self, rayon):
         """
-		    Constructeur de classe
+		    Constructeur de la classe
 	    """
         self.rayon = rayon
         
@@ -21,4 +22,3 @@ class Cercle:
 	
     def aire(self):
 	    return self.rayon * self.rayon * math.pi
-
