@@ -3,63 +3,61 @@
 import itertools
 
 satoshis = [13000, 9000, 2000, 1500, 3500, 2800, 5000, 1500] 
-octets =   [2000,  6000, 800,  700,  1200, 1000, 1300, 600]  
+octets   = [2000,  6000, 800,  700,  1200, 1000, 1300, 600 ]  
 octetsMax = 6000
 octetsUtulise = octetsMax
-n = len(satoshis) - 1 
+n = len(satoshis) 
+K = [[0 for x in range(octetsMax+1)] for x in range(n+1)] #tableau pour retrouver les transactions
 
 def meilleurPBR( satoshis , octets , octetsM , n):
     """
         fonction qui retourne le maximum de satoshis
-        en fonction du nombre d'octets respecter
+        sans depasser le maximum d'octets autorisé "octetsM"
     """
-  
-    if n < 0 or octetsM == 0 : 
+    global K  
+    if n == 0 or octetsM == 0 : 
         return 0
         
-    if (octets[n] > octetsM): # si le bloc d'octets est suppérieur au max autorisé on passe au suivant 
-	
+    if (octets[n-1] > octetsM): # si le bloc d'octets est suppérieur au max autorisé on passe au suivant 
+        K[n][octetsM] = meilleurPBR( satoshis, octets ,  octetsM, n-1) 
         return meilleurPBR( satoshis, octets ,  octetsM, n-1) 
   
     else: # retourne la valeur maximum
-        global octetsUtulise
-        octetsUtulise = octetsMax - octetsM
-        
-        return max(meilleurPBR( satoshis, octets , octetsM - octets[n]  , n-1) + satoshis[n], 
+
+        K[n][octetsM] = max(meilleurPBR( satoshis, octets , octetsM - octets[n-1]  , n-1) + satoshis[n-1], meilleurPBR( satoshis, octets , octetsM , n-1)) 
+                   
+        return max(meilleurPBR( satoshis, octets , octetsM - octets[n-1]  , n-1) + satoshis[n-1], 
                    meilleurPBR( satoshis, octets , octetsM , n-1)) 
-    
-    
 
-def transactionRentable(satoshisTT, octetsUtulise):
-    """
-        fonction qui retrouve les transaction les plus rentable 
-        en fonction du total de satoshis et du nombre d'octets octetsUtulise
-    """
-    listeSatoshis = satoshis 
-    listeOctets = octets
     
-    for i in range(1, len(listeSatoshis)): 
+def rechercheTransaction(K, ressourcesSatoshis, W):
+
+    lysteTransaction = []
+    lysteSatoshis = []
+    
+    ressourcesOctets = W
+    for i in range(n, 0, -1): #on par de la fin du tableau
         
-        for sato in itertools.combinations(listeSatoshis, i): 
+        if ressourcesSatoshis <= 0:
+            break
+		
+        if ressourcesSatoshis == K[i-1][ressourcesOctets]: #si la valeur des satoshi et la même à K[i - 1][w] on continue 
+            continue
+		
+        else: # l'on soustrait les satoshis aux ressourcesSatoshis et les octets aux ressourcesOctets
+			
+            lysteTransaction.append(octets[i-1])
+            lysteSatoshis.append(satoshis[i-1])
             
-            if sum(sato) == satoshisTT: # pour toutes les sommes de combinaisons de satoshis = à satoshisTT
-                
-                for octe in itertools.combinations(listeOctets, i):
-                    
-                    if sum(octe) == octetsUtulise: # et pour toutes les combinaison d'octets = à octetsUtulise
-                        return(octe) # retourne la combinaison d'octets 
-         
-octetsUtil = octetsUtulise
+            ressourcesSatoshis = ressourcesSatoshis - satoshis[i - 1]
+            ressourcesOctets = ressourcesOctets - octets[i - 1]
+            
+    print("Les transactions nécessaire pour atteindre le plus haut rendement de satoshis sont :", lysteTransaction )
+    print("Pour un totale de ", K[n][W], "satoshis, par la somme des valeurs suivante : ", lysteSatoshis)     
 
-print ("Le pourboir maximum est atteind avec les trasactions ",
-        transactionRentable(meilleurPBR( satoshis, octets , octetsMax , n), octetsUtil ),
-        "pour un total de  :",
-        meilleurPBR( satoshis, octets , octetsMax , n), "satoshis" )
 
+rechercheTransaction(K, meilleurPBR( satoshis, octets , octetsMax , n), octetsMax)  
 print ("On a une complexité de O(2^n)")
-    
-    
-
 
 
 
