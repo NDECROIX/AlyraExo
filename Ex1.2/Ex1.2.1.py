@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 
 def fact(n):
     """
@@ -45,5 +46,5 @@ nombre = saisiUtulisateur()
 
 print("La factorielle du nombre saisi est : ", fact(nombre))
 
-if nombre == 0: nombre = 1 #Possibilité de mettre un compteur dans la boucle while
+if nombre == 0: nombre = 1 #Possibilité de mettre un compteur dans la boucle for
 print("Le calcul a demandé", nombre-1, "operations." )

@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
 #!/usr/bin/env python3 
+# -*- coding: utf-8 -*-
+import os
 liste_octet = [2000, 6000, 800, 700, 1200, 1000, 1300, 600]
 liste_ratioRentabilite = []
 liste_pourboire = [13000, 9000, 2000, 1500, 3500, 2800, 5000, 1500]
@@ -58,4 +59,4 @@ while idSomOctets < len(liste_octet): # calcul de la somme des octets par ordre 
     
 print("Le total de pourboire est de", pbr, "satoshis pour la somme Max de", maxOctets, "octets avec les transactions", liste_transaction)
 print("La Complexité est de ", complexite)   
-    
+os.system("pause")
