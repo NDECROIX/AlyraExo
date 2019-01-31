@@ -11,30 +11,33 @@ public class Main {
     public static void main(String[] args){
 
     arbre = new Arbre();
-    arbre.ajouter(80);
-    arbre.ajouter(68);
-    arbre.ajouter(18);
-    arbre.ajouter(90);
-    arbre.ajouter(99);
-    arbre.ajouter(10);
-    arbre.ajouter(8);
-    arbre.ajouter(150);
-    arbre.ajouter(125);
-    arbre.ajouter(33);
-    arbre.ajouter(24);
-    arbre.ajouter(89);
-    arbre.ajouter(42);
-    arbre.ajouter(16);
+    arbre.addNoeud(80);
+    arbre.addNoeud(68);
+    arbre.addNoeud(18);
+    arbre.addNoeud(90);
+    arbre.addNoeud(99);
+    arbre.addNoeud(10);
+    arbre.addNoeud(8);
+    arbre.addNoeud(150);
+    arbre.addNoeud(125);
+    arbre.addNoeud(33);
+    arbre.addNoeud(24);
+    arbre.addNoeud(89);
+    arbre.addNoeud(42);
+    arbre.addNoeud(16);
 
 
 
-    arbre.chercheValeur(10, arbre.getRacine());
+    arbre.findVal(10);
     arbre.parcourInfixe(arbre.getRacine());
-    System.gc();
-    arbre.suppressionValeur(18, arbre.getRacine());
-    System.gc();
-    arbre.parcourInfixe(arbre.getRacine());
-
+    //System.gc();
+    //arbre.suppressionValeur(18, arbre.getRacine());
+    //System.gc();
+    //arbre.parcourInfixe(arbre.getRacine());
+    //arbre.findVal(33);
+    //arbre.findVador(89);
+    arbre.deleteVal(8);
+    arbre.parcourInfixe(arbre.findVal(150));
 
     }
 

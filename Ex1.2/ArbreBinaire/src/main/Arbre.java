@@ -3,93 +3,123 @@ package main;
 public class Arbre {
 
     public Noeud racine;
-    public Noeud noeudTrouver;
-    public Noeud noeudPere;
+
+    public void setRacine(Noeud racine) {
+        this.racine = racine;
+    }
+
 
     public Arbre() { }
-
-    public void ajouter(int valeur){
-        if (racine == null){
-            racine = new Noeud(valeur);
-        }
-        else{
-            ajouterNoeud(valeur, racine);
-        }
-    }
 
     public Noeud getRacine() {
         return racine;
     }
 
-    public void ajouterNoeud(int valeur, Noeud noeud) {
-        if (valeur < noeud.getValeur()){
-            if (noeud.getnGauche() != null){
-                ajouterNoeud(valeur, noeud.getnGauche());
-            }
-            else noeud.setnGauche(new Noeud(valeur));
+    public void addNoeud(int valeur){
+
+        Noeud openNoeud = getRacine();
+        boolean nonRange = true;
+
+        if (getRacine() == null){
+            setRacine(new Noeud(valeur));
+            nonRange = false;
         }
-        else{
-            if (noeud.getnDroite() != null){
-                ajouterNoeud(valeur, noeud.getnDroite());
+
+        while (nonRange){
+            if (valeur < openNoeud.getValeur()){
+                if (openNoeud.getnGauche() != null){
+                    openNoeud = openNoeud.getnGauche();
+                }
+                else{
+                    openNoeud.setnGauche(new Noeud(valeur));
+                    nonRange = false;
+                }
+            }
+            else {
+                if (openNoeud.getnDroite() != null){
+                    openNoeud = openNoeud.getnDroite();
+                }
+                else{
+                    openNoeud.setnDroite(new Noeud(valeur));
+                    nonRange = false;
+                }
+            }
+        }
+    }
+
+    public Noeud findVal(int val){
+
+        Noeud findNoeud = getRacine();
+        boolean notFind = true;
+
+        while (notFind){
+
+            if (findNoeud != null){
+                if (val < findNoeud.getValeur()){
+                    findNoeud = findNoeud.getnGauche();
+                }
+                else if (val > findNoeud.getValeur()){
+                    findNoeud = findNoeud.getnDroite();
+                }
+                else {
+                    System.out.println("Le noeud qui contient la valeur " + findNoeud.getValeur() + " vous est retourné");
+                    notFind = false;
+                }
+            }
+            else
+            {
+                System.out.println("la valeur est inexistante ");
+                notFind = false;
+            }
+        }
+
+        return findNoeud;
+    }
+
+    public Noeud findVador(int val){
+
+        Noeud findNoeud = getRacine();
+        boolean notFind = true;
+
+        while (notFind){
+
+            if (findNoeud.getnGauche() != null || findNoeud.getnDroite() != null){
+
+                if (val < findNoeud.getValeur() && findNoeud.getnGauche() != null){
+
+                    if (val != findNoeud.getnGauche().getValeur()) {
+                        findNoeud = findNoeud.getnGauche();
+                    }
+                    else if (val == findNoeud.getnGauche().getValeur()){
+                        System.out.println("Le neoud qui contient sur ça feuille gauche " + val + " est  "  + findNoeud.getValeur());
+                        notFind = false;
+                    }
+
+                }
+                else if (val > findNoeud.getValeur() && findNoeud.getnDroite() != null){
+
+                    if (val != findNoeud.getnDroite().getValeur()) {
+                        findNoeud = findNoeud.getnDroite();
+                    }
+                    else if (val == findNoeud.getnDroite().getValeur()){
+                        System.out.println("Le neoud qui contient sur ça feuille droite " + val + " est  "  + findNoeud.getValeur());
+                        notFind = false;
+                    }
+                }
+                else{
+                    System.out.println("la valeur est inexistante ");
+                    notFind = false;
+                }
+
             }
             else{
-                noeud.setnDroite(new Noeud(valeur));
+                System.out.println("la valeur est inexistante ");
+                notFind = false;
             }
         }
+        return findNoeud;
     }
 
-    public void chercheValeur(int valeur, Noeud noeud){
-
-        if (noeud == null || noeud.getValeur() == 0){
-            System.out.println("Cette valeur n'existe pas !");
-        }
-        else {
-            if (noeud.getValeur() == valeur) {
-
-                String gauche = (noeud.getnGauche() != null) ? String.valueOf(noeud.getnGauche().getValeur()) : "null";
-                String droite = (noeud.getnDroite() != null) ? String.valueOf(noeud.getnDroite().getValeur()) : "null";
-
-                System.out.println("Le noeud qui contien la valeur "
-                        + valeur
-                        + " à comme fils gauche "
-                        + gauche
-                        + " et comme fils droite "
-                        + droite);
-                noeudTrouver = noeud;
-
-            } else if (valeur < noeud.getValeur()) {
-                chercheValeur(valeur, noeud.getnGauche());
-            } else if (valeur > noeud.getValeur()) {
-                chercheValeur(valeur, noeud.getnDroite());
-            }
-        }
-
-
-    }
-
-    public void cherchePere(int valeur, Noeud noeud){
-
-        noeudPere = null;
-        if (noeud == null ){
-            System.out.println("Cette valeur n'existe pas !");
-        }
-        else {
-            if (noeud.getnGauche() != null && noeud.getnGauche().getValeur() == valeur){
-                noeudPere = noeud;
-            }
-            if (noeud.getnDroite() != null && noeud.getnDroite().getValeur() == valeur){
-                noeudPere = noeud;
-            }
-            else if (valeur < noeud.getValeur()) {
-                chercheValeur(valeur, noeud.getnGauche());
-            }
-            else if (valeur > noeud.getValeur()) {
-                chercheValeur(valeur, noeud.getnDroite());
-            }
-        }
-
-
-    }
 
     public void parcourInfixe(Noeud noeud){
         if (noeud.getnGauche() != null) parcourInfixe(noeud.getnGauche());
@@ -97,61 +127,73 @@ public class Arbre {
         if (noeud.getnDroite() != null) parcourInfixe(noeud.getnDroite());
     }
 
-    public void suppressionValeur(int valeur, Noeud noeud){
+    public void deleteVal(int val){
 
-        Noeud noeudA = noeud;
+        Noeud noeudDel = findVal(val);
+        Noeud noeudTmp = noeudDel;
+        Noeud noeudPr = findVador(val);
 
-        if (noeud.getValeur() != valeur){
-            chercheValeur(valeur, noeud);
-            noeudA = noeudTrouver;
+        if (noeudDel != null){
+            boolean nonDelete = true;
+
+
+            while(nonDelete){
+
+                if (noeudDel.getnDroite() == null && noeudDel.getnGauche() == null){
+                        if (noeudPr.getnGauche().getValeur() == noeudDel.getValeur()){
+                              noeudPr.setnGauche(null);
+                              noeudDel = null;
+                        }
+                         else if(noeudPr.getnDroite().getValeur() == noeudDel.getValeur()){
+                            noeudPr.setnDroite(null);
+                            noeudDel = null;
+                         }
+                         nonDelete = false;
+                }
+                else if (noeudDel.getnDroite() != null && noeudDel.getnGauche() == null){
+                        if (noeudPr.getnDroite().getnDroite() == noeudDel.getnDroite()){
+                            noeudPr.setnDroite(noeudDel.getnDroite());
+                        }
+                        else {
+                            noeudPr.setnGauche(noeudDel.getnDroite());
+                        }
+                        nonDelete = false;
+                }
+                else if (noeudDel.getnGauche() != null && noeudDel.getnDroite() == null){
+                        if (noeudPr.getnDroite().getnGauche() == noeudDel.getnGauche()){
+                            noeudPr.setnDroite(noeudDel.getnGauche());
+                        }
+                        else{
+                            noeudPr.setnGauche(noeudDel.getnGauche());
+                        }
+                        nonDelete = false;
+                }
+                else if (noeudDel.getnDroite() != null && noeudDel.getnGauche() != null){
+
+                        noeudDel = noeudDel.getnGauche();
+
+                        if (noeudDel.getnDroite() != null){
+
+                            while(noeudDel.getnDroite().getnDroite() != null){
+
+                                noeudDel = noeudDel.getnDroite();
+                            }
+                            noeudTmp.setValeur(noeudDel.getnDroite().getValeur());
+                            noeudPr = noeudDel;
+                            noeudDel = noeudDel.getnDroite();
+                        }
+                        else
+                        {
+                            noeudTmp.setValeur(noeudDel.getValeur());
+                        }
+                }
+            }
         }
-
-        Noeud noeudB = noeudA;
-        Noeud noeudC = null;
-
-        if (noeudA != null){
-
-            if (noeudA.getnGauche() != null){
-                noeudA = noeudA.getnGauche();
-                while (noeudA.getnDroite() != null){
-                    noeudC = noeudA;
-                    noeudA = noeudA.getnDroite();
-                }
-
-                noeudPere = noeudC;
-                System.out.println(noeudC.getValeur());
-                noeudB.setValeur(noeudA.getValeur());
-                suppressionValeur(noeudA.getValeur(), noeudA);
-
-            }
-            else if (noeudA.getnDroite() != null){
-                noeudA = noeudA.getnGauche();
-                while (noeudA.getnGauche() != null){
-                    noeudC = noeudA;
-                    noeudA = noeudA.getnGauche();
-                }
-
-                noeudPere = noeudC;
-                System.out.println(noeudC.getValeur());
-                noeudB.setValeur(noeudA.getValeur());
-                suppressionValeur(noeudA.getValeur(), noeudA);
-            }
-            else{
-                System.out.println("Le noeud pere est : " + noeudPere.getValeur());
-                if (noeudPere != null){
-                    if (noeudPere.getnGauche() == noeudB){
-                        noeudB = null;
-                        noeudPere.setnGauche(null);
-                    }
-                    else if (noeudPere.getnDroite() == noeudB){
-                        noeudB = null;
-                        noeudPere.setnDroite(null);
-                    }
-                }
-
-            }
+        else {
+            System.out.println("la Val est inexistante");
         }
-
     }
+
+
 
 }
