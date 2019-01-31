@@ -63,4 +63,4 @@ print ("On a une complexité de O(nW) pour n le nombre de valeurs et W la capaci
 
 # source : https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_sac_%C3%A0_dos
 # le plus dur à trouver c'est le nom du prblm "Knapsack" :) 
-# vous pouvez me demander directement pour pls de détaille
+# vous pouvez me demander directement pour pls de détailles
