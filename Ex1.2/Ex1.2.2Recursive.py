@@ -26,8 +26,7 @@ def meilleurPBR( satoshis , octets , octetsM , n):
 
         K[n][octetsM] = max(meilleurPBR( satoshis, octets , octetsM - octets[n-1]  , n-1) + satoshis[n-1], meilleurPBR( satoshis, octets , octetsM , n-1)) 
                    
-        return max(meilleurPBR( satoshis, octets , octetsM - octets[n-1]  , n-1) + satoshis[n-1], 
-                   meilleurPBR( satoshis, octets , octetsM , n-1)) 
+        return K[n][octetsM] 
 
     
 def rechercheTransaction(K, ressourcesSatoshis, W):
@@ -59,6 +58,6 @@ def rechercheTransaction(K, ressourcesSatoshis, W):
 rechercheTransaction(K, meilleurPBR( satoshis, octets , octetsMax , n), octetsMax)  
 print ("On a une complexité de O(2^n)")
 
-
-
-
+# source : https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_sac_%C3%A0_dos
+# le plus dur à trouver c'est le nom du prblm "Knapsack" :)  
+# vous pouvez me demander directement pour pls de détaille

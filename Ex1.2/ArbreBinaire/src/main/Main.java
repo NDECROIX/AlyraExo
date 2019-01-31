@@ -27,13 +27,13 @@ public class Main {
     arbre.ajouter(16);
 
 
+
     arbre.chercheValeur(10, arbre.getRacine());
     arbre.parcourInfixe(arbre.getRacine());
-    arbre.suppressionValeur(19, arbre.getRacine());
-
-
+    System.gc();
+    arbre.suppressionValeur(18, arbre.getRacine());
+    System.gc();
     arbre.parcourInfixe(arbre.getRacine());
-
 
 
     }
