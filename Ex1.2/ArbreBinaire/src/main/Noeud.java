@@ -1,17 +1,13 @@
 package main;
 
+/**
+ * Classe Noeud qui definit un noeud dans un arbre binaire
+ *  avec une Valeur un noeud Gauche et Droite
+ */
 public class Noeud {
 
-    public int valeur;
-    public Noeud nGauche, nDroite;
-
-    public void setnGauche(Noeud nGauche) {
-        this.nGauche = nGauche;
-    }
-
-    public void setnDroite(Noeud nDroite) {
-        this.nDroite = nDroite;
-    }
+    private int valeur;
+    private Noeud nGauche, nDroite;
 
     public Noeud(int valeur) {
 
@@ -23,10 +19,11 @@ public class Noeud {
         this.valeur = valeur;
     }
 
-    public Noeud(int valeur, Noeud nGauche, Noeud nDroite){
-
-        this.valeur = valeur;
+    public void setnGauche(Noeud nGauche) {
         this.nGauche = nGauche;
+    }
+
+    public void setnDroite(Noeud nDroite) {
         this.nDroite = nDroite;
     }
 
