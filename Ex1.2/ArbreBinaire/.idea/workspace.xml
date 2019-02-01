@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0cab03e0-8248-4322-abd9-8eee0b8121c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ArbreBinaire/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArbreBinaire/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ArbreBinaire/main/Noeud.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ArbreBinaire/main/Noeud.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Arbre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Arbre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Noeud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Noeud.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,14 +18,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="e#372#373#0" expanded="true" />
-                <element signature="e#408#409#0" expanded="true" />
-                <element signature="e#297#298#0" expanded="true" />
-                <element signature="e#335#336#0" expanded="true" />
-                <element signature="e#380#381#0" expanded="true" />
-                <element signature="e#418#419#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -47,12 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Arbre.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4369">
+            <state relative-caret-position="872">
               <caret line="259" column="5" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
-              <folding>
-                <element signature="e#199#200#0" expanded="true" />
-                <element signature="e#235#236#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds">
     <option name="x" value="349" />
     <option name="y" value="253" />
     <option name="width" value="943" />
@@ -98,7 +81,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -122,10 +104,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548973669871" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548973801983" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -197,15 +180,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="-8" width="1873" height="1096" extended-state="7" />
-    <editor active="true" />
+    <frame x="349" y="253" width="943" height="1087" extended-state="0" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.25261998" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.53114384" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32917964" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -213,7 +195,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32917964" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.25752854" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.25995806" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.298027" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -236,6 +218,13 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/Noeud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -243,29 +232,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Noeud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#372#373#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-            <element signature="e#297#298#0" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Arbre.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4369">
+        <state relative-caret-position="872">
           <caret line="259" column="5" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#235#236#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
