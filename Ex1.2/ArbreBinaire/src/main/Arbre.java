@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class Arbre {
 
-    public Noeud racine;
+    private Noeud racine;
 
     public Arbre() { }
 

@@ -1,3 +1,5 @@
+package Tun;
+
 /**
  * @param <K> Le lieu du serveur
  * @param <V> L'ip du serveur
