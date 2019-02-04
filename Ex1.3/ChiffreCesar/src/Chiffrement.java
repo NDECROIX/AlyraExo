@@ -2,7 +2,7 @@
 
 public class Chiffrement {
 
-    private static final String ALPHABET = " abcdefghijklmnopqrstuvwxyz"; // on ajoute ici les caratères souhaitée
+    private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz"; // on ajoute ici les caratères souhaitée
 
     private Chiffrement(){ }
 
@@ -23,15 +23,23 @@ public class Chiffrement {
         if (decale > alpL) decale = decale % alpL; // on met à niveau les décales
         if (decale < 0) decale = decale % alpL + alpL;
 
+        boolean laisse;
         for (int c : text){ // pour chaque lettre dans le texte
 
-            for (int i = 0 ; i < alpL ; i++){ // retrouver la lettre dans l'alphabet
+            laisse = true;
 
-                if (c == alphabet[i] ){
-                    sb.append((i+decale < alpL) ? alphabet[i+decale] : alphabet[i+decale-alpL] ); // assigner la lettre à la position i + décale
-                    break;
+                for (int i = 0 ; i < alpL ; i++){ // retrouver la lettre dans l'alphabet
+
+                    if (c == alphabet[i] ){
+                        sb.append((i+decale < alpL) ? alphabet[i+decale] : alphabet[i+decale-alpL] ); // assigner la lettre à la position i + décale
+                        laisse = false;
+                        break;
+                    }
+
                 }
-            }
+
+            if (laisse) sb.append((char) c); // laisse les caractères non présent dans l'alpahbet
+
         }
 
         return sb.toString();
@@ -40,7 +48,7 @@ public class Chiffrement {
 
     public static void main(String[] args){
 
-        String txt = "You shall not pass";
+        String txt = "You shall not pass!";
 
         System.out.println(chiffreCesar(txt, 1));
         System.out.println(chiffreCesar(txt, 268));
