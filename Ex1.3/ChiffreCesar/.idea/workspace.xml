@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="210c67a0-dda0-45cf-b135-174bd9d062fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/out/production/TableDeHashage/Tdeux/TableHash.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/out/production/TableDeHashage/Tdeux/TableHash.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/src/Tdeux/TableHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/src/Tdeux/TableHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chiffrement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chiffrement.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,10 +15,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FrequenceLettre.java">
+        <entry file="file://$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="8" selection-start-column="8" selection-end-column="8" />
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,20 +29,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Chiffrement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="354">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Vigenere.java">
+        <entry file="file://$PROJECT_DIR$/src/hashBitcoin/Ripemd160.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hashBitcoin/Base58.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -57,6 +65,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>RIP</find>
+      <find>ripem</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -68,10 +82,16 @@
       <list>
         <option value="$PROJECT_DIR$/src/chiffrement.java" />
         <option value="$PROJECT_DIR$/src/Dechiffre.java" />
-        <option value="$PROJECT_DIR$/src/Chiffrement.java" />
         <option value="$PROJECT_DIR$/src/FrequenceLettre.java" />
         <option value="$PROJECT_DIR$/src/Vigenere.java" />
         <option value="$PROJECT_DIR$/src/CourbeElliptique.java" />
+        <option value="$PROJECT_DIR$/src/Ripemd160.java" />
+        <option value="$PROJECT_DIR$/src/AdresseBitcoin.java" />
+        <option value="$PROJECT_DIR$/src/hashBitcoin/base58.java" />
+        <option value="$PROJECT_DIR$/src/hashBitcoin/Base58.java" />
+        <option value="$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java" />
+        <option value="$PROJECT_DIR$/src/hashBitcoin/Ripemd160.java" />
+        <option value="$PROJECT_DIR$/src/Chiffrement.java" />
       </list>
     </option>
   </component>
@@ -87,6 +107,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -99,16 +120,21 @@
               <item name="ChiffreCesar" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ChiffreCesar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChiffreCesar" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="hashBitcoin" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549281573273" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549299121776" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage" />
   </component>
   <component name="RunDashboard">
@@ -124,6 +150,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Chiffrement">
+    <configuration name="AdresseBitcoin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hashBitcoin.AdresseBitcoin" />
+      <module name="ChiffreCesar" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Chiffrement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Chiffrement" />
       <module name="ChiffreCesar" />
@@ -148,6 +181,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Chiffrement" />
+        <item itemvalue="Application.AdresseBitcoin" />
         <item itemvalue="Application.Vigenere" />
         <item itemvalue="Application.FrequenceLettre" />
       </list>
@@ -169,7 +203,7 @@
   <component name="ToolWindowManager">
     <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25537783" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25813568" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -178,8 +212,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.088265836" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30114228" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997923" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24610592" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.26272067" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -200,13 +234,17 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hashBitcoin/Base58.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Chiffrement.java</url>
-          <line>30</line>
-          <properties class="Chiffrement" method="main">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="4" />
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -214,16 +252,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Dechiffre.java" />
     <entry file="file://$PROJECT_DIR$/src/CourbeElliptique.java" />
-    <entry file="file://$PROJECT_DIR$/src/FrequenceLettre.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Vigenere.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
@@ -234,10 +262,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/nio/charset/StandardCharsets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/security/MessageDigest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1145">
+          <caret line="104" column="22" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.xml.crypto/javax/xml/crypto/dsig/DigestMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="83" column="33" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrequenceLettre.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="8" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="36" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hashBitcoin/Ripemd160.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hashBitcoin/Base58.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Chiffrement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="354">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>

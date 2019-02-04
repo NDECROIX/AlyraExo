@@ -2,42 +2,50 @@
 
 public class Chiffrement {
 
+    private static final String ALPHABET = " abcdefghijklmnopqrstuvwxyz"; // on ajoute ici les caratères souhaitée
 
     private Chiffrement(){ }
 
     /**
-     * @param txt text qui subit un chiffrage par decal
-     * @param decal la decal à effectuer
-     * @return le text decalé
-     * Gère tous les caractères
+     * @param txt text qui subit un chiffrage par decale
+     * @param decale la decale à effectuer
+     * @return le text chiffré
      */
-    public static String chiffreCesar(String txt, int decal){
+    public static String chiffreCesar(String txt, int decale){
 
         char[] text = txt.toLowerCase().toCharArray(); // on range les caractères dans un tableau
-        String txtChiffre = "";
+        char[] alphabet = ALPHABET.toCharArray();
 
+        StringBuilder sb = new StringBuilder(); // chaîne qui va contenir le texte chiffré
 
-        for (int i = 0; i < text.length; i++){
+        int alpL = alphabet.length;
 
-            int l = ((int)text[i]) + decal; // on décale le caractère
+        if (decale > alpL) decale = decale % alpL; // on met à niveau les décales
+        if (decale < 0) decale = decale % alpL + alpL;
 
-            txtChiffre += (char) l; // on l'ajoute à la chaîne txtRevers
+        for (int c : text){ // pour chaque lettre dans le texte
+
+            for (int i = 0 ; i < alpL ; i++){ // retrouver la lettre dans l'alphabet
+
+                if (c == alphabet[i] ){
+                    sb.append((i+decale < alpL) ? alphabet[i+decale] : alphabet[i+decale-alpL] ); // assigner la lettre à la position i + décale
+                    break;
+                }
+            }
         }
 
-        return txtChiffre;
+        return sb.toString();
 
     }
 
     public static void main(String[] args){
 
-        String txt = "You shall not pass !";
+        String txt = "You shall not pass";
 
         System.out.println(chiffreCesar(txt, 1));
-        System.out.println(chiffreCesar(txt, -1));
-        System.out.println(chiffreCesar(txt, 2));
-        System.out.println(chiffreCesar(txt, -2));
-        System.out.println(chiffreCesar(txt, 999999999));
-        System.out.println(chiffreCesar(txt, -999999999));
+        System.out.println(chiffreCesar(txt, 268));
+        System.out.println(chiffreCesar(txt, -5));
+        System.out.println(chiffreCesar(txt, -268));
 
     }
 
