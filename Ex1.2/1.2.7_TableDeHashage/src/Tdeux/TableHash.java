@@ -27,12 +27,12 @@ public class TableHash {
 
         if (key != null){
             try {
-                MessageDigest md = MessageDigest.getInstance("MD5"); // on par sur la fonction de hachage MD5
+                MessageDigest md = MessageDigest.getInstance("SHA-1"); // on par sur la fonction de hachage MD5
                 byte[] hashInBytes = md.digest(key.getBytes(StandardCharsets.UTF_8)); // hash la clef en octets
 
                 StringBuilder sb = new StringBuilder();
 
-                for (int i = 0 ; i < 8; i++){ // on prends seuelement les 8 premiers octets du hash
+                for (int i = 0 ; i < 4; i++){ // on prends seuelement les 8 premiers octets du hash
                     sb.append(String.format("%02x", hashInBytes[i]));
                 }
 
@@ -77,7 +77,7 @@ public class TableHash {
 
         for (int i = 0; i < nbrElements; i++){
 
-            if (hashtable[1][i] != null){
+            if (hashtable[0][i] != null){
 
                 System.out.println( hashtable[0][i] + " = " + hashtable[1][i]);
                 System.out.println("---------------------------------------------------------");
