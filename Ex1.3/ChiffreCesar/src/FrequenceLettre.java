@@ -60,7 +60,7 @@ public class FrequenceLettre {
         return tblOcc;
 
     }
-    
+
     class Occure {
 
         char a;

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="210c67a0-dda0-45cf-b135-174bd9d062fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/FrequenceLettre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrequenceLettre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vigenere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vigenere.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,34 +15,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/FrequenceLettre.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Vigenere.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+            <state relative-caret-position="442">
+              <caret line="96" column="108" selection-start-line="96" selection-start-column="108" selection-end-line="96" selection-end-column="108" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,29 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Chiffrement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="72" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hashBitcoin/Ripemd160.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hashBitcoin/Base58.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="5" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -105,7 +61,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/chiffrement.java" />
         <option value="$PROJECT_DIR$/src/Dechiffre.java" />
-        <option value="$PROJECT_DIR$/src/Vigenere.java" />
         <option value="$PROJECT_DIR$/src/CourbeElliptique.java" />
         <option value="$PROJECT_DIR$/src/Ripemd160.java" />
         <option value="$PROJECT_DIR$/src/AdresseBitcoin.java" />
@@ -117,6 +72,7 @@
         <option value="$PROJECT_DIR$/src/occure.java" />
         <option value="$PROJECT_DIR$/src/Occure.java" />
         <option value="$PROJECT_DIR$/src/FrequenceLettre.java" />
+        <option value="$PROJECT_DIR$/src/Vigenere.java" />
       </list>
     </option>
   </component>
@@ -159,7 +115,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549305226226" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549311743410" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage" />
   </component>
   <component name="RunDashboard">
@@ -174,7 +130,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FrequenceLettre">
+  <component name="RunManager" selected="Application.Vigenere">
     <configuration name="AdresseBitcoin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hashBitcoin.AdresseBitcoin" />
       <module name="ChiffreCesar" />
@@ -205,10 +161,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Vigenere" />
         <item itemvalue="Application.FrequenceLettre" />
         <item itemvalue="Application.Chiffrement" />
         <item itemvalue="Application.AdresseBitcoin" />
-        <item itemvalue="Application.Vigenere" />
       </list>
     </recent_temporary>
   </component>
@@ -226,10 +182,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="-8" width="1873" height="1096" extended-state="7" />
+    <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25813568" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18257032" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -238,8 +194,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.088265836" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25441328" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.10488058" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32502595" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.17964694" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -271,6 +227,18 @@
           <line>20</line>
           <properties />
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Vigenere.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Vigenere.java</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -316,17 +284,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Chiffrement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="72" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="72" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/Occure.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Vigenere.java">
+    <entry file="file://$PROJECT_DIR$/src/FrequenceLettre.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        <state relative-caret-position="1054">
+          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -343,13 +307,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Occure.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrequenceLettre.java">
+    <entry file="file://$PROJECT_DIR$/src/Chiffrement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
+        <state relative-caret-position="255">
+          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Vigenere.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="96" column="108" selection-start-line="96" selection-start-column="108" selection-end-line="96" selection-end-column="108" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
