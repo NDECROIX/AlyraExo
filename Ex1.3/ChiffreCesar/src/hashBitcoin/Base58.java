@@ -10,8 +10,8 @@ public class Base58 {
 
 
     /**
-     * @param hash hash en hexadecimale
-     * @return hash en base 58à
+     * @param hash hash en hexadecimal
+     * @return hash en base 58
      */
     public String convertToBase58(String hash) {
         int base = 16;
@@ -26,7 +26,7 @@ public class Base58 {
         StringBuilder sb = new StringBuilder();
 
 
-        while (x.compareTo(BIG_INTEGER_0) > 0) { // compare x à 0
+            while (x.compareTo(BIG_INTEGER_0) > 0) { // compare x à 0
             int r = x.mod(BIG_INTEGER_58).intValue(); // x modulo 58
             sb.append(ALPHABET.charAt(r));
             x = x.divide(BIG_INTEGER_58); // on divise x par 58
