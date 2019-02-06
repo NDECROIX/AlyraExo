@@ -19,6 +19,7 @@ public class ConversionVarInt {
         long dec = decimal;
         int positionHex;
         int lastPosition = -1;
+        hexDecimal.add(new StringBuilder().append("0x"));
 
         while(decimal > 0){
 
@@ -41,12 +42,12 @@ public class ConversionVarInt {
 
 
         //Affichage du resultat en big et little endian
-        System.out.println("Conversion de : " + dec);
+        System.out.println("Conversion de : " + dec );
 
-        Collections.reverse(hexDecimal); // retourne la liste pour passer en big endian
+        Collections.reverse(hexDecimal.subList(2, hexDecimal.size())); // retourne la liste pour passer en big endian
 
         StringBuilder sbBE = new StringBuilder();
-        sbBE.append("0x ");
+
         for (StringBuilder s : hexDecimal){
             sbBE.append(s + " ");
         }
@@ -54,10 +55,9 @@ public class ConversionVarInt {
 
 
 
-        Collections.reverse(hexDecimal);
+        Collections.reverse(hexDecimal.subList(2, hexDecimal.size()));
         StringBuilder sbLE = new StringBuilder();
 
-        sbLE.append("0x ");
         for (StringBuilder s : hexDecimal){
             sbLE.append(s + " ");
         }
@@ -65,7 +65,7 @@ public class ConversionVarInt {
 
 
         if (dec < 253){
-            System.out.println(sbLE.toString() + " (notation variable)");
+            System.out.println(sbLE.toString() + " (notation variable)\n");
         }
         else{
 
@@ -73,24 +73,30 @@ public class ConversionVarInt {
             String sizeVarInt; // notation nbr octet
 
             if (sizeHexDe%2 != 0 ){ // si impaire add 1 octet
-                sbLE.append("00 ");
+                hexDecimal.add(new StringBuilder().append("00"));
                 sizeHexDe++;
             }
             if (sizeHexDe == 6 ){ // si égale 6 add 2 octets
-                sbLE.append("00 00 ");
+                hexDecimal.add(new StringBuilder().append("00"));
+                hexDecimal.add(new StringBuilder().append("00"));
                 sizeHexDe += 2;
             }
 
             if (sizeHexDe == 2){ // notation FD pour deux octets
-                sizeVarInt = "fd ";
+                sizeVarInt = "fd";
             }
             else if (sizeHexDe == 4){ // notation FE pour quatre octets
-                sizeVarInt = "fe ";
+                sizeVarInt = "fe";
             }
-            else sizeVarInt = "ff "; // notation FF pour 8 octets
+            else sizeVarInt = "ff"; // notation FF pour 8 octets
 
-            sbLE.insert(3, sizeVarInt);
-            System.out.println(sbLE.toString() + " (notation variable)");
+            hexDecimal.add(1, new StringBuilder().append(sizeVarInt));
+
+            StringBuilder sbNV = new StringBuilder();
+            for (StringBuilder s : hexDecimal){
+                sbNV.append(s + " ");
+            }
+            System.out.println(sbNV.toString() + " (notation variable)\n"); // affichage en little endian
 
         }
     }
