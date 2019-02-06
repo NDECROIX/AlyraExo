@@ -16,6 +16,7 @@ public class TransactionFields {
         int cP; // curseur position
 
         listChamp.add(transaction.substring(0, cP = HASH)); // Le hash de la transaction passée où sont les bitcoins à dépenser (sur 32 octets)
+
         listChamp.add(transaction.substring(cP, cP += INDEX)); // L’index de la sortie (output) de cette transaction concernée (sur 4 octets)
         listChamp.add(transaction.substring(cP, cP = transactionSize-SEQUENCE)); // ScriptSig...
         listChamp.add(transaction.substring(cP)); // Séquence (sur 4 octets)

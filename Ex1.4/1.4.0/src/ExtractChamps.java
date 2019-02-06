@@ -57,7 +57,7 @@ public class ExtractChamps {
                     );
         }
 
-        listChamp.add("\nLockTime " +transaction.substring(transaction.length() - 8));
+        listChamp.add("\nLockTime " +transaction.substring(transaction.length() - LOCKTIME));
 
 
         for (String c : listChamp){
