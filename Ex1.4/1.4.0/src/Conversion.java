@@ -18,6 +18,7 @@ public class Conversion {
         int dec = decimal;
         int positionHex;
         int lastPosition = -1;
+        hexDecimal.add(new StringBuilder().append("0").append("x"));
 
         while(decimal > 0){
 
@@ -44,7 +45,7 @@ public class Conversion {
             System.out.print(s + " ");
         }
         System.out.println(" (little endian)");
-        Collections.reverse(hexDecimal); // retourne la liste pour passer en big endian
+        Collections.reverse(hexDecimal.subList(1, hexDecimal.size())); // retourne la liste pour passer en big endian
 
         for (StringBuilder s : hexDecimal){
             System.out.print(s + " ");
@@ -54,8 +55,8 @@ public class Conversion {
 
     public static void main(String[] args){
 
-        /*Conversion conversion = new Conversion();
-        conversion.intToHex(466321);*/
+        Conversion conversion = new Conversion();
+        conversion.intToHex(466321);
 
     }
 
