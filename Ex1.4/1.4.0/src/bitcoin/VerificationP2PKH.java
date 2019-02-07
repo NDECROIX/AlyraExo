@@ -6,6 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * Classe qui vérifie un Pay To Pubkey Hash P2PKH
+ */
 public class VerificationP2PKH {
 
     private static final String HEX_CHAR = "0123456789abcdef"; // Base 16
@@ -21,39 +24,45 @@ public class VerificationP2PKH {
     private static final String OP_DUP = "76";
 
 
-
+    /**
+     * @param scriptSig
+     * @param scriptPubSig
+     * @return vrais si le P2PKH et bon sinon false
+     * Fonction qui vérifie un Pay To Pubkey Hash P2PKH
+     */
     private boolean verificationP2PKH(String scriptSig, String scriptPubSig){
 
         Deque<String> p2pkh = new ArrayDeque<>();
         boolean validation = false;
 
-        p2pkh.add(scriptSig.substring(0, scriptSig.length() - PUBLIC_KEY_COMPRESSED_SIZE));
-        p2pkh.add(scriptSig.substring(scriptSig.length() - PUBLIC_KEY_COMPRESSED_SIZE));
+        if (scriptSig.startsWith(HEXADECIMAL)) scriptSig = scriptSig.substring(2); // on retire la notation hexadecimal
+        p2pkh.add(scriptSig.substring(0, scriptSig.length() - PUBLIC_KEY_COMPRESSED_SIZE)); // on met dans la pile la signature
+        p2pkh.add(scriptSig.substring(scriptSig.length() - PUBLIC_KEY_COMPRESSED_SIZE)); // on ajoute la clef publique
 
-        if (scriptPubSig.startsWith(HEXADECIMAL)) scriptPubSig= scriptPubSig.substring(2);
+        if (scriptPubSig.startsWith(HEXADECIMAL)) scriptPubSig = scriptPubSig.substring(2); // on retire la notation hexadecimal
 
-        if (scriptPubSig.startsWith(OP_DUP)){
+        if (scriptPubSig.startsWith(OP_DUP)){ // on effectue la duplication de la clé public
             p2pkh.add(p2pkh.getLast());
             scriptPubSig = scriptPubSig.substring(OP_SIZE);
         }
 
-        if (scriptPubSig.startsWith(OP_HASH160)){
+        if (scriptPubSig.startsWith(OP_HASH160)){ // on fait un hash160 de la clef dupliquée
             p2pkh.add(hash160(p2pkh.pollLast()));
             scriptPubSig = scriptPubSig.substring(2);
         }
 
-        int publicKeySize = getDecimal(scriptPubSig.substring(0, KEY_SIZE))*2;
+        int publicKeySize = getDecimal(scriptPubSig.substring(0, KEY_SIZE))*2; // on récupère la taille de la clef public
         scriptPubSig = scriptPubSig.substring(KEY_SIZE);
 
-        p2pkh.add(scriptPubSig.substring(0, publicKeySize)); // cles size
+        p2pkh.add(scriptPubSig.substring(0, publicKeySize)); // on ajoute à la pile la clé public du scriptPubSig
         scriptPubSig = scriptPubSig.substring(publicKeySize);
 
-        if (scriptPubSig.startsWith(OP_EQUALVERIFY)){
+        if (scriptPubSig.startsWith(OP_EQUALVERIFY)){ // on compare les deux clés publiques dans la pile
             validation = p2pkh.pollLast().equals(p2pkh.pollLast());
             scriptPubSig = scriptPubSig.substring(OP_SIZE);
         }
 
-        if (scriptPubSig.equals(OP_CHECKSIG) && validation){
+        if (scriptPubSig.equals(OP_CHECKSIG) && validation){  // on vérifie la validité de la clef publique avec la signature
 
             validation = true;
 
@@ -68,6 +77,10 @@ public class VerificationP2PKH {
 
     }
 
+    /**
+     * @param hash clef publique
+     * @return le hash de la clef en SHA-256 et RIPEMD160
+     */
     private String hash160(String hash){
 
         MessageDigest md = null; // on par sur la fonction de hachage SHA-256
@@ -83,8 +96,8 @@ public class VerificationP2PKH {
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < hashRipemd.length; i++) { // on convertie en hex
-            sb.append(String.format("%02x", hashRipemd[i]));
+        for (byte b : hashRipemd) { // on convertie en hex
+            sb.append(String.format("%02x", b));
         }
 
         return sb.toString();
