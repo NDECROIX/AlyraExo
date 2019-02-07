@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a0b93080-8cde-4752-bfdf-eacb1eb2db12" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1.4.0/PoW.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1.4.0/PoW.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1.4.0/TransactionFields.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1.4.0/TransactionFields.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConversionVarInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConversionVarInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PoW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PoW.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TransactionFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionFields.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/1.4.0/CalculatorPolish2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1.4.0/CalculatorPolish2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalculatorPolish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculatorPolish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalculatorPolish2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculatorPolish2.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,14 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state>
+              <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -36,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ConversionVarInt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
+            <state relative-caret-position="-136">
               <caret line="57" column="48" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -48,11 +43,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ExtractChamps.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
-              <caret line="9" column="73" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="73" />
+            <state relative-caret-position="306">
+              <caret line="48" column="47" lean-forward="true" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CalculatorPolish.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="138" column="65" selection-start-line="138" selection-start-column="65" selection-end-line="138" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CalculatorPolish2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="165" column="87" selection-start-line="165" selection-start-column="87" selection-end-line="165" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -78,8 +94,6 @@
         <option value="$PROJECT_DIR$/src/extractChamps.java" />
         <option value="$PROJECT_DIR$/src/Conversion.java" />
         <option value="$PROJECT_DIR$/src/CalculatricePolonaise.java" />
-        <option value="$PROJECT_DIR$/src/CalculatorPolish.java" />
-        <option value="$PROJECT_DIR$/src/CalculatorPolish2.java" />
         <option value="$PROJECT_DIR$/src/ValidationP2PKH.java" />
         <option value="$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/AdresseBitcoin.java" />
@@ -89,6 +103,8 @@
         <option value="$PROJECT_DIR$/src/PoW.java" />
         <option value="$PROJECT_DIR$/src/ConversionVarInt.java" />
         <option value="$PROJECT_DIR$/src/TransactionFields.java" />
+        <option value="$PROJECT_DIR$/src/CalculatorPolish.java" />
+        <option value="$PROJECT_DIR$/src/CalculatorPolish2.java" />
       </list>
     </option>
   </component>
@@ -135,7 +151,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549545709750" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549548542781" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ex1.3/ChiffreCesar" />
   </component>
   <component name="RecentsManager">
@@ -158,16 +174,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TransactionFields">
-    <configuration name="ConversionVarInt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ConversionVarInt" />
+  <component name="RunManager" selected="Application.CalculatorPolish2">
+    <configuration name="CalculatorPolish" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CalculatorPolish" />
       <module name="1.4.0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExtractChamps" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ExtractChamps" />
+    <configuration name="CalculatorPolish2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CalculatorPolish2" />
+      <module name="1.4.0" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConversionVarInt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ConversionVarInt" />
       <module name="1.4.0" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -187,26 +210,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VerificationP2PKH" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bitcoin.VerificationP2PKH" />
-      <module name="1.4.0" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bitcoin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CalculatorPolish2" />
+        <item itemvalue="Application.CalculatorPolish" />
         <item itemvalue="Application.TransactionFields" />
         <item itemvalue="Application.ConversionVarInt" />
         <item itemvalue="Application.PoW" />
-        <item itemvalue="Application.VerificationP2PKH" />
-        <item itemvalue="Application.ExtractChamps" />
       </list>
     </recent_temporary>
   </component>
@@ -277,7 +287,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/CalculatorPolish.java</url>
-          <line>117</line>
+          <line>120</line>
           <properties class="CalculatorPolish">
             <option name="EMULATED" value="true" />
           </properties>
@@ -295,6 +305,12 @@
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/CalculatorPolish2.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -303,23 +319,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1320">
           <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalculatorPolish.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="134" column="24" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalculatorPolish2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="156" column="28" lean-forward="true" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -363,19 +362,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ExtractChamps.java">
+    <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="9" column="73" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state>
+          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ConversionVarInt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
+        <state relative-caret-position="-136">
           <caret line="57" column="48" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -383,13 +379,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
+    <entry file="file://$PROJECT_DIR$/src/ExtractChamps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        <state relative-caret-position="306">
+          <caret line="48" column="47" lean-forward="true" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalculatorPolish.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="138" column="65" selection-start-line="138" selection-start-column="65" selection-end-line="138" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CalculatorPolish2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="165" column="87" selection-start-line="165" selection-start-column="87" selection-end-line="165" selection-end-column="87" />
         </state>
       </provider>
     </entry>

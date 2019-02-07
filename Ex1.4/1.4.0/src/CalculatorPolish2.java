@@ -10,7 +10,7 @@ import java.util.Deque;
  */
 public class CalculatorPolish2 {
 
-
+    private static final String AUTHORIZE = "0123456789+-*/=<>";
     /**
      * @param pile opération à effectuer
      * @return resultat de l'opération en String
@@ -26,7 +26,7 @@ public class CalculatorPolish2 {
         for (int i = 0; i < sizePile; i++){
 
             nextIndex = pile.pollFirst();
-            if (nextIndex != null)
+            if (nextIndex != null && AUTHORIZE.contains(nextIndex))
                 switch (nextIndex){
 
                     case "+" :
@@ -132,47 +132,44 @@ public class CalculatorPolish2 {
         return result;
     }
 
+    /**
+     * @param str opération à effectuer
+     * @return un ArrayDeque de l'operation
+     */
+    private  ArrayDeque<String> stringToPile(String str){
 
+        ArrayDeque<String> operation = new ArrayDeque<>();
+        StringBuilder op = new StringBuilder();
 
+        for (char c : str.toCharArray()){
+
+            if (c != ' ' && AUTHORIZE.contains(String.valueOf(c))) op.append(c);
+
+            else if (!op.toString().equals("")){
+
+                operation.add(op.toString());
+                op = new StringBuilder();
+            }
+        }
+        if (!op.toString().equals("")) operation.add(op.toString());
+
+        return operation;
+
+    }
 
 
     public static void main(String[] args){
 
-        ArrayDeque<String> operation = new ArrayDeque<>();
+
         CalculatorPolish2 cP = new CalculatorPolish2();
 
-        operation.add("12");
-        operation.add("4");
-        operation.add("-");
-        operation.add("2");
-        operation.add("*");
-        operation.add("2");
-        operation.add("/");
-        operation.add("4");
-        operation.add("+");
+        System.out.println("12 4 - 2 * 2 / 4 + = " + cP.calc(cP.stringToPile(" 12 4 - 2 * 2 / 4 + ")));
 
-        System.out.println("12 4 - 2 * 2 / 4 + = " + cP.calc(operation));
+        System.out.println("12 4 < : " + cP.calc(cP.stringToPile("12 4 <")));
 
-        operation.clear();
-        operation.add("12");
-        operation.add("4");
-        operation.add("<");
+        System.out.println("12 4 > : " + cP.calc(cP.stringToPile("12 4 >")));
 
-        System.out.println("12 < 4 : " + cP.calc(operation));
-
-        operation.clear();
-        operation.add("12");
-        operation.add("4");
-        operation.add(">");
-
-        System.out.println("12 > 4 : " + cP.calc(operation));
-
-        operation.clear();
-        operation.add("12");
-        operation.add("4");
-        operation.add("=");
-
-        System.out.println("12 = 4 : " + cP.calc(operation));
+        System.out.println("12 4 = : " + cP.calc(cP.stringToPile("12 4 =")));
 
     }
 
