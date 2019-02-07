@@ -55,7 +55,7 @@ public class ConversionVarInt {
 
 
 
-        Collections.reverse(hexDecimal.subList(2, hexDecimal.size()));
+        Collections.reverse(hexDecimal.subList(1, hexDecimal.size()));
         StringBuilder sbLE = new StringBuilder();
 
         for (StringBuilder s : hexDecimal){

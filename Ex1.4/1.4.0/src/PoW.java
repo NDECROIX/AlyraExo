@@ -1,11 +1,16 @@
 
-import static java.lang.System.currentTimeMillis;
-
 public class PoW {
 
         private static final String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        // 26^L+(n-L)
+        // Mesurer la durée de chaque recherche de solution en fonction de la longueur de la chaîne et de n
+        // P(A) = a^(n-L)/a^(n) = 1/a^L = a^(-L) pour a le nombre de lettre dans l'alphabet n la longueur de la chaîne aléatoire et L la longueuer de la chaine à trouver
+        // la durée = Ta^(L)  pour T le temps de chaque passage dans la fonction chaineAlea
+        // la durée = a^(L)/H  pour H le nombre de passage dans la fonction chaineAlea par seconde
+        // pour poW.rechercheDebut("BITCOIN", 8); a = 26 et T = 2*10^(−7)sec "0.0000002"
+        // la durée =(2*10^(−7))*26^(7)  = 1606,3620352sec
+        // pour poW.rechercheDebut("BITCOIN", 8); a = 26 et H = 5 000 000
+        // la durée =26^(7)/4502585  = 1606,3620352sec
 
         private String chaineAlea(int sizeString){
 
@@ -25,15 +30,10 @@ public class PoW {
         private void rechercheDebut(String debut, int sizeWord){
 
             boolean find = false;
-            int cpt = 0;
             while(!find){
-                cpt++;
                 find = chaineAlea(sizeWord).startsWith(debut);
 
             }
-
-            System.out.println("FIN " + cpt + " Tour de boucle");
-
         }
 
 
