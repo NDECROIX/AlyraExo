@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * http://learnmeabitcoin.com/glossary/transaction-data
+ */
 public class ExtractChamps {
 
     private static final String HEX_CHAR = "0123456789abcdef"; // Base 16
@@ -17,9 +21,13 @@ public class ExtractChamps {
     private static final int OUTPUT_VALUE = 16;
     private static final int OUTPUT_SCRIPTPUBKEY_SIZE = 2;
 
-    public static final int LOCKTIME = 8;
+    private static final int LOCKTIME = 8;
 
-    public void extractChampsTrasaction(String transaction){
+    /**
+     * @param transaction String d'une transaction brute
+     *      affiche tous les champs d'une transaction
+     */
+    private void extractChampsTransaction(String transaction){
 
         List<String> listChamp = new ArrayList();
         int pC = 0; // position curseur
@@ -29,30 +37,32 @@ public class ExtractChamps {
         listChamp.add( "\nVersion : " + transaction.substring(pC, pC = VERSION));
 
         listChamp.add( "\nInput Count : " + (upcomingOf = transaction.substring(pC, pC += INPUT_COUNT)));
-        uO = getDecimal(upcomingOf);
+        uO = getDecimal(upcomingOf); // on récupère le nombre de Input(s)
 
 
-        for (int i = 0; i < uO; i++){
+        for (int i = 0; i < uO; i++){ // on affiche le(s) Input(s)
+
             transaction = transaction.substring(pC);
             listChamp.add("\nInput" +
                     "\nTXID : " + transaction.substring(0, pC = INPUT_TXID) +
                     "\nVOUT : " + transaction.substring(pC, pC += INPUT_VOUT) +
-                    "\nScriptSig Size : " + (upcomingOf = transaction.substring(pC, pC += INPUT_SCRIPTSIG_SIZE)) +
+                    "\nScriptSig Size : " + (upcomingOf = transaction.substring(pC, pC += INPUT_SCRIPTSIG_SIZE)) + // on récupère la taille du ScriptSig
                     "\nScriptSig : " + transaction.substring(pC, pC += getDecimal(upcomingOf)*2) +
                     "\nSequence : " + transaction.substring(pC, pC += INPUT_SEQUENCE)
             );
         }
 
 
-        listChamp.add("\nOutput Count : " + (upcomingOf = transaction.substring(pC, pC += OUTPUT_COUNT)));
+        listChamp.add("\nOutput Count : " + (upcomingOf = transaction.substring(pC, pC += OUTPUT_COUNT))); // on récupère le nombre de output(s)
         uO = getDecimal(upcomingOf);
 
 
-        for (int i = 0; i < uO; i++){
+        for (int i = 0; i < uO; i++){ // on affiche le(s) Output(s)
+
             transaction = transaction.substring(pC);
             listChamp.add("\nOutput" +
                     "\nValue : " + transaction.substring(0, pC = OUTPUT_VALUE) +
-                    "\nScriptPubKey Size : " + (upcomingOf = transaction.substring(pC, pC += OUTPUT_SCRIPTPUBKEY_SIZE)) +
+                    "\nScriptPubKey Size : " + (upcomingOf = transaction.substring(pC, pC += OUTPUT_SCRIPTPUBKEY_SIZE)) + // on récupère la taille du ScriptPubKey
                     "\nScriptPubKey : " + transaction.substring(pC, pC += getDecimal(upcomingOf)*2)
                     );
         }
@@ -95,7 +105,7 @@ public class ExtractChamps {
                              "f9c40763b8fa9a068700000000";
 
 
-        eC.extractChampsTrasaction(transaction);
+        eC.extractChampsTransaction(transaction);
 
 
     }

@@ -9,7 +9,7 @@ public class TransactionFields {
 
 
 
-    public void separatedFields(String transaction){
+    private void separatedFields(String transaction){
 
         List<String> listChamp = new ArrayList();
         int transactionSize = transaction.length();

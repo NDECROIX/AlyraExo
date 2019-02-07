@@ -22,7 +22,7 @@ public class VerificationP2PKH {
 
 
 
-    public boolean verificationP2PKH(String scriptSig, String scriptPubSig){
+    private boolean verificationP2PKH(String scriptSig, String scriptPubSig){
 
         Deque<String> p2pkh = new ArrayDeque<>();
         boolean validation = false;
@@ -30,14 +30,14 @@ public class VerificationP2PKH {
         p2pkh.add(scriptSig.substring(0, scriptSig.length() - PUBLIC_KEY_COMPRESSED_SIZE));
         p2pkh.add(scriptSig.substring(scriptSig.length() - PUBLIC_KEY_COMPRESSED_SIZE));
 
-        if (scriptPubSig.substring(0, OP_SIZE).equals(HEXADECIMAL)) scriptPubSig= scriptPubSig.substring(2);
+        if (scriptPubSig.startsWith(HEXADECIMAL)) scriptPubSig= scriptPubSig.substring(2);
 
-        if (scriptPubSig.substring(0, OP_SIZE).equals(OP_DUP)){
+        if (scriptPubSig.startsWith(OP_DUP)){
             p2pkh.add(p2pkh.getLast());
             scriptPubSig = scriptPubSig.substring(OP_SIZE);
         }
 
-        if (scriptPubSig.substring(0, OP_SIZE).equals(OP_HASH160)){
+        if (scriptPubSig.startsWith(OP_HASH160)){
             p2pkh.add(hash160(p2pkh.pollLast()));
             scriptPubSig = scriptPubSig.substring(2);
         }
@@ -48,7 +48,7 @@ public class VerificationP2PKH {
         p2pkh.add(scriptPubSig.substring(0, publicKeySize)); // cles size
         scriptPubSig = scriptPubSig.substring(publicKeySize);
 
-        if (scriptPubSig.substring(0,OP_SIZE).equals(OP_EQUALVERIFY)){
+        if (scriptPubSig.startsWith(OP_EQUALVERIFY)){
             validation = p2pkh.pollLast().equals(p2pkh.pollLast());
             scriptPubSig = scriptPubSig.substring(OP_SIZE);
         }
@@ -68,7 +68,7 @@ public class VerificationP2PKH {
 
     }
 
-    public String hash160(String hash){
+    private String hash160(String hash){
 
         MessageDigest md = null; // on par sur la fonction de hachage SHA-256
         try {
@@ -109,9 +109,13 @@ public class VerificationP2PKH {
     public static void main(String[] args){
         VerificationP2PKH p2PKH = new VerificationP2PKH();
 
-        p2PKH.verificationP2PKH("0x483045022100d544eb1ede691f9833d44e5266e923dae058f702d2891e4ee87621a433ccdf4f022021e40" +
-                "5c26b0483cd7c5636e4127a9510f3184d1994015aae43a228faa608362001210372cc7efb1961962bba20db0c6a3eebdde0ae60698"+
-                "6bf76cb863fa460aee8475c", "0x76a9147c3f2e0e3f3ec87981f9f2059537a355db03f9e888ac");
+        String scriptSig = "0x483045022100d544eb1ede691f9833d44e5266e923dae058f702d2891e4ee87621a433ccdf4" +
+                           "f022021e405c26b0483cd7c5636e4127a9510f3184d1994015aae43a228faa608362001210372" +
+                           "cc7efb1961962bba20db0c6a3eebdde0ae606986bf76cb863fa460aee8475c";
+
+        String scriptPubSig = "0x76a9147c3f2e0e3f3ec87981f9f2059537a355db03f9e888ac";
+
+        p2PKH.verificationP2PKH(scriptSig, scriptPubSig);
 
     }
 
