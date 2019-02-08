@@ -19,7 +19,8 @@ public class CalculatorPolish2 {
 
         int sizePile = pile.size();
         Deque<Integer> operands = new ArrayDeque<>();
-        int result = 0;
+
+
         String nextIndex;
 
 
@@ -30,36 +31,29 @@ public class CalculatorPolish2 {
                 switch (nextIndex){
 
                     case "+" :
-                        result = addition(operands);
-                        operands.clear();
-                        operands.add(result);
+                        if (operands.size() > 1) operands = addition(operands);
                         break;
                     case "-" :
-                        result = subtraction(operands);
-                        operands.clear();
-                        operands.add(result);
-
+                        if (operands.size() > 1) operands = subtraction(operands);
                         break;
                     case "*" :
-                        result = multiplication(operands);
-                        operands.clear();
-                        operands.add(result);
-
+                        if (operands.size() > 1) operands = multiplication(operands);
                         break;
                     case "/" :
-                        result = division(operands);
-                        operands.clear();
-                        operands.add(result);
+                        if (operands.size() > 1) operands = division(operands);
                         break;
                     case "=" :
-                        return operands.getFirst().equals(operands.getLast()) ? "True" : "False";
-
+                        if (operands.size() > 1)
+                            return operands.pollLast().equals(operands.pollLast()) ? "True" : "False";
+                        break;
                     case ">" :
-                        return operands.getFirst() > operands.getLast() ? "True" : "False";
-
+                        if (operands.size() > 1)
+                            return operands.pollLast() < operands.pollLast() ? "True" : "False";
+                        break;
                     case "<" :
-                        return operands.getFirst() < operands.getLast() ? "True" : "False";
-
+                        if (operands.size() > 1)
+                            return operands.pollLast() > operands.pollLast() ? "True" : "False";
+                        break;
                         default:
                             operands.add(Integer.valueOf(nextIndex));
                             break;
@@ -69,8 +63,7 @@ public class CalculatorPolish2 {
 
         }
 
-
-        return String.valueOf(result);
+        return (operands.size() != 0)? operands.pollLast().toString() : "OPERATION INEXISTANTE";
 
 
     }
@@ -80,56 +73,50 @@ public class CalculatorPolish2 {
      * @param operands Pile de nombre à additionner
      * @return la somme des nombres additionés
      */
-    private int addition(@NotNull Deque<Integer> operands){
+    private Deque<Integer> addition(@NotNull Deque<Integer> operands){
 
-        int result = 0;
+        operands.add(operands.pollLast() + operands.pollLast());
 
-        for (int c : operands)
-            result += c;
-
-        return result;
+        return operands;
     }
 
     /**
      * @param operands Pile de nombre à soustraire
      * @return la somme
      */
-    private int subtraction(@NotNull Deque<Integer> operands){
+    private Deque<Integer> subtraction(@NotNull Deque<Integer> operands){
 
-        int result = operands.pollFirst();
+        int a = operands.pollLast();
+        int b = operands.pollLast();
+        operands.add( b-a );
 
-        for (int c : operands)
-            result -= c;
-
-        return result;
+        return operands;
     }
 
     /**
      * @param operands Pile de nombre à multiplier
      * @return la somme
      */
-    private int multiplication(@NotNull Deque<Integer> operands) {
+    private Deque<Integer> multiplication(@NotNull Deque<Integer> operands) {
 
-        int result = operands.pollFirst();
+        operands.add(operands.pollLast() * operands.pollLast());
 
-        for (int c : operands)
-            result *= c;
-
-        return result;
+        return operands;
     }
 
     /**
      * @param operands Pile de nombre à diviser
      * @return la somme
      */
-    private int division(@NotNull Deque<Integer> operands) {
+    private @NotNull Deque<Integer> division(@NotNull Deque<Integer> operands) {
 
-        int result = operands.pollFirst();
 
-        for (int c : operands)
-            result /= c;
+        int a = operands.pollLast();
+        int b = operands.pollLast();
+        if (b != 0) operands.add(b / a);
+        else operands.add(a);
 
-        return result;
+        return operands;
     }
 
     /**
@@ -163,13 +150,16 @@ public class CalculatorPolish2 {
 
         CalculatorPolish2 cP = new CalculatorPolish2();
 
-        System.out.println("12 4 - 2 * 2 / 4 + = " + cP.calc(cP.stringToPile(" 12 4 - 2 * 2 / 4 + ")));
+        System.out.println("12 4 - 2 * 2 / 4 + : " + cP.calc(cP.stringToPile(" 12 4 - 2 * 2 / 4 + ")));
+
+        System.out.println("12 5 4 + - 2 * : " + cP.calc(cP.stringToPile("12 5 4 + - 2 * ")));
 
         System.out.println("12 4 < : " + cP.calc(cP.stringToPile("12 4 <")));
 
         System.out.println("12 4 > : " + cP.calc(cP.stringToPile("12 4 >")));
 
         System.out.println("12 4 = : " + cP.calc(cP.stringToPile("12 4 =")));
+
 
     }
 

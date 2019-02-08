@@ -16,41 +16,31 @@ public class CalculatorPolish {
      * @param pile opération à effectuer
      * @return resultat de l'opération
      */
-    private int calc(@NotNull Deque<String> pile){
+    private Deque<Integer> calc(@NotNull Deque<String> pile){
 
         int sizePile = pile.size();
         Deque<Integer> operands = new ArrayDeque<>();
-        int result = 0;
+
         String nextIndex;
 
         for (int i = 0; i < sizePile; i++){
 
             nextIndex = pile.pollFirst();
 
-            if (nextIndex != null && AUTHORIZE.contains(nextIndex))
+            if (nextIndex != null && AUTHORIZE.contains(nextIndex) )
                 switch (nextIndex){
 
                     case "+" :
-                        result = addition(operands);
-                        operands.clear();
-                        operands.add(result);
+                        if (operands.size() > 1) operands = addition(operands);
                         break;
                     case "-" :
-                        result = subtraction(operands);
-                        operands.clear();
-                        operands.add(result);
-
+                        if (operands.size() > 1) operands = subtraction(operands);
                         break;
                     case "*" :
-                        result = multiplication(operands);
-                        operands.clear();
-                        operands.add(result);
-
+                        if (operands.size() > 1) operands = multiplication(operands);
                         break;
                     case "/" :
-                        result = division(operands);
-                        operands.clear();
-                        operands.add(result);
+                        if (operands.size() > 1) operands = division(operands);
                         break;
                         default:
                             operands.add(Integer.valueOf(nextIndex));
@@ -61,7 +51,7 @@ public class CalculatorPolish {
 
         }
 
-        return result;
+        return operands;
 
 
     }
@@ -71,56 +61,48 @@ public class CalculatorPolish {
      * @param operands Pile de nombre à additionner
      * @return la somme des nombres additionés
      */
-    private int addition(@NotNull Deque<Integer> operands){
+    private Deque<Integer> addition(@NotNull Deque<Integer> operands){
 
-        int result = 0;
+       operands.add(operands.pollLast() + operands.pollLast());
 
-        for (int c : operands)
-            result += c;
-
-        return result;
+        return operands;
     }
 
     /**
      * @param operands Pile de nombre à soustraire
      * @return la somme
      */
-    private int subtraction(@NotNull Deque<Integer> operands){
+    private Deque<Integer> subtraction(@NotNull Deque<Integer> operands){
 
-        int result = operands.pollFirst();
+        int a = operands.pollLast();
+        int b = operands.pollLast();
+       operands.add( b-a );
 
-        for (int c : operands)
-            result -= c;
-
-        return result;
+        return operands;
     }
 
     /**
      * @param operands Pile de nombre à multiplier
      * @return la somme
      */
-    private int multiplication(@NotNull Deque<Integer> operands) {
+    private Deque<Integer> multiplication(@NotNull Deque<Integer> operands) {
 
-        int result = operands.pollFirst();
+        operands.add(operands.pollLast() * operands.pollLast());
 
-        for (int c : operands)
-            result *= c;
-
-        return result;
+        return operands;
     }
 
     /**
      * @param operands Pile de nombre à diviser
      * @return la somme
      */
-    private int division(@NotNull Deque<Integer> operands) {
+    private @NotNull Deque<Integer> division(@NotNull Deque<Integer> operands) {
 
-        int result = operands.pollFirst();
+        int a = operands.pollLast();
+        int b = operands.pollLast();
+        operands.add(b / a);
 
-        for (int c : operands)
-            result /= c;
-
-        return result;
+        return operands;
     }
 
 
@@ -156,7 +138,7 @@ public class CalculatorPolish {
 
         CalculatorPolish cP = new CalculatorPolish();
 
-        System.out.println("12 4 - 2 * : " + cP.calc(cP.stringToPile("12 4 - 2 *")));
+        System.out.println("12 5 4 + - 2 * : " + cP.calc(cP.stringToPile("12 5 4 + - 2 *")).pollLast());
 
     }
 
