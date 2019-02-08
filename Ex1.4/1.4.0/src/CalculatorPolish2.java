@@ -63,7 +63,7 @@ public class CalculatorPolish2 {
 
         }
 
-        return (operands.size() != 0)? operands.pollLast().toString() : "OPERATION INEXISTANTE";
+        return (operands.size() != 0)? operands.pollLast().toString() : "OPERATION INVALIDE";
 
 
     }

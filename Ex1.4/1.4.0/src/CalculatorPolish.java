@@ -16,7 +16,7 @@ public class CalculatorPolish {
      * @param pile opération à effectuer
      * @return resultat de l'opération
      */
-    private Deque<Integer> calc(@NotNull Deque<String> pile){
+    private String calc(@NotNull Deque<String> pile){
 
         int sizePile = pile.size();
         Deque<Integer> operands = new ArrayDeque<>();
@@ -51,7 +51,7 @@ public class CalculatorPolish {
 
         }
 
-        return operands;
+        return (operands.size() != 0)? operands.pollLast().toString() : "OPERATION INVALIDE";
 
 
     }
@@ -138,7 +138,7 @@ public class CalculatorPolish {
 
         CalculatorPolish cP = new CalculatorPolish();
 
-        System.out.println("12 5 4 + - 2 * : " + cP.calc(cP.stringToPile("12 5 4 + - 2 *")).pollLast());
+        System.out.println("12 5 4 + - 2 * : " + cP.calc(cP.stringToPile("12 5 4 + - 2 *")));
 
     }
 
