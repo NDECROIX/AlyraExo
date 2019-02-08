@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0b93080-8cde-4752-bfdf-eacb1eb2db12" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/1.4.0/bitcoin/VerificationP2PKH.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1.4.0/bitcoin/VerificationP2PKH.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PoW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PoW.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,14 +18,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+            <state relative-caret-position="153">
+              <caret line="13" column="73" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/TargetReached.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/PoW.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -54,12 +76,13 @@
         <option value="$PROJECT_DIR$/src/bitcoin/AdresseBitcoin.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/ValidationP2PKH.java" />
         <option value="$PROJECT_DIR$/src/ExtractChamps.java" />
-        <option value="$PROJECT_DIR$/src/PoW.java" />
         <option value="$PROJECT_DIR$/src/ConversionVarInt.java" />
         <option value="$PROJECT_DIR$/src/TransactionFields.java" />
         <option value="$PROJECT_DIR$/src/CalculatorPolish2.java" />
         <option value="$PROJECT_DIR$/src/CalculatorPolish.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java" />
+        <option value="$PROJECT_DIR$/src/TargetReached.java" />
+        <option value="$PROJECT_DIR$/src/PoW.java" />
       </list>
     </option>
   </component>
@@ -75,6 +98,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,7 +121,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -106,7 +129,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549551311267" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549620036546" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ex1.3/ChiffreCesar" />
   </component>
   <component name="RecentsManager">
@@ -129,7 +152,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.VerificationP2PKH">
+  <component name="RunManager" selected="Application.PoW">
     <configuration name="CalculatorPolish" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorPolish" />
       <module name="1.4.0" />
@@ -144,15 +167,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConversionVarInt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ConversionVarInt" />
+    <configuration name="PoW" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PoW" />
       <module name="1.4.0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TransactionFields" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TransactionFields" />
+    <configuration name="TargetReached" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TargetReached" />
       <module name="1.4.0" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,11 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PoW" />
+        <item itemvalue="Application.TargetReached" />
         <item itemvalue="Application.VerificationP2PKH" />
         <item itemvalue="Application.CalculatorPolish2" />
         <item itemvalue="Application.CalculatorPolish" />
-        <item itemvalue="Application.TransactionFields" />
-        <item itemvalue="Application.ConversionVarInt" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +230,7 @@
     <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25537783" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25813568" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -216,7 +239,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3136033" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3136033" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34787124" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -306,13 +329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PoW.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -359,11 +375,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+        <state relative-caret-position="153">
+          <caret line="13" column="73" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TargetReached.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PoW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
