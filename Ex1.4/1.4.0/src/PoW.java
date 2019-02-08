@@ -2,7 +2,7 @@
 
 /**
  *         Mesurer la durée de chaque recherche de solution en fonction de la longueur de la chaîne et de n
- *         P(A) =   a^(n-L)/a^(n) = 1/a^L = a^(-L) pour a le nombre de lettre dans l'alphabet n la longueur de la chaîne aléatoire et L la longueuer de la chaine à trouver
+ *         P(A) =   a^(n-L)/a^(n) = 1/a^L = a^(-L) pour a le nombre de lettre dans l'alphabet, n la longueur de la chaîne aléatoire et L la longueuer de la chaine à trouver
  *
  *         D =  T(a^(n)/a^(n-L)) = Ta^L // D pour durée
  *         D =  Ta^(L)  pour T le temps de chaque passage dans la boucle while de rechercheDebut()
