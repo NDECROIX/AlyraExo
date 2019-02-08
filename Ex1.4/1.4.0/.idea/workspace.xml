@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0b93080-8cde-4752-bfdf-eacb1eb2db12" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/CalculatorPolish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculatorPolish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalculatorPolish2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculatorPolish2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TargetReached.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TargetReached.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,14 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CalculatorPolish.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2380">
-              <caret line="140" column="91" selection-start-line="140" selection-start-column="91" selection-end-line="140" selection-end-column="91" />
+            <state relative-caret-position="527">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TargetReached.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="52" column="65" lean-forward="true" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -73,9 +81,9 @@
         <option value="$PROJECT_DIR$/src/TransactionFields.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java" />
         <option value="$PROJECT_DIR$/src/PoW.java" />
-        <option value="$PROJECT_DIR$/src/TargetReached.java" />
         <option value="$PROJECT_DIR$/src/CalculatorPolish2.java" />
         <option value="$PROJECT_DIR$/src/CalculatorPolish.java" />
+        <option value="$PROJECT_DIR$/src/TargetReached.java" />
       </list>
     </option>
   </component>
@@ -122,7 +130,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549656282237" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549660340368" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ex1.3/ChiffreCesar" />
   </component>
   <component name="RecentsManager">
@@ -145,7 +153,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CalculatorPolish">
+  <component name="RunManager" selected="Application.TargetReached">
     <configuration name="CalculatorPolish" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorPolish" />
       <module name="1.4.0" />
@@ -189,9 +197,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TargetReached" />
         <item itemvalue="Application.CalculatorPolish" />
         <item itemvalue="Application.CalculatorPolish2" />
-        <item itemvalue="Application.TargetReached" />
         <item itemvalue="Application.PoW" />
         <item itemvalue="Application.VerificationP2PKH" />
       </list>
@@ -370,10 +378,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TargetReached.java">
+    <entry file="file://$PROJECT_DIR$/src/CalculatorPolish.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="527">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -387,13 +395,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CalculatorPolish.java">
+    <entry file="file://$PROJECT_DIR$/src/TargetReached.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="140" column="91" selection-start-line="140" selection-start-column="91" selection-end-line="140" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="52" column="65" lean-forward="true" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
         </state>
       </provider>
     </entry>
