@@ -1,4 +1,4 @@
-
+import java.text.DecimalFormat;
 
 public class RewardByHeight {
 
@@ -7,13 +7,14 @@ public class RewardByHeight {
     private static final float FIRST_REWARD = 50;
 
 
-    private double rewardByHeight(int blockHeight){
+    public String rewardByHeight(int blockHeight){
 
         int x = (blockHeight / CHANGE_REWARD);
 
         int level = (int) Math.pow(REWARD_DIVISOR, x);
 
-        return FIRST_REWARD / level;
+        DecimalFormat df = new DecimalFormat("##.00");
+        return df.format((FIRST_REWARD / level));
     }
 
     public static void main(String[] args){
