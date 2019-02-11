@@ -9,11 +9,11 @@ public class RewardByHeight {
 
     public String rewardByHeight(int blockHeight){
 
-        int x = (blockHeight / CHANGE_REWARD) + 50;
+        int x = (blockHeight / CHANGE_REWARD);
 
         int level = (int) Math.pow(REWARD_DIVISOR, x);
 
-        DecimalFormat df = new DecimalFormat("##.00");
+        DecimalFormat df = new DecimalFormat("#0.##");
         return df.format((FIRST_REWARD / level));
     }
 
