@@ -19,7 +19,7 @@ public class Difficulty {
     private String difficulty(String pTarget){
 
         BigDecimal target = new BigDecimal(pTarget);
-        DecimalFormat df = new DecimalFormat("##.00"); //le format de la précision
+        DecimalFormat df = new DecimalFormat("##.##"); //le format de la précision
 
         return df.format(TARGET_ORIGIN.divide(target,  MathContext.DECIMAL128)); // on divise la première cible existante par la cible en paramètre
 

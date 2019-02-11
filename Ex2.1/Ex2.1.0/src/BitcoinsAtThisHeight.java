@@ -28,7 +28,7 @@ public class BitcoinsAtThisHeight {
 
         }
 
-        DecimalFormat df = new DecimalFormat("##.00");
+        DecimalFormat df = new DecimalFormat("##.##");
         return df.format(result);
 
     }

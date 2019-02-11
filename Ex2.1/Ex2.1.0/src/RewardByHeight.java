@@ -7,14 +7,19 @@ public class RewardByHeight {
     private static final float FIRST_REWARD = 50;
 
 
+    /**
+     * @param blockHeight Hauteur du bloc
+     * @return la récompense associée à ce bloc
+     */
     public String rewardByHeight(int blockHeight){
 
-        int x = (blockHeight / CHANGE_REWARD);
 
-        int level = (int) Math.pow(REWARD_DIVISOR, x);
+        int x = (blockHeight / CHANGE_REWARD); // on divise le block par 210000 : nombre de blocs qui réajuste la récompense
+
+        int level = (int) Math.pow(REWARD_DIVISOR, x); // l'on fait 2 puissance x
 
         DecimalFormat df = new DecimalFormat("#0.##");
-        return df.format((FIRST_REWARD / level));
+        return df.format((FIRST_REWARD / level)); //  récompense de base divisé par level
     }
 
     public static void main(String[] args){

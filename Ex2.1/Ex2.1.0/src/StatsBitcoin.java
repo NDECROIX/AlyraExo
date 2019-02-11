@@ -41,14 +41,6 @@ public class StatsBitcoin {
         sB.statsBitoin("2100-01-01 00:00:01");
 
 
-        BigDecimal dater = new BigDecimal(4294967295L*1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.FRANCE);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String formattedDate = sdf.format(dater);
-        System.out.println(formattedDate);
-
-
-
     }
 
 }

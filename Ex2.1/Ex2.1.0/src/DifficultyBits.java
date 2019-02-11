@@ -24,7 +24,7 @@ public class DifficultyBits {
 
         BigDecimal target = new BigDecimal(new BigInteger(targetHex.toString(), 16)); // on converti en décimale
 
-        DecimalFormat df = new DecimalFormat("##.00"); //le format de la précision
+        DecimalFormat df = new DecimalFormat("##.##"); //le format de la précision
 
         System.out.println(df.format(TARGET_ORIGIN.divide(target,  MathContext.DECIMAL128))); // on divise la première cible existante par la cible en paramètre
 
