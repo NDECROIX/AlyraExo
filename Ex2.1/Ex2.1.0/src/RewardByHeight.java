@@ -18,7 +18,7 @@ public class RewardByHeight {
 
         int level = (int) Math.pow(REWARD_DIVISOR, x); // l'on fait 2 puissance x
 
-        DecimalFormat df = new DecimalFormat("#0.##");
+        DecimalFormat df = new DecimalFormat("#0.#####");
         return df.format((FIRST_REWARD / level)); //  récompense de base divisé par level
     }
 
@@ -30,6 +30,7 @@ public class RewardByHeight {
         System.out.println(rBH.rewardByHeight(0));
         System.out.println(rBH.rewardByHeight(210000));
         System.out.println(rBH.rewardByHeight(420000));
+        System.out.println(rBH.rewardByHeight(420001));
         System.out.println(rBH.rewardByHeight(630000));
         System.out.println(rBH.rewardByHeight(840000));
         System.out.println(rBH.rewardByHeight(1050000));

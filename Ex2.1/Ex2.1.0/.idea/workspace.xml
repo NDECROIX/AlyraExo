@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17fb4d99-98c8-4504-8ba7-5ae9b8805c03" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Windows.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Windows.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Ex2.1.0/StatsBitcoin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ex2.1.0/StatsBitcoin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BitcoinsAtThisHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BitcoinsAtThisHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RewardByHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RewardByHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StatsBitcoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StatsBitcoin.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,17 +21,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RewardByHeight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+            <state relative-caret-position="340">
+              <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BitcoinsAtThisHeight.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="530">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BitcoinsAtThisHeight.java">
+        <entry file="file://$PROJECT_DIR$/src/StatsBitcoin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="238">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,11 +66,11 @@
         <option value="$PROJECT_DIR$/src/useful/HexToDec.java" />
         <option value="$PROJECT_DIR$/src/useful/convertType.java" />
         <option value="$PROJECT_DIR$/src/ReadjustedBlock.java" />
-        <option value="$PROJECT_DIR$/src/StatsBitcoin.java" />
         <option value="$PROJECT_DIR$/src/Difficulty.java" />
         <option value="$PROJECT_DIR$/src/DifficultyBits.java" />
         <option value="$PROJECT_DIR$/src/RewardByHeight.java" />
         <option value="$PROJECT_DIR$/src/BitcoinsAtThisHeight.java" />
+        <option value="$PROJECT_DIR$/src/StatsBitcoin.java" />
       </list>
     </option>
   </component>
@@ -90,7 +107,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549898207977" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549903818119" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -110,7 +127,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BitcoinsAtThisHeight">
+  <component name="RunManager" selected="Application.StatsBitcoin">
     <configuration name="BitcoinsAtThisHeight" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BitcoinsAtThisHeight" />
       <module name="Ex2.1.0" />
@@ -148,10 +165,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BitcoinsAtThisHeight" />
-        <item itemvalue="Application.RewardByHeight" />
-        <item itemvalue="Application.Difficulty" />
         <item itemvalue="Application.StatsBitcoin" />
+        <item itemvalue="Application.RewardByHeight" />
+        <item itemvalue="Application.BitcoinsAtThisHeight" />
+        <item itemvalue="Application.Difficulty" />
         <item itemvalue="Application.ReadjustedBlock" />
       </list>
     </recent_temporary>
@@ -263,16 +280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StatsBitcoin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DifficultyBits.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -292,15 +299,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RewardByHeight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+        <state relative-caret-position="340">
+          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BitcoinsAtThisHeight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="530">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StatsBitcoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
