@@ -9,7 +9,7 @@ public class RewardByHeight {
 
     public String rewardByHeight(int blockHeight){
 
-        int x = (blockHeight / CHANGE_REWARD);
+        int x = (blockHeight / CHANGE_REWARD) + 50;
 
         int level = (int) Math.pow(REWARD_DIVISOR, x);
 

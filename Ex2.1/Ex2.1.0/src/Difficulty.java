@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
  */
 public class Difficulty {
 
+    // Première cible
     private static final BigDecimal TARGET_ORIGIN = new BigDecimal("26959535291011309493156476344723991336010898738574164086137773096960");
 
 
