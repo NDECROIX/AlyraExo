@@ -9,21 +9,24 @@ public class BitcoinsAtThisHeight {
     private static final float FIRST_REWARD = 50;
 
 
-
+    /**
+     * @param blockHeight
+     * @return le nombre de bitcoins à une hauteur de bloc
+     */
     public String bitcoinsNow(float blockHeight){
 
-        float m = blockHeight / CHANGE_REWARD;
+        float m = blockHeight / CHANGE_REWARD; // définit un nombre de paliers
         float reward = FIRST_REWARD;
         float result = 0;
 
-        while(m>0){
+        while(m>0){ // à chaque palier l'on multiple la récompense par 210000
 
             if (m > 1)
                 result += reward * CHANGE_REWARD;
             else
-                result += m * reward * CHANGE_REWARD;
+                result += m * CHANGE_REWARD * reward ; // si le palier est inférieur à 1 on le multiplie par 210000 pour prendre seulement les blocs restant
 
-            reward /= 2;
+            reward /= 2; // récompense divisé par deux à chaque palier
             m--;
 
         }
@@ -39,10 +42,10 @@ public class BitcoinsAtThisHeight {
 
         BitcoinsAtThisHeight bt = new BitcoinsAtThisHeight();
 
-        System.out.println(bt.bitcoinsNow(205200));
-        System.out.println(bt.bitcoinsNow(483408));
-        System.out.println(bt.bitcoinsNow(156096));
-        System.out.println(bt.bitcoinsNow(265248));
+        System.out.println(bt.bitcoinsNow(547488));
+        System.out.println(bt.bitcoinsNow(1333548));
+        System.out.println(bt.bitcoinsNow(346752));
+        System.out.println(bt.bitcoinsNow(59328));
 
     }
 
