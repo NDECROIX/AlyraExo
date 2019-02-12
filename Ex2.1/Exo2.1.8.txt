@@ -8,7 +8,7 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 
-ALPHA a encore le fichier.secret en Staging area.
+ALPHA a encore le fichier .secret en Staging area.
 
 F/BETA (master)
 $ git status
