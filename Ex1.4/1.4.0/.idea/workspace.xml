@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0b93080-8cde-4752-bfdf-eacb1eb2db12" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex1.2/1.2.7_TableDeHashage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1.3/ChiffreCesar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex1.3/ChiffreCesar/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1.4.0/ConversionVarInt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1.4.0/ConversionVarInt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConversionVarInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConversionVarInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex2.1/Ex2.1.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex2.1/Ex2.1.0/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="388">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ExtractChamps.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1802">
-              <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
+            <state relative-caret-position="-309">
+              <caret line="64" column="119" selection-start-line="64" selection-start-column="119" selection-end-line="64" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,7 +46,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ConversionVarInt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1836">
+            <state relative-caret-position="324">
               <caret line="110" column="45" selection-start-line="110" selection-start-column="45" selection-end-line="110" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -90,7 +85,6 @@
         <option value="$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/AdresseBitcoin.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/ValidationP2PKH.java" />
-        <option value="$PROJECT_DIR$/src/ExtractChamps.java" />
         <option value="$PROJECT_DIR$/src/TransactionFields.java" />
         <option value="$PROJECT_DIR$/src/bitcoin/VerificationP2PKH.java" />
         <option value="$PROJECT_DIR$/src/PoW.java" />
@@ -98,10 +92,11 @@
         <option value="$PROJECT_DIR$/src/CalculatorPolish.java" />
         <option value="$PROJECT_DIR$/src/TargetReached.java" />
         <option value="$PROJECT_DIR$/src/ConversionVarInt.java" />
+        <option value="$PROJECT_DIR$/src/ExtractChamps.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="351" />
     <option name="y" value="-15" />
     <option name="width" value="943" />
@@ -144,7 +139,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550011294474" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550055468238" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin" />
   </component>
   <component name="RecentsManager">
@@ -167,7 +162,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ConversionVarInt">
+  <component name="RunManager" selected="Application.ExtractChamps">
     <configuration name="CalculatorPolish" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalculatorPolish" />
       <module name="1.4.0" />
@@ -205,8 +200,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ConversionVarInt" />
         <item itemvalue="Application.ExtractChamps" />
+        <item itemvalue="Application.ConversionVarInt" />
         <item itemvalue="Application.TargetReached" />
         <item itemvalue="Application.CalculatorPolish" />
         <item itemvalue="Application.CalculatorPolish2" />
@@ -239,7 +234,7 @@
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26957002" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26957002" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -248,7 +243,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34890965" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35306334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34787124" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -394,10 +389,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
+    <entry file="file://$PROJECT_DIR$/src/ConversionVarInt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="324">
+          <caret line="110" column="45" selection-start-line="110" selection-start-column="45" selection-end-line="110" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -406,18 +401,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ExtractChamps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
+        <state relative-caret-position="-309">
+          <caret line="64" column="119" selection-start-line="64" selection-start-column="119" selection-end-line="64" selection-end-column="119" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConversionVarInt.java">
+    <entry file="file://$PROJECT_DIR$/src/TransactionFields.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="110" column="45" selection-start-line="110" selection-start-column="45" selection-end-line="110" selection-end-column="45" />
+        <state relative-caret-position="388">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
