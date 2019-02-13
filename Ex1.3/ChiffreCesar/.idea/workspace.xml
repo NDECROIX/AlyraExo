@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="210c67a0-dda0-45cf-b135-174bd9d062fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Ex1.4/1.4.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex1.4/1.4.0/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex2.1/Ex2.1.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ex2.1/Ex2.1.0/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +16,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
+            <state relative-caret-position="901">
               <caret line="63" column="105" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="105" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -100,7 +100,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -123,11 +122,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549464392571" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ex1.4/1.4.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -193,9 +193,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19801433" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20011026" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -316,7 +316,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hashBitcoin/AdresseBitcoin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
+        <state relative-caret-position="901">
           <caret line="63" column="105" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="105" />
           <folding>
             <element signature="imports" expanded="true" />

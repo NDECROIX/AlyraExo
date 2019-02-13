@@ -25,7 +25,7 @@ public class ConversionVarInt {
 
             positionHex = Math.toIntExact(decimal % 16); // recupère la position du char dans en base 16
 
-            if (lastPosition > 0){ // prend les caractères hex par deux
+            if (lastPosition >= 0){ // prend les caractères hex par deux
                 hexDecimal.add(new StringBuilder().append(HEX_CHAR[positionHex]).append(HEX_CHAR[lastPosition]));
                 lastPosition = -1;
 
@@ -44,7 +44,7 @@ public class ConversionVarInt {
         //Affichage du resultat en big et little endian
         System.out.println("Conversion de : " + dec );
 
-        Collections.reverse(hexDecimal.subList(2, hexDecimal.size())); // retourne la liste pour passer en big endian
+        Collections.reverse(hexDecimal.subList(1, hexDecimal.size())); // retourne la liste pour passer en big endian
 
         StringBuilder sbBE = new StringBuilder();
 
@@ -69,7 +69,7 @@ public class ConversionVarInt {
         }
         else{
 
-            int sizeHexDe = hexDecimal.size(); // taille d'octets
+            int sizeHexDe = hexDecimal.size()-1; // taille d'octets
             String sizeVarInt; // notation nbr octet
 
             if (sizeHexDe%2 != 0 ){ // si impaire add 1 octet
@@ -109,6 +109,7 @@ public class ConversionVarInt {
         conversion.intToHex(252);
         conversion.intToHex(997002999);
         conversion.intToHex(11111111111111L);
+        conversion.intToHex(186106078);
 
     }
 
