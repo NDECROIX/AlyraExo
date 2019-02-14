@@ -12,7 +12,7 @@ contract Assemblee {
   address[] membres;
 
   constructor(string nom) public{
-    administrateurs.push(msg.sender);
+    administrateurs.push(msg.sender); // Celui qui déploie le smart contract est le premier administrateur.
     nomAssemble = nom;
   }
 
@@ -32,12 +32,12 @@ contract Assemblee {
     }
   }
 
-  function nomeAdministrateur(address administrateur) public {
+  function nomeAdministrateur(address administrateur) public { // Un administrateur peut nommer un administrateur
     require(estAdministrateur(msg.sender));
     administrateurs.push(administrateur);
   }
 
-  function demissionAdministrateur() public {
+  function demissionAdministrateur() public {  // Un administrateur peut démissionner
     require(estAdministrateur(msg.sender));
     for (uint i = 0; i < administrateurs.length; i++){
       if  (administrateurs[i] == msg.sender){
@@ -84,7 +84,7 @@ contract Assemblee {
     return int(decisions[indice].votesPour - decisions[indice].votesContre);
   } 
 
-  function fermeePropositionDecision(uint indice) public {
+  function fermerPropositionDecision(uint indice) public { // Une proposition de décision peut être fermée par un administrateur
     require(estAdministrateur(msg.sender), "Il faut être administrateur!");
     delete decisions[indice];
   }

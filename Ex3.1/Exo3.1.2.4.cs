@@ -18,7 +18,7 @@ contract Assemblee {
     string descriptionDecision;
     uint votesPour;
     uint votesContre;
-    mapping (address => bool) aVote;
+    mapping (address => bool) aVote; 
   }
 
   Decision[] decisions;
@@ -45,10 +45,10 @@ contract Assemblee {
   }
 
   function voter(uint proposition, uint pourContre) public {
-    require(decisions[proposition].aVote[msg.sender] == false);
+    require(decisions[proposition].aVote[msg.sender] == false); 
     if (pourContre == 1) decisions[proposition].votesPour++;
     else decisions[proposition].votesContre++;
-    decisions[proposition].aVote[msg.sender] = true;
+    decisions[proposition].aVote[msg.sender] = true; 
 
   }
 
