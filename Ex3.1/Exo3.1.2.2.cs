@@ -1,5 +1,19 @@
-contract DesisionsCollectives is Assemblee{
+//Write your own contracts here. Currently compiles using solc v0.4.15+commit.bbb8e64f.
+pragma solidity ^0.4.25;
+contract Assemblee {
 
+  address[] membres;
+
+  function rejoindre() public {
+    membres.push(msg.sender); 
+  }
+
+  function estMembre(address utilisateur) public view returns (bool){
+    for(uint i = 0; i < membres.length; i++){
+      if (membres[i] == utilisateur) return true;
+    }
+  }
+  
   address[] participants;
 
   string[] public descriptionDecisions;
@@ -25,13 +39,8 @@ contract DesisionsCollectives is Assemblee{
   }
 
   function voter(uint proposition, uint pourContre) public {
-    if (pourContre == 1) votesPour[proposition]++;
-    else votesContre[proposition]++;
-
+      if (pourContre == 1) votesPour[proposition]++;
+      else votesContre[proposition]++;
   }
-	// 3.1.2.3
-  function comptabiliser(uint indice) public view returns (int){
-    return int(votesPour[indice] - votesContre[indice]);
-  } 
-
+  
 }

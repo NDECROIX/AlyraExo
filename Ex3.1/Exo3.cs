@@ -34,10 +34,19 @@ contract SceneOuverte {
 
 contract Assemblee {
 
+  struct Decision {
+    string descriptionDecision;
+    uint votesPour;
+    uint votesContre;
+    mapping (address => bool) aVote;
+  }
+
+  address[] administrateurs;
   string nomAssemble;
   address[] membres;
 
   constructor(string nom) public{
+    administrateurs.push(msg.sender);
     nomAssemble = nom;
   }
 
@@ -50,16 +59,29 @@ contract Assemblee {
       if (membres[i] == utilisateur) return true;
     }
   }
-}
 
-contract DesisionsCollectives is Assemblee{
-
-  struct Decision {
-    string descriptionDecision;
-    uint votesPour;
-    uint votesContre;
-    mapping (address => bool) aVote;
+  function estAdministrateur(address administrateur) public view returns (bool){
+    for(uint i = 0; i < administrateurs.length; i++){
+      if (administrateurs[i] == administrateur) return true;
+    }
   }
+
+  function nomeAdministrateur(address administrateur) public {
+    require(estAdministrateur(msg.sender));
+    administrateurs.push(administrateur);
+  }
+
+  function demissionAdministrateur() public {
+    require(estAdministrateur(msg.sender));
+    for (uint i = 0; i < administrateurs.length; i++){
+      if  (administrateurs[i] == msg.sender){
+            delete administrateurs[i];
+            break;
+      } 
+    }
+  }
+
+  //Décisions collectives
 
   Decision[] decisions;
   address[] participants;
@@ -96,6 +118,10 @@ contract DesisionsCollectives is Assemblee{
     return int(decisions[indice].votesPour - decisions[indice].votesContre);
   } 
 
+  function fermeePropositionDecision(uint indice) public {
+    require(estAdministrateur(msg.sender), "Il faut être administrateur!");
+    delete decisions[indice];
+  }
 }
 
 contract CagnotteFestivale {
