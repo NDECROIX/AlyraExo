@@ -1,180 +1,285 @@
 pragma solidity ^0.4.25;
+/**
+ * @title SceneOuverte
+ */
 contract SceneOuverte {
 
-  string[12] passageArtistes;
-  uint creneauxLibres = 12;
-  uint tour;
+	string[12] passageArtistes;
+	uint creneauxLibres = 12;
+	uint tour;
 
-  function sInscrire(string nomDArtiste) public {
-    if  (creneauxLibres > 0){
-      passageArtistes[12-creneauxLibres] = nomDArtiste;
-      creneauxLibres--;
-    }
-  }
+	/**
+	* @dev Ajoute un artiste aux creneauxLibres
+	* @param nomDArtiste de l'artiste
+	*/
+	function sInscrire(string nomDArtiste) public {
+		if  (creneauxLibres > 0){
+			passageArtistes[12-creneauxLibres] = nomDArtiste;
+			creneauxLibres--;
+		}
+	}
 
-  function passerArtisteSuivant() public {
-    if ( SafeMath.add(tour, creneauxLibres) < 12 ){
-      tour++;
-    }
-    
-  }
+	/**
+	* @dev Passe à l'artiste suivant 
+	*/
+	function passerArtisteSuivant() public {
+		if ( SafeMath.add(tour, creneauxLibres) < 12 ){
+		tour++;
+	}
 
-  function artisteEnCours() public view returns (string) {
-    if  (SafeMath.add(tour, creneauxLibres) < 12 ){
-      return passageArtistes[tour];
-    }
-    else {
-      return "FIN";
-    }
+	}
 
-  }
+	/**
+	* @dev return l'artiste en cours 
+	* @return le nom de l'artiste en cours ou FIN
+	*/
+	function artisteEnCours() public view returns (string) {
+		if  (SafeMath.add(tour, creneauxLibres) < 12 ){
+			return passageArtistes[tour];
+		}
+		else {
+			return "FIN";
+		}
+
+	}
 
 }
-
+/**
+* @title Assemblee
+*/
 contract Assemblee {
 
-  struct Decision {
-    string descriptionDecision;
-    uint votesPour;
-    uint votesContre;
-    mapping (address => bool) aVote;
-  }
+	struct Decision {
+		string descriptionDecision;
+		uint votesPour;
+		uint votesContre;
+		mapping (address => bool) aVote;
+	}
 
-  address[] administrateurs;
-  string nomAssemble;
-  address[] membres;
+	address[] administrateurs;
+	string nomAssemble;
+	address[] membres;
 
-  constructor(string nom) public{
-    administrateurs.push(msg.sender);
-    nomAssemble = nom;
-  }
+	/**
+	* @dev Constructeur qui init un admin est un nom d'assemblée
+	* @param nom de l'assemblée
+	*/
+	constructor(string nom) public{
+		administrateurs.push(msg.sender);
+		nomAssemble = nom;
+	}
 
-  function rejoindre() public {
-    membres.push(msg.sender); 
-  }
+	/**
+	* @dev Permet de rejoindre l'assemblée
+	*/
+	function rejoindre() public {
+		membres.push(msg.sender); 
+	}
 
-  function estMembre(address utilisateur) public view returns (bool){
-    for(uint i = 0; i < membres.length; i++){
-      if (membres[i] == utilisateur) return true;
-    }
-  }
+	/**
+	* @dev return true si l'adresse de l'utilisateur en paramètre est un membre
+	* @param utilisateur à vérifier
+	* @return vrais si membre de l'assemeblée
+	*/
+	function estMembre(address utilisateur) public view returns (bool){
+		for(uint i = 0; i < membres.length; i++){
+			if (membres[i] == utilisateur) return true;
+		}
+	}
 
-  function estAdministrateur(address administrateur) public view returns (bool){
-    for(uint i = 0; i < administrateurs.length; i++){
-      if (administrateurs[i] == administrateur) return true;
-    }
-  }
+	/**
+	* @dev return true si l'adresse en paramètre est un administrateur
+	* @param administrateur à vérifier
+	* @return vrais si l'adresse appartient bien à un admin
+	*/
+	function estAdministrateur(address administrateur) public view returns (bool){
+		for(uint i = 0; i < administrateurs.length; i++){
+			if (administrateurs[i] == administrateur) return true;
+		}
+	}
 
-  function nomeAdministrateur(address administrateur) public {
-    require(estAdministrateur(msg.sender));
-    administrateurs.push(administrateur);
-  }
+	/**
+	* @dev Un admin peut nommer un admin
+	* @param administrateur adresse à nommer administrateur
+	*/
+	function nommerAdministrateur(address administrateur) public {
+		require(estAdministrateur(msg.sender));
+		administrateurs.push(administrateur);
+	}
 
-  function demissionAdministrateur() public {
-    require(estAdministrateur(msg.sender));
-    for (uint i = 0; i < administrateurs.length; i++){
-      if  (administrateurs[i] == msg.sender){
-            delete administrateurs[i];
-            break;
-      } 
-    }
-  }
+	/**
+	* @dev Un Admin peut démissionner 
+	*/
+	function demissionAdministrateur() public {
+		require(estAdministrateur(msg.sender));
+		for (uint i = 0; i < administrateurs.length; i++){
+			if  (administrateurs[i] == msg.sender){
+				delete administrateurs[i];
+				break;
+			} 
+		}
+	}
 
-  //Décisions collectives
+	//Décisions collectives
 
-  Decision[] decisions;
-  address[] participants;
+	Decision[] decisions;
+	address[] participants;
 
-  function participer() public {
-    require(estMembre(msg.sender), "Il faut être membre de l'assemblée!");
-    participants.push(msg.sender); 
-  }
+	/**
+	* @dev Participé aux décisions collective
+	*/
+	function participer() public {
+		require(estMembre(msg.sender), "Il faut être membre de l'assemblée!");
+		participants.push(msg.sender); 
+	}
 
-  function estParticipant(address utilisateur) public view returns (bool){
-    for(uint i = 0; i < participants.length; i++){
-      if (participants[i] == utilisateur) return true;
-    }
-  }
+	/**
+	* @dev Retourn vrais si l'adresse en paramètre participe aux décisions 
+	* @param utilisateur à vérifier
+	* @return vrais si il est participant
+	*/
+	function estParticipant(address utilisateur) public view returns (bool){
+		for(uint i = 0; i < participants.length; i++){
+			if (participants[i] == utilisateur) return true;
+		}
+	}
 
-  function proposerDecision(string description) public {
-    require(estParticipant(msg.sender), "Il faut être participant!"); 
-    Decision memory decision;
-    decision.descriptionDecision = description;
-    decision.votesPour = 0;
-    decision.votesContre = 0;
-    decisions.push(decision);    
-  }
+	/**
+	* @dev Les participants peuvent proposer des décisions
+	* @param description de la proposition à soumettre
+	*/
+	function proposerDecision(string description) public {
+		require(estParticipant(msg.sender), "Il faut être participant!"); 
+		Decision memory decision;
+		decision.descriptionDecision = description;
+		decision.votesPour = 0;
+		decision.votesContre = 0;
+		decisions.push(decision);    
+	}
 
-  function voter(uint proposition, uint pourContre) public {
-    require(decisions[proposition].aVote[msg.sender] == false);
-    if (pourContre == 1) decisions[proposition].votesPour++;
-    else decisions[proposition].votesContre++;
-    decisions[proposition].aVote[msg.sender] = true;
+	/**
+	* @dev permet de voter une décisions
+	* @param proposition : proposition pour laquelle l'on veut soumettre son vote
+	* @param pourContre : 1 être pour la propostion et 0 être contre la proposition
+	*/
+	function voter(uint proposition, uint pourContre) public {
+		require(decisions[proposition].aVote[msg.sender] == false);
+		if (pourContre == 1) decisions[proposition].votesPour++;
+		else decisions[proposition].votesContre++;
+		decisions[proposition].aVote[msg.sender] = true;
 
-  }
+	}
 
-  function comptabiliser(uint indice) public view returns (int){
-    return int(decisions[indice].votesPour - decisions[indice].votesContre);
-  } 
+	/**
+	* @dev Comptabilise les votes
+	* @param indice de la proposition
+	* @return la différence entre les votes
+	*/
+	function comptabiliser(uint indice) public view returns (int){
+		return int(decisions[indice].votesPour - decisions[indice].votesContre);
+	} 
 
-  function fermeePropositionDecision(uint indice) public {
-    require(estAdministrateur(msg.sender), "Il faut être administrateur!");
-    delete decisions[indice];
-  }
+	/**
+	* @dev Un Admin peut fermer une proposition de décision
+	* @param indice de la proposition à fermer
+	*/
+	function fermerPropositionDecision(uint indice) public {
+		require(estAdministrateur(msg.sender), "Il faut être administrateur!");
+		delete decisions[indice];
+	}
 }
 
+/**
+ * @title Cogere
+ */
 contract Cogere {
 
-  mapping (address => uint) organisateurs;
+	mapping (address => uint) organisateurs;
 
-   constructor() public {
-    organisateurs[msg.sender] = 100;
-  }
+	/**
+	*  @dev Init le nombre de parts à 100
+	*/
+	constructor() public {
+		organisateurs[msg.sender] = 100;
+	}
 
-  function transferOrga(address orga, uint parts) public {
-    uint transfertParts = SafeMath.div(SafeMath.mul(parts, organisateurs[msg.sender]), 100);
-    organisateurs[msg.sender] -= transfertParts;
-    organisateurs[orga] = transfertParts; 
-  }
+	/**
+	* @dev Ajoute un organisateur en lui transmettant des parts
+	* @param orga : adresse de l'organisateur à ajouter
+	* @param parts : nombre de parts en pourcentage à transmettre
+	*/
+	function transferOrga(address orga, uint parts) public {
+		uint transfertParts = SafeMath.div(SafeMath.mul(parts, organisateurs[msg.sender]), 100);
+		organisateurs[msg.sender] -= transfertParts;
+		organisateurs[orga] = transfertParts; 
+	}
 
-  function estOrga(address orga) public view returns (bool) {
-    if  (organisateurs[orga] != 0) return true;
-  }
-  
+	/**
+	* @dev Retourn vrais si l'adresse en paramètre est un organisateur
+	* @param orga à vérifier
+	* @return Vrais si il est organisateur
+	*/
+	function estOrga(address orga) public view returns (bool) {
+		if  (organisateurs[orga] != 0) return true;
+	}
+
 }
+
+/**
+ * @title CagnotteFestivale
+ */
 contract CagnotteFestivale is Cogere {  
-  
-  mapping (address => bool) festivaliers;
-  uint private depensesTotales;
-  string[] private sponsors;
-  uint private nombrePlaces;
 
-  constructor() public {
-      nombrePlaces = 500;
-  }
+	mapping (address => bool) festivaliers;
+	uint private depensesTotales;
+	string[] private sponsors;
+	uint private nombrePlaces;
 
-  function acheterTicket() public payable {
-    require(nombrePlaces > 0);
-    require(msg.value >= 500 finney, "Place à 0,5 Ethers");
-    festivaliers[msg.sender] = true;
-    nombrePlaces--;
-  }
+	/**
+	* @dev Init le nombre de places à 500
+	*/
+	constructor() public {
+		nombrePlaces = 500;
+	}
 
-  function payer(address destinataire, uint montant) public { //payable ne fonctionne pas av 0.5.0
-    require(estOrga(msg.sender));
-    require(destinataire != address(0));
-    require(montant>0);
-    destinataire.transfer(montant);// l'absence de payable n'empêche pas l'utulisation de la fonction transfer()
-  }
+	/**
+	* @dev Acheter un ticket à 500 finney
+	*/
+	function acheterTicket() public payable {
+		require(nombrePlaces > 0);
+		require(msg.value >= 500 finney, "Place à 0,5 Ethers");
+		festivaliers[msg.sender] = true;
+		nombrePlaces--;
+	}
 
-  function comptabiliserDepense(uint montant) private {
-    depensesTotales = SafeMath.add(depensesTotales, montant);
-  }
+	/**
+	* @dev permet aux organisteurs de payer
+	* @param destinataire du paiment
+	* @param montant du paiment
+	*/
+	function payer(address destinataire, uint montant) public { //payable ne fonctionne pas
+		require(estOrga(msg.sender));
+		require(destinataire != address(0));
+		require(montant>0);
+		destinataire.transfer(montant);// l'absence de payable n'empêche pas l'utilisation de la fonction transfer()
+	}
 
-  function sponsoriser(string memory nom) public payable{
-    require(msg.value >= 30 ether);
-    sponsors.push(nom);
-  }
+	/**
+	* @dev Ajoute une dépense aux dépenses totales 
+	* @param montant à ajouter aux dépenses
+	*/
+	function comptabiliserDepense(uint montant) private {
+		depensesTotales = SafeMath.add(depensesTotales, montant);
+	}
+
+	/**
+	* @dev Ajoute un sponsor à la liste des sponsors pour 30 ether
+	* @param nom du sponsor
+	*/
+	function sponsoriser(string memory nom) public payable{
+		require(msg.value >= 30 ether);
+		sponsors.push(nom);
+	}
 
 }
 
