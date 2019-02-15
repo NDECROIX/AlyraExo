@@ -1,3 +1,4 @@
+pragma solidity ^0.4.25;
 contract CagnotteFestivale is Cogere {  
   
   mapping (address => bool) festivaliers;
