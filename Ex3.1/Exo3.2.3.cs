@@ -160,7 +160,7 @@ contract CagnotteFestivale is Cogere {
     nombrePlaces--;
   }
 
-  function payer(address destinataire, uint montant) public { //payable ne fonctionne pas
+  function payer(address destinataire, uint montant) public { //payable ne fonctionne pas av 0.5.0
     require(estOrga(msg.sender));
     require(destinataire != address(0));
     require(montant>0);
