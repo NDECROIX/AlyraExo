@@ -149,12 +149,8 @@ contract Assemblee {
 	* @param description de la proposition à soumettre
 	*/
 	function proposerDecision(string description) public {
-		require(estParticipant(msg.sender), "Il faut être participant!"); 
-		Decision memory decision;
-		decision.descriptionDecision = description;
-		decision.votesPour = 0;
-		decision.votesContre = 0;
-		decisions.push(decision);    
+		require(estParticipant(msg.sender), "Il faut être participant!");   
+    decisions.push(Decision({descriptionDecision : description, votesPour : 0, votesContre : 0}));
 	}
 
 	/**
@@ -237,7 +233,7 @@ contract CagnotteFestivale is Cogere {
 	uint private nombrePlaces;
 
 	uint private dateFestival;
-	uint private dateLiquidation;
+	uint internal dateLiquidation;
 	uint private montantGain;
 
 	uint private dateSeuil;
@@ -249,13 +245,20 @@ contract CagnotteFestivale is Cogere {
 	constructor() public {
 		nombrePlaces = 500;
     dateFestival = now;
-    dateLiquidation = dateFestival + 2 weeks;
+    dateLiquidation = SafeMath.add(dateFestival, 2 weeks);
+    dateSeuil = SafeMath.add(now, 1 days);
+    seuilDepense = 10 ether;
 	}
+
+  /**
+  * @dev Fonction qui permet d’accepter les paiements et dons anonymes
+  */
+  function () external payable{}
 
 	/**
 	* @dev Acheter un ticket à 500 finney
 	*/
-	function acheterTicket() public payable {
+	function acheterTicketFestivale() public payable {
 		require(nombrePlaces > 0);
 		require(msg.value >= 500 finney, "Place à 0,5 Ethers");
 		festivaliers[msg.sender] = true;
@@ -281,8 +284,8 @@ contract CagnotteFestivale is Cogere {
 	*/
 	function controlDepense(uint montant) internal returns (bool) {
 
-		if  (dateSeuil < now){
-			dateSeuil = now + 1 days;
+		while (dateSeuil < now){
+			dateSeuil = SafeMath.add(dateSeuil, 1 days);
 			seuilDepense = 10 ether;
 		}
 		if  (montant <= seuilDepense){
@@ -325,6 +328,74 @@ contract CagnotteFestivale is Cogere {
 			selfdestruct(msg.sender);
 		}
 	}
+
+}
+
+/**
+ * @title Loterie
+ * @dev Gestion de la loterie
+ */
+contract Loterie is CagnotteFestivale {
+
+  /**
+  * @dev Structure d'un ticket de loterie
+  */
+  struct TicketLoto{ 
+    uint lotoNombre; // Nombre choisi 
+    uint lotoJour; // Jour du tirage choisi 
+    bool ticketGagant; // true si le ticket a le bon numéro
+  }
+
+  mapping (address => TicketLoto) loteries; 
+  uint8 private nombreGagnant; // nombre gagnant du jour
+  uint private dateTirage; // date du prochain tirage
+  uint private gainLoto; // gain de la loterie
+  uint private tirageDuJour; // Numéro du tirage du jour 
+
+  /**
+  * @dev constructeur du contrat
+  */
+  constructor() public {
+    tirageDuJour = 0;
+    gainLoto = 300 finney;
+    dateTirage = SafeMath.add(now, 1 days);
+  }
+
+  /**
+  * @dev Acheter un ticket de Loterie
+  * @param jour nombre de jours avant le tirage
+  * @param nombre choisi entre 1 et 255 compris 
+  */
+  function acheterTicketLoto(uint jour, uint nombre) public payable{
+    require(festivaliers[msg.sender], "Vous devez faire parti des féstivaliers");
+    require(jour > 0, "Le tirage d'haujourd'huit est déjà terminé");
+    require(now + SafeMath.mul(jour, 1 days) < dateLiquidation, "Le festivale sera terminé avant le tirage");
+    require(loteries[msg.sender].lotoJour <= tirageDuJour, "Vous avez déjà un ticket en cours");
+    require(msg.value >= 100 finney, "Ticket loto à 100 finney");
+    require(nombre <= 255 && nombre > 0, "Le nombre doit être entre 1 et 255 compris");
+    loteries[msg.sender] = TicketLoto({ lotoNombre : nombre, lotoJour : SafeMath.add(tirageDuJour, jour), ticketGagant : false });
+  }
+
+  /**
+  * @dev Tirage loto du jour 
+  */
+  function lotoTirageDuJour() public {
+    require(dateTirage <= now);
+    dateTirage += 1 days; // prochain tirage dans un jour
+    tirageDuJour++; // nombre de tirage +1
+    nombreGagnant = uint8(blockhash(block.number-1));// hash du dernier block sur 8 bits
+  }
+
+  /**
+  * @dev les gagnants peuvent retirer leur gain
+  */
+  function retirerGain() public {
+    require(loteries[msg.sender].lotoJour == tirageDuJour, "Le tirage du jour ne concerne pas votre ticket");
+    require(loteries[msg.sender].lotoNombre == nombreGagnant, "Vous n'avez pas le bon numéro");
+    require(!loteries[msg.sender].ticketGagant, "Vous avez déjà récupéré votre prix");
+    loteries[msg.sender].ticketGagant = true; 
+    msg.sender.transfer(gainLoto); // transfer du gain 
+  }
 }
 
 /**

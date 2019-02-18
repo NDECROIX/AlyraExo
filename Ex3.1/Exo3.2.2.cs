@@ -9,6 +9,8 @@ contract CagnotteFestivale is Cogere {
   constructor() public {
       nombrePlaces = 500; // on init le nombre de places
   }
+  
+  function () external payable{}
 
   function acheterTicket() public payable {
     require(nombrePlaces > 0); // l'on control qu'il reste des places

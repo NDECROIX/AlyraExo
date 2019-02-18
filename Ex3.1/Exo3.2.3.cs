@@ -149,12 +149,8 @@ contract Assemblee {
 	* @param description de la proposition à soumettre
 	*/
 	function proposerDecision(string description) public {
-		require(estParticipant(msg.sender), "Il faut être participant!"); 
-		Decision memory decision;
-		decision.descriptionDecision = description;
-		decision.votesPour = 0;
-		decision.votesContre = 0;
-		decisions.push(decision);    
+		require(estParticipant(msg.sender), "Il faut être participant!");
+		decisions.push(Decision({descriptionDecision : description, votesPour : 0, votesContre : 0}));
 	}
 
 	/**
@@ -241,6 +237,11 @@ contract CagnotteFestivale is Cogere {
 	constructor() public {
 		nombrePlaces = 500;
 	}
+	
+	/**
+	* @dev Fonction qui permet d’accepter les paiements et dons anonymes
+	*/
+	function () external payable{}
 
 	/**
 	* @dev Acheter un ticket à 500 finney

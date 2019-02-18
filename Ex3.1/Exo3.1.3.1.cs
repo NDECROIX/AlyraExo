@@ -66,11 +66,7 @@ contract Assemblee {
 
   function proposerDecision(string description) public {
     require(estParticipant(msg.sender), "Il faut être participant!"); 
-    Decision memory decision;
-    decision.descriptionDecision = description;
-    decision.votesPour = 0;
-    decision.votesContre = 0;
-    decisions.push(decision);    
+    decisions.push(Decision({descriptionDecision : description, votesPour : 0, votesContre : 0}));	
   }
 
   function voter(uint proposition, uint pourContre) public {

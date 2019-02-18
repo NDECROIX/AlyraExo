@@ -46,12 +46,12 @@ contract CagnotteFestivale is Cogere {
 	string[] private sponsors;
 	uint private nombrePlaces;
 
-  uint private dateFestival;
-  uint private dateLiquidation;
-  uint private montantGain;
+	uint private dateFestival;
+	uint private dateLiquidation;
+	uint private montantGain;
 
-  uint private dateSeuil;
-  uint private seuilDepense;
+	uint private dateSeuil;
+	uint private seuilDepense;
 
 	/**
 	* @dev Init le nombre de places à 500
@@ -59,8 +59,15 @@ contract CagnotteFestivale is Cogere {
 	constructor() public {
 		nombrePlaces = 500;
     dateFestival = now;
-    dateLiquidation = dateFestival + 2 weeks;
+    dateLiquidation = SafeMath.add(dateFestival, 2 weeks);
+    dateSeuil = SafeMath.add(now, 1 days);
+    seuilDepense = 10 ether;
 	}
+	
+	/**
+	* @dev Fonction qui permet d’accepter les paiements et dons anonymes
+	*/
+	function () external payable{}
 
 	/**
 	* @dev Acheter un ticket à 500 finney
@@ -85,22 +92,22 @@ contract CagnotteFestivale is Cogere {
 		destinataire.transfer(montant);// l'absence de payable n'empêche pas l'utilisation de la fonction transfer()
 	}
 
-  /**
+	/**
 	* @dev control si le montant ne dépasse pas le seuil actuel
 	* @param montant du paiment à controler
 	*/
-  function controlDepense(uint montant) internal returns (bool) {
+	function controlDepense(uint montant) internal returns (bool) {
 
-    if  (dateSeuil < now){
-      dateSeuil = now + 1 days;
-      seuilDepense = 10 ether;
-    }
-    if  (montant <= seuilDepense){
-      seuilDepense = SafeMath.sub(seuilDepense, montant);
-      return true;
-    }
+		while (dateSeuil < now){
+			dateSeuil = SafeMath.add(dateSeuil, 1 days);
+			seuilDepense = 10 ether;
+		}
+		if  (montant <= seuilDepense){
+			seuilDepense = SafeMath.sub(seuilDepense, montant);
+			return true;
+		}
 
-  }
+	}
 
 	/**
 	* @dev Ajoute une dépense aux dépenses totales 
