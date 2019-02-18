@@ -27,7 +27,7 @@ public class TargetReached {
             }
         }
 
-        return false; // si égale retourne false 
+        return false; // si égale retourne false
     }
 
     /**
@@ -53,7 +53,7 @@ public class TargetReached {
         String coeff = "0696f4";
         String expo = "18";
         String hash = "000000000004864c000000000000000000000000000000000000000000000000";
-        String hash2 = "00000000000000000596f4000000000000000000000000000000000000000000";
+        String hash2 = "00000000000000000596f5000000000000000000000000000000000000000000";
 
         System.out.println(tR.targetReached2(coeff, expo, hash));
 

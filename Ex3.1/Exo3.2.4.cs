@@ -133,7 +133,7 @@ contract CagnotteFestivale is Cogere {
 		require(estOrga(msg.sender));
 		require(block.timestamp >= dateLiquidation);
 		
-		if(montantGain == 0) montantGain = SafeMath.div(msg.value, 100);
+		if(montantGain == 0) montantGain = SafeMath.div(address(this).balance, 100);
 		if(SafeMath.sub(nombreParts, organisateurs[msg.sender]) > 0){
 			msg.sender.transfer(SafeMath.mul(organisateurs[msg.sender], montantGain));
 			nombreParts = SafeMath.sub(nombreParts, organisateurs[msg.sender]);
