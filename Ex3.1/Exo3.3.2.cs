@@ -16,17 +16,3 @@ contract Pulsation {
   
 
 }
-
-contract Pendule {
-    
-    Pulsation pulse;
-    
-    function setPulse(Pulsation addr) public { pulse = addr;}
-    
-    function provoquerDesPulsations() public {
-        pulse.ajouterBattement();
-        pulse.battement();
-    }
-
-    
-}
