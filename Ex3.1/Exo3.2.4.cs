@@ -20,9 +20,12 @@ contract Cogere {
 	* @param parts : nombre de parts en pourcentage à transmettre
 	*/
 	function transferOrga(address orga, uint parts) public {
-		uint transfertParts = SafeMath.div(SafeMath.mul(parts, organisateurs[msg.sender]), 100);
-		organisateurs[msg.sender] -= transfertParts;
-		organisateurs[orga] = transfertParts; 
+	    require(parts != 0);
+	    require(organisateurs[msg.sender] > parts); // si il a les parts il est orga
+	    require(organisateurs[orga] == 0);
+	    
+		organisateurs[msg.sender] -= parts;
+		organisateurs[orga] = parts; 
 	}
 
 	/**
@@ -57,11 +60,11 @@ contract CagnotteFestivale is Cogere {
 	* @dev Init le nombre de places à 500
 	*/
 	constructor() public {
-		nombrePlaces = 500;
-    dateFestival = now;
-    dateLiquidation = SafeMath.add(dateFestival, 2 weeks);
-    dateSeuil = SafeMath.add(now, 1 days);
-    seuilDepense = 10 ether;
+	    nombrePlaces = 500;
+        dateFestival = now;
+        dateLiquidation = SafeMath.add(dateFestival, 2 weeks);
+        dateSeuil = SafeMath.add(now, 1 days);
+        seuilDepense = 10 ether;
 	}
 	
 	/**
@@ -84,12 +87,12 @@ contract CagnotteFestivale is Cogere {
 	* @param destinataire du paiment
 	* @param montant du paiment
 	*/
-	function payer(address destinataire, uint montant) public { //payable ne fonctionne pas
+	function payer(address destinataire, uint montant) public { //address payable = address avant la version 0.5 
     require(controlDepense(montant));
 		require(estOrga(msg.sender));
 		require(destinataire != address(0));
 		require(montant>0);
-		destinataire.transfer(montant);// l'absence de payable n'empêche pas l'utilisation de la fonction transfer()
+		destinataire.transfer(montant);
 	}
 
 	/**

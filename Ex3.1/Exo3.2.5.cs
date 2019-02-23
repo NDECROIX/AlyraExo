@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.2;
 /**
  * @title Cogere
  */
@@ -20,9 +20,12 @@ contract Cogere {
 	* @param parts : nombre de parts en pourcentage à transmettre
 	*/
 	function transferOrga(address orga, uint parts) public {
-		uint transfertParts = SafeMath.div(SafeMath.mul(parts, organisateurs[msg.sender]), 100);
-		organisateurs[msg.sender] -= transfertParts;
-		organisateurs[orga] = transfertParts; 
+		require(parts != 0);
+	    require(organisateurs[msg.sender] > parts); // si il a les parts il est orga
+	    require(organisateurs[orga] == 0);
+	    
+		organisateurs[msg.sender] -= parts;
+		organisateurs[orga] = parts; 
 	}
 
 	/**
@@ -84,12 +87,12 @@ contract CagnotteFestivale is Cogere {
 	* @param destinataire du paiment
 	* @param montant du paiment
 	*/
-	function payer(address destinataire, uint montant) public { //payable ne fonctionne pas
+	function payer(address payable destinataire, uint montant) public { 
     require(controlDepense(montant));
 		require(estOrga(msg.sender));
 		require(destinataire != address(0));
 		require(montant>0);
-		destinataire.transfer(montant);// l'absence de payable n'empêche pas l'utilisation de la fonction transfer()
+		destinataire.transfer(montant);
 	}
 
 	/**
@@ -157,22 +160,26 @@ contract Loterie is CagnotteFestivale {
   struct TicketLoto{ 
     uint8 lotoNombre; // Nombre choisi 
     uint8 lotoJour; // Jour du tirage choisi 
-    bool ticketGagant; // true si le ticket a le bon numéro
   }
 
   mapping (address => TicketLoto) loteries; 
-  uint8 private nombreGagnant; // nombre gagnant du jour
+  address[] private adresseJoueurs;
+  
   uint private dateTirage; // date du prochain tirage
-  uint private gainLoto; // gain de la loterie
-  uint8 private tirageDuJour; // Numéro du tirage du jour 
+  uint8 private tirageDuJour; // Numéro du tirage du jour
+  uint private cagnotte;
+  
+  uint private nombreDeGagnant;
+  uint private cagnotteGagnant;
+  uint private nombreGagnant;
+  
 
   /**
   * @dev constructeur du contrat
   */
   constructor() public {
-    tirageDuJour = 0;
-    gainLoto = 300 finney;
-    dateTirage = SafeMath.add(now, 1 days);
+    tirageDuJour = 1;
+    dateTirage = now;
   }
 
   /**
@@ -181,13 +188,15 @@ contract Loterie is CagnotteFestivale {
   * @param nombre choisi entre 1 et 255 compris 
   */
   function acheterTicketLoto(uint jour, uint nombre) public payable{
-    require(festivaliers[msg.sender], "Vous devez faire parti des féstivaliers");
-    require(jour > 0, "Le tirage d'aujourd'hui est déjà terminé");
-    require(now + SafeMath.mul(jour, 1 days) < dateLiquidation, "Le festivale sera terminé avant le tirage");
-    require(loteries[msg.sender].lotoJour <= tirageDuJour, "Vous avez déjà un ticket en cours");
     require(msg.value >= 100 finney, "Ticket loto à 100 finney");
+    require(festivaliers[msg.sender], "Vous devez faire parti des féstivaliers");
     require(nombre <= 255 && nombre > 0, "Le nombre doit être entre 1 et 255 compris");
-    loteries[msg.sender] = TicketLoto({ lotoNombre : uint8(nombre), lotoJour : uint8(SafeMath.add(tirageDuJour, jour)), ticketGagant : false });
+    require(loteries[msg.sender].lotoJour < tirageDuJour, "Vous avez déjà un ticket en cours");
+    require(now + SafeMath.mul(jour, 1 days) > dateTirage, "Le tirage d'aujourd'hui est déjà terminé");
+    require(now + SafeMath.mul(jour, 1 days) < dateLiquidation, "Le festivale sera terminé avant le tirage");
+    loteries[msg.sender] = TicketLoto({ lotoNombre : uint8(nombre), lotoJour : uint8(tirageDuJour + jour) });
+    adresseJoueurs.push(msg.sender);
+    cagnotte += msg.value;
   }
 
   /**
@@ -197,20 +206,30 @@ contract Loterie is CagnotteFestivale {
     require(dateTirage <= now, "Le tirage d'aujourd'hui est déjà effectué");
     dateTirage += 1 days; // prochain tirage dans un jour
     tirageDuJour++; // nombre de tirage +1
-    nombreGagnant = uint8(blockhash(block.number-1));// hash du dernier block sur 8 bits
+    cagnotteGagnant = cagnotte; // la cagnotte des gagnants du jour
+    cagnotte = 0; // reset la cagnotte
+    nombreDeGagnant = 0; // reset le nombre de gagnants
+    nombreGagnant = uint8(uint256(blockhash(block.number)));// hash du dernier block sur 8 bits
+    
+    uint nombreTickets = adresseJoueurs.length;
+    for (uint i = 0 ; i < nombreTickets; i++){
+        if(loteries[adresseJoueurs[i]].lotoNombre == nombreGagnant && loteries[adresseJoueurs[i]].lotoJour == tirageDuJour-1){
+             nombreDeGagnant++;
+        }
+    }
   }
-
+  
   /**
   * @dev les gagnants peuvent retirer leur gain
   */
   function retirerGain() public {
-    require(loteries[msg.sender].lotoJour == tirageDuJour, "Le tirage du jour ne concerne pas votre ticket");
+    require(loteries[msg.sender].lotoJour == tirageDuJour - 1, "Le tirage du jour ne concerne pas votre ticket");
     require(loteries[msg.sender].lotoNombre == nombreGagnant, "Vous n'avez pas le bon numéro");
-    require(!loteries[msg.sender].ticketGagant, "Vous avez déjà récupéré votre prix");
-    loteries[msg.sender].ticketGagant = true; 
-    msg.sender.transfer(gainLoto); // transfer du gain 
+    loteries[msg.sender].lotoNombre = 0; 
+    msg.sender.transfer(cagnotteGagnant / nombreDeGagnant); // transfer du gain
   }
 }
+
 
 /**
  * @title SafeMath
