@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+ <meta charset="UTF-8">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+ <title>Première DApp</title>
+
+</head>
+
+<body>
+
+ <h1>Place de marché d’illustrateurs indépendants</h1>
+
+ <button onclick="createMetaMaskDapp()">Connect to MetaMask</button>
+ <button id="offres" onclick="contratPDM()" style="display:none;">Charger les offres</button>
+ <h2>Offres: </h2>
+
+ <ul id ='ListeDemandes' ></ul>
+
+
+ <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+
+       charset="utf-8"
+
+       type="text/javascript">
+
+ </script>
+
+  <script src="application.js"
+
+       charset="utf-8"
+
+       type="text/javascript">
+
+ </script>
+
+ </body>
+</html>
