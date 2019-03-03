@@ -22,8 +22,8 @@ public class VarIntToDecimal {
                 break;
             case "ff":
                 taille = 8;
-                default:
-                    break;
+            default:
+                break;
         }
 
         hex = hex.substring(2);

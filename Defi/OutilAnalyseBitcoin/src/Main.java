@@ -15,9 +15,10 @@ public class Main {
                     "\n 5 : Champ Bits -> Cible correspondante          5 : 0x 18 06 96 F4 --> 0x00000000000000000696f4000000000000000000000000000000000000000000" +
                     "\n 6 : Cible -> Difficulté                         6 : Bits : 0x 1C 0A E4 93 --> 23.5" +
                     "\n 7 : Details transaction                         7 : 0100000001f129de033c5758... --> Version : 01000000 -> Input Count : 01... " +
-                    "\n 8 : Quitter \n   ");
+                    "\n 8 : Connection à Bitcoind " +
+                    "\n 9 : Quitter \n   ");
 
-            switch (CheckEnter.enterNumber("Saisir un nombre entre 1 et 8 :", 1, 8)) {
+            switch (CheckEnter.enterNumber("Saisir un nombre entre 1 et 9 :", 1, 9)) {
 
                 case 1:
                     HexToDecimal.hexToDecimal();
@@ -41,6 +42,9 @@ public class Main {
                     ExtractChamps.extractChampsTransaction();
                     break;
                 case 8:
+                    BitcoinConnection.connectionBitcoind();
+                    break;
+                case 9:
                     restart = false;
                     break;
                 default:

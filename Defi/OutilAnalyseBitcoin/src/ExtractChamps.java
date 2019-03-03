@@ -89,8 +89,8 @@ public class ExtractChamps {
 
             listChamp.add(
                     "ScriptSig Size : " + Integer.parseInt(upcomingOf = transaction.substring(pC, pC += scriptSigSize), 16) + // on récupère la taille du ScriptSig
-                    "\nScriptSig : " + transaction.substring(pC, pC += getDecimal(upcomingOf)*2) +
-                    "\nSequence : " + LittleEndianToHex.convLittEndianToHex(transaction.substring(pC, pC += INPUT_SEQUENCE))
+                            "\nScriptSig : " + transaction.substring(pC, pC += getDecimal(upcomingOf)*2) +
+                            "\nSequence : " + LittleEndianToHex.convLittEndianToHex(transaction.substring(pC, pC += INPUT_SEQUENCE))
             );
         }
 
@@ -126,7 +126,7 @@ public class ExtractChamps {
 
             listChamp.add(
                     "ScriptPubKey Size : " + Integer.parseInt(upcomingOf = transaction.substring(pC, pC += scriptPubKeySize), 16) + // on récupère la taille du ScriptPubKey
-                    "\nScriptPubKey : " + transaction.substring(pC, pC += getDecimal(upcomingOf)*2)
+                            "\nScriptPubKey : " + transaction.substring(pC, pC += getDecimal(upcomingOf)*2)
             );
         }
 

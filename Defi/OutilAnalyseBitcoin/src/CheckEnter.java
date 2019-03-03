@@ -21,7 +21,10 @@ public class CheckEnter {
 
         boolean correct = false;
 
+        System.out.println(message);
+
         do{
+
             try {
                 sc = new Scanner(System.in);
                 enterNumber = sc.nextInt();
