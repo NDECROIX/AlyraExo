@@ -1,3 +1,4 @@
+
 pragma solidity ^0.5.2;
 /**
  * @title Cogere
@@ -159,7 +160,8 @@ contract Loterie is CagnotteFestivale {
   */
   struct TicketLoto{ 
     uint8 lotoNombre; // Nombre choisi 
-    uint8 lotoJour; // Jour du tirage choisi 
+    uint8 lotoJour; // Jour du tirage choisi
+    bool gainRetire; // true si gain déjà pris
   }
 
   mapping (address => TicketLoto) loteries; 
@@ -167,19 +169,20 @@ contract Loterie is CagnotteFestivale {
   
   uint private dateTirage; // date du prochain tirage
   uint8 private tirageDuJour; // Numéro du tirage du jour
-  uint private cagnotte;
+  uint private blockTirage; // bloc qui détermine le nombre gagnant
+  uint private cagnotte; 
+  bool private etatTirage; // etat du tirage
   
   uint private nombreDeGagnant;
   uint private cagnotteGagnant;
   uint private nombreGagnant;
-  
 
   /**
   * @dev constructeur du contrat
   */
-  constructor() public {
-    tirageDuJour = 1;
-    dateTirage = now;
+  constructor() public { 
+    tirageDuJour = 0;
+    dateTirage = now + 1 days ;
   }
 
   /**
@@ -190,42 +193,53 @@ contract Loterie is CagnotteFestivale {
   function acheterTicketLoto(uint jour, uint nombre) public payable{
     require(msg.value >= 100 finney, "Ticket loto à 100 finney");
     require(festivaliers[msg.sender], "Vous devez faire parti des féstivaliers");
-    require(nombre <= 255 && nombre > 0, "Le nombre doit être entre 1 et 255 compris");
-    require(loteries[msg.sender].lotoJour < tirageDuJour, "Vous avez déjà un ticket en cours");
-    require(now + SafeMath.mul(jour, 1 days) > dateTirage, "Le tirage d'aujourd'hui est déjà terminé");
+    require(nombre <= 255 && nombre >= 0, "Le nombre doit être entre 0 et 255 compris");
+    require(loteries[msg.sender].lotoJour <= tirageDuJour, "Vous avez déjà un ticket en cours");
+    require(jour > 0, "Tirage déjà terminé");
     require(now + SafeMath.mul(jour, 1 days) < dateLiquidation, "Le festivale sera terminé avant le tirage");
-    loteries[msg.sender] = TicketLoto({ lotoNombre : uint8(nombre), lotoJour : uint8(tirageDuJour + jour) });
+    loteries[msg.sender] = TicketLoto({ lotoNombre : uint8(nombre), lotoJour : uint8(tirageDuJour + jour), gainRetire : false});
     adresseJoueurs.push(msg.sender);
     cagnotte += msg.value;
   }
 
   /**
-  * @dev Tirage loto du jour 
+  * @dev Tirage loto du jour en deux temps
   */
   function lotoTirageDuJour() public {
-    require(dateTirage <= now, "Le tirage d'aujourd'hui est déjà effectué");
-    dateTirage += 1 days; // prochain tirage dans un jour
-    tirageDuJour++; // nombre de tirage +1
-    cagnotteGagnant = cagnotte; // la cagnotte des gagnants du jour
-    cagnotte = 0; // reset la cagnotte
-    nombreDeGagnant = 0; // reset le nombre de gagnants
-    nombreGagnant = uint8(uint256(blockhash(block.number)));// hash du dernier block sur 8 bits
-    
-    uint nombreTickets = adresseJoueurs.length;
-    for (uint i = 0 ; i < nombreTickets; i++){
-        if(loteries[adresseJoueurs[i]].lotoNombre == nombreGagnant && loteries[adresseJoueurs[i]].lotoJour == tirageDuJour-1){
-             nombreDeGagnant++;
-        }
+    require(dateTirage <= now, "Tirage indisponible");
+    require(block.number > blockTirage, "Veuillez attendre le prochain bloc");
+    if(blockTirage == 0){ // temps un, on détermine le bloc 
+        etatTirage = false; // debut du tirage
+        tirageDuJour++; // nombre de tirage +1
+        blockTirage = block.number + 1;
+        cagnotteGagnant = cagnotte; // la cagnotte des gagnants du jour
+        cagnotte = 0; // reset la cagnotte
     }
+    else{ // temps deux, on calcul le nombre gagnant ainsi que les gagnants
+        dateTirage += 1 days; // prochain tirage dans un jour
+        nombreDeGagnant = 0; // reset le nombre de gagnants
+        nombreGagnant = uint8(uint256(blockhash(blockTirage)));// hash du blockTirage sur 8 bits
+        blockTirage = 0; // reset du blockTirage
+        uint nombreTickets = adresseJoueurs.length;
+        for (uint i = 0 ; i < nombreTickets; i++){
+            if(loteries[adresseJoueurs[i]].lotoNombre == nombreGagnant && loteries[adresseJoueurs[i]].lotoJour == tirageDuJour){
+                 nombreDeGagnant++;
+            }
+        }
+        etatTirage = true; // fin du tirage
+    }
+        
   }
   
   /**
   * @dev les gagnants peuvent retirer leur gain
   */
   function retirerGain() public {
-    require(loteries[msg.sender].lotoJour == tirageDuJour - 1, "Le tirage du jour ne concerne pas votre ticket");
+    require(etatTirage, "Tirage en cours"); 
+    require(loteries[msg.sender].lotoJour == tirageDuJour, "Le tirage du jour ne concerne pas votre ticket");
     require(loteries[msg.sender].lotoNombre == nombreGagnant, "Vous n'avez pas le bon numéro");
-    loteries[msg.sender].lotoNombre = 0; 
+    require(!loteries[msg.sender].gainRetire, "Vous avez déjà pris vos gains");
+    loteries[msg.sender].gainRetire = true; 
     msg.sender.transfer(cagnotteGagnant / nombreDeGagnant); // transfer du gain
   }
 }
@@ -294,3 +308,5 @@ library SafeMath {
         return a % b;
     }
 }
+
+
