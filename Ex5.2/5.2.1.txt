@@ -1,0 +1,46 @@
+pragma solidity ^0.4.25;
+/**
+ * @title SceneOuverte : 0x6a3fa386eea000b0ae63170a86fd5401d9dcd169
+ */
+contract SceneOuverte {
+
+	string[12] passageArtistes;
+	uint creneauxLibres = 12;
+	uint tour;
+
+	/**
+	* @dev Ajoute un artiste aux creneauxLibres
+	* @param nomDArtiste de l'artiste
+	*/
+	function sInscrire(string nomDArtiste) public {
+		if  (creneauxLibres > 0){
+			passageArtistes[12-creneauxLibres] = nomDArtiste;
+			creneauxLibres--;
+		}
+	}
+
+	/**
+	* @dev Passe à l'artiste suivant 
+	*/
+	function passerArtisteSuivant() public {
+		if ( SafeMath.add(tour, creneauxLibres) < 12 ){
+		tour++;
+	}
+
+	}
+
+	/**
+	* @dev return l'artiste en cours 
+	* @return le nom de l'artiste en cours ou FIN
+	*/
+	function artisteEnCours() public view returns (string) {
+		if  (SafeMath.add(tour, creneauxLibres) < 12 ){
+			return passageArtistes[tour];
+		}
+		else {
+			return "FIN";
+		}
+
+	}
+
+}
