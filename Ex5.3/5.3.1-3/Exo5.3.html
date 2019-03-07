@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang='fr'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+
+        <title>IPFS</title>
+
+    </head>
+    <body>
+        <h1>Liste des dix premiers pairs : </h1>
+
+        <div id="list"></div>
+
+        <p>
+            Noeud : <input type="text" id="pingHash" > 
+            <button onclick="pingD(getElementById('pingHash').value)"> Ping </button>
+            <br>
+        </p>
+        <div id="ping"></div>
+
+        <p>
+            Publier une chaîne de caractères sur IPFS : <input type="text" id="pubIPFS" > 
+            <button onclick="pubStringIpfs(getElementById('pubIPFS').value)"> Publier </button>
+            <br>
+        </p>
+        <div id="hashPublier"></div>
+
+        <p>
+            Récupérer un fichier sur IPFS : <input type="text" id="catIPFS" > 
+            <button onclick="catFichierIpfs(getElementById('catIPFS').value)"> Récupérer </button>
+            <br>
+        </p>
+        <div id="fichierRecup"></div>
+
+        <script>
+
+            const ipfs = window.IpfsHttpClient('localhost', '5001')
+
+            ipfs.swarm.addrs().then(addrs=> {
+                let list ="<ul>"
+                for (let i = 0; i < addrs.length && i < 10; i++) {
+                    list += "<li>" + addrs[i].id._idB58String + "</li>"
+                }
+                list +="</ul>"
+                document.getElementById("list").innerHTML = list
+            })
+
+            function pingD(pingHash) {
+
+                ipfs.ping(pingHash, function (err, responses) {
+
+                    if (err) {  throw err  }
+                    
+                    let resultPing = "";
+                    responses.forEach((res) => {
+                        if (res.time) {
+                            resultPing += `Pong received : time=${res.time} ms <br> ` 
+                        } else {
+                            resultPing += res.text + '<br>'
+                        }
+                    })
+                    document.getElementById("ping").innerHTML = resultPing
+                })
+            }
+
+            function pubStringIpfs(data) {
+                
+                ipfs.add(new ipfs.types.Buffer.from(data), (err, files) => {
+                    if (err) return console.error(err)
+                    document.getElementById("hashPublier").innerHTML = 'Id : ' + files[0].hash
+                })
+            }
+
+            function catFichierIpfs(hash) {
+                
+                ipfs.cat(hash, (err, data) => {
+                    if (err) return console.error(err)
+                    document.getElementById("fichierRecup").innerHTML = 'Fichier : ' + data.toString()
+                })
+            }
+        
+        </script>
+    </body>
+</html>
+    
