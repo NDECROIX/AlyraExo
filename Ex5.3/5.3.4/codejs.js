@@ -69,7 +69,7 @@ async function createMetaMaskDapp() {
     }
    }
 
-async function ajoutImgIPFS(pk) {
+async function ajoutImgIPFS() {
 
     const ipfs = window.IpfsHttpClient('localhost', '5001')
 
@@ -85,17 +85,14 @@ async function ajoutImgIPFS(pk) {
 
 			if (err) return console.error(err)
 			console.log(files[0].hash)
-			ajoutHachImg(files[0].hash, pk)
+			ajoutHachImg(files[0].hash)
 		})
 	}
 }
 
-async function ajoutHachImg(imgHash, privateKey){
+async function ajoutHachImg(imgHash){
 
-    var wallet = new ethers.Wallet(privateKey, dapp.provider);
-    wallet.defaultGasLimit = 3000000; // on limite le gaz 
-
-    var contratCollection = new ethers.Contract("0x0a4bb3fd6afd193d40d0a126bb9e99ebe92d46b8", abi, wallet);
+    var contratCollection = new ethers.Contract("0x0a4bb3fd6afd193d40d0a126bb9e99ebe92d46b8", abi, dapp.provider.getSigner());
 
 	await contratCollection.ajouterCarte(imgHash);
 }

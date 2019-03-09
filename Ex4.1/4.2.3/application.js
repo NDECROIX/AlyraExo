@@ -118,11 +118,9 @@ async function createMetaMaskDapp() {
    }
 
 async function contratCred(){
-    var privateKey = ''; // Clé Privée pour signer
-    var wallet = new ethers.Wallet(privateKey, dapp.provider);
-    wallet.defaultGasLimit = 3000000; // limite gaz
+    
 
-    var contratCredibilite = new ethers.Contract("0x1a2bf6fca820a3c6767fc5ad4ea756adbe9aa4f1", abi, wallet ); // init contrat
+    var contratCredibilite = new ethers.Contract("0x1a2bf6fca820a3c6767fc5ad4ea756adbe9aa4f1", abi, dapp.provider.getSigner() ); // init contrat
 
 	contratCredibilite.on('RendreDevoir', (hashDevoir, adr) => { // Evénement à chaque ajout d'un devoir sur le contrat 0x1a2bf6fca820a3c6767fc5ad4ea756adbe9aa4f1
 		document.getElementById("hashDevoir").innerHTML = "Le hash du devoir : " + hashDevoir ;

@@ -101,11 +101,8 @@ async function createMetaMaskDapp() {
    }
 
 async function contratCredibilite(){
-    var privateKey = ''; // Clé privée pour signer
-    var wallet = new ethers.Wallet(privateKey, dapp.provider);
-    wallet.defaultGasLimit = 3000000; // on limite le gaz 
 
-    var contratCredibilite = new ethers.Contract("0xedf791E6dD181b7F9eF1476c42829613C40FB11D", abi, wallet ); // init du contrat
+    var contratCredibilite = new ethers.Contract("0xedf791E6dD181b7F9eF1476c42829613C40FB11D", abi, dapp.provider.getSigner() ); // init du contrat
 
     var maCredibilite = await contratCredibilite.cred(dapp.address); 
     var monDevoirHash = await contratCredibilite.produireHash("https://github.com/NDECROIX/AlyraExo/tree/master/Ex4.1"); // on hash l'url d'un devoir
