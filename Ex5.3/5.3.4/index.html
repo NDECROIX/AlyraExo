@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+
+        <title>Cartes à collectionner</title>
+
+    </head>
+
+    <body>
+
+        <h1>Jeu de cartes à collectionner</h1>
+
+            <button id="coMetaMask" onclick="createMetaMaskDapp()">Connect to MetaMask</button>
+
+        <div id="corps" style="display:none;">
+            
+            <p>
+
+                Ajout d'une image dans votre collection : <input type="file" id="addImg" accept="image/*"><br><br>
+                Frais de transaction, Clef Privée :  <input type="password" id="pk" > <button onclick="ajoutImgIPFS(getElementById('pk').value)"> Ajouter </button><br><br>
+                Afficher les dix premières images de la collection : <button onclick="affDixImg()"> Afficher </button>
+            
+            </p>
+
+            <div id="diximage"></div>
+
+        </div>
+
+        
+
+
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+
+        charset="utf-8"
+
+        type="text/javascript">
+
+    </script>
+
+    <script src="codejs.js"
+
+        charset="utf-8"
+
+        type="text/javascript">
+
+    </script>
+
+    </body>
+</html>
