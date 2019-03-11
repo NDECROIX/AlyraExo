@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>SEFD</title>
+
+    </head>
+
+    <body>
+
+        <h1>Service d’épinglage de fichiers décentralisés</h1>
+
+            <button id="coMetaMask" onclick="connectMetaMask()">Connect to MetaMask</button>
+
+        <div id="corps" style="display:none;">
+            
+            <p>
+
+                Charger un fichier : <input type="file" id="addFile"><br><br>
+                <button onclick="ajoutFileIPFS()"> Charger </button><br><br>
+                Hash IPFS : <bold id="hashReturn"></bold><br><br>
+                Epingler un fichier : <button onclick="ajoutHashFile(document.getElementById('hashReturn').textContent)"> Epingler </button>
+            
+            </p>
+
+        </div>
+
+        
+    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+
+
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+
+        charset="utf-8"
+
+        type="text/javascript">
+
+    </script>
+
+    <script src="code.js"
+
+        charset="utf-8"
+
+        type="text/javascript">
+
+    </script>
+
+    </body>
+</html>
