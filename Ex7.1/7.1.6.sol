@@ -112,6 +112,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
     function transferFrom(address _from, address _to, uint256 _tokenId) public {
         require( _tokenId < 200 );
         require(objetMagiqueOwner[_tokenId] == _from);
+        require(objetMagiqueOwner[_tokenId] == msg.sender);
         objetMagiqueOwner[_tokenId] = _to;
         ownerObjetMagiqueCount[_from]--;
         ownerObjetMagiqueCount[_to]++;
