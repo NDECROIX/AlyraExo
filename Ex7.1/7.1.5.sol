@@ -40,7 +40,7 @@ contract ObjetsMagiques {
     function creuser() public payable {
         require(msg.value >= 0.1 ether, "Prix de fabrication 0.1 ether");
         
-        uint objetCreee = ((uint) (blockhash(block.number-1))) % 2999;
+        uint objetCreee = ((uint) (blockhash(block.number-1))) % 3000;
         
         require(!objetMagiqueExist(objetCreee));
         
