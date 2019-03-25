@@ -35,8 +35,9 @@ contract ObjetsMagiques {
     
     /**
 	* @dev Créée un objet magique pour 0.1 ether
+	* @return uint de l'objet magique
 	*/
-    function creuser() public payable {
+    function creuser() public payable return (uint){
         require(msg.value >= 0.1 ether, "Prix de fabrication 0.1 ether");
         
         uint objetCreee = ((uint) (blockhash(block.number-1))) % 3000;
@@ -49,6 +50,7 @@ contract ObjetsMagiques {
         objetMagiqueOwner[objetCreee] = msg.sender;
         objetMagique.push(objetCreee);
         
+		return objetCreee;
     }
     
     /**
