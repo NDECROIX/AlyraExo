@@ -1,9 +1,9 @@
 pragma solidity ^0.5.1;
 
 /**
-* @title ERC721Simple
+* @title ERC721
 */
-contract ERC721horse {
+contract ERC721 {
     
     event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);
     event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);
@@ -15,14 +15,14 @@ contract ERC721horse {
     function takeOwnership(uint256 _tokenId) public;
  
 }
- 
+
 /**
 * @title ObjetsMagiques
 */   
 contract RaceHorses {
     
     struct Horse {
-        address owner;
+        address payable owner;
         string name;
         string lastName;
         uint id;
@@ -32,15 +32,20 @@ contract RaceHorses {
     
     Horse[] horses;
     
+    uint horsesMax;
+    
     mapping (address => uint) ownerHorseCount;
     
-    mapping (uint => address payable) internal horseOwner;
+    mapping (uint => address) horseOwner;
     
     address payable tresorier;
     
     constructor () public {
         tresorier = msg.sender;
+        horsesMax = 2000000;
     }
+    
+    event horseCreate(address _owner, string _name, string _lastname, uint _id, uint _num);
     
     /**
      * @dev Creation d'un cheval de course
@@ -49,9 +54,12 @@ contract RaceHorses {
      * @return uint de la position du cheval 
      */
     function createHorse(string memory _name, string memory _lastName) public payable returns (uint) {
-        require(msg.value >= 0.1 ether, " Cout 0.1 ether");
-        uint _id = ((uint) (blockhash(block.number-1))) % 2000000;
+        require(horses.length < horsesMax, "Tous les chevaux ont été produits");
+        require(msg.value >= 0.1 ether, " Cout de production 0.1 ether");
+        uint _id = ((uint) (blockhash(block.number-1))) % 200000000;
         require(!horseIdExist(_id), "Id produit déjà existant");
+        
+        tresorier.transfer(msg.value);
         
         uint position = horses.push(Horse({ owner : msg.sender,
                                             name : _name,
@@ -63,13 +71,14 @@ contract RaceHorses {
         ownerHorseCount[msg.sender]++;
         horseOwner[position] = msg.sender;
         
+        
         return position;
     }
     
     /**
-     * @dev vérifie l'existance d'un cheval
+     * @dev vérifie l'existance d'un id
      * @param _id id du cheval
-     * @return vrais si existance
+     * @return vrais si exist
      */
     function horseIdExist(uint _id) private view returns (bool){
         uint nbrHorses = horses.length;
@@ -110,35 +119,40 @@ contract Hippodrome is RaceHorses {
     
     Race[] races;
     
+    uint timeRace;
+    
+    constructor() public { timeRace = 50 ; }
+    
     event Create(uint race, address promoter);
     event Participate(uint race, uint horse);
     event Launch(uint race);
     event LeaderHorse(uint _race, uint _horse);
+    event HorseMoove(uint _race, uint _horse, uint _steps);
     
     modifier raceExist(uint _race) {
-        require(races.length > _race);
+        require(races.length > _race, "Course inexistante");
         _;
     }
     
     modifier horseExist(uint _horse) {
-        require(horses.length > _horse);
+        require(horses.length > _horse, "Cheval inexistant");
         _;
     }
     
     modifier raceState(uint _race, State _state) {
-        require(races[_race].state == _state);
+        require(races[_race].state == _state, "L'etat de la course ne permet pas l'accès à cette function");
         _;
     }
     
     /**
-     * @dev Création d'une course de cheveaux
+     * @dev Création d'une course de chevaux
      */
     function createRace() public payable {
-        require(msg.value > 1.01 ether, "Caution de 1 ether + 0.01 de coût = 1.01");
+        require(msg.value >= 1.01 ether, "Caution de 1 ether + 0.01 de coût = 1.01");
         
         uint indiceRace = races.push(Race({promoter : msg.sender,
                                 time : block.number,
-                                bank : 0.01 ether,
+                                bank : msg.value - 1 ether,
                                 state : State.OPEN,
                                 horsesParticipates : new uint[](0),
                                 gamblers : new address[](0),
@@ -224,7 +238,7 @@ contract Hippodrome is RaceHorses {
         require(races[_race].horsesParticipates.length >= 2, "il n'y a pas assez de participants");
         
         races[_race].state = State.RUN;
-        races[_race].time = block.number + 22;
+        races[_race].time = block.number + timeRace;
         emit Launch(_race);
         
     }
@@ -235,8 +249,8 @@ contract Hippodrome is RaceHorses {
      */
     function load(uint _race) public payable    raceExist(_race) 
                                                 raceState(_race, State.RUN) {
-                                                    
-        require(msg.value > 0.01 ether, "0.01 ether la charge");
+        require(races[_race].time > block.number, "La course est terminé");                                            
+        require(msg.value >= 0.01 ether, "0.01 ether la charge");
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
         
         races[_race].bank += msg.value;
@@ -261,6 +275,8 @@ contract Hippodrome is RaceHorses {
         races[_race].playerShoots[msg.sender] = 0;
         uint power =  (uint(blockhash(races[_race].playerShoots[msg.sender])) + _horse) % 10;
         races[_race].horseStats[_horse] += power;
+        
+        emit HorseMoove( _race, _horse, power);
         
         if (races[_race].horseStats[_horse] > races[_race].horseStats[races[_race].firstHorse]){
             races[_race].firstHorse = _horse;
@@ -296,18 +312,18 @@ contract Hippodrome is RaceHorses {
         horses[races[_race].firstHorse].win++;
         horses[races[_race].firstHorse].loose--;
         
-        uint gain = races[_race].bank * 10 / 100;
+        uint gain = 10 * races[_race].bank / 100;
         
         msg.sender.transfer(gain + 1 ether);
         tresorier.transfer(gain);
-        horseOwner[races[_race].firstHorse].transfer(gain);
+        horses[races[_race].firstHorse].owner.transfer(gain);
         
         races[_race].bank = races[_race].bank - (gain * 3);
         uint reste = races[_race].bank;
         races[_race].bank = races[_race].bank / races[_race].horseOdds[races[_race].firstHorse];
         
         reste = reste - (races[_race].bank * races[_race].horseOdds[races[_race].firstHorse]);
-        if (reste > 0) horseOwner[races[_race].firstHorse].transfer(reste);
+        if (reste > 0) horses[races[_race].firstHorse].owner.transfer(reste);
         
         races[_race].state = State.END;
         
@@ -323,13 +339,89 @@ contract Hippodrome is RaceHorses {
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
         require(races[_race].playerBetOn[msg.sender] == races[_race].firstHorse, "Vous n'avez pas misé sur le bon cheval");
         require(!races[_race].winners[msg.sender], "Vous avez déjà pris vos gains");
-        require(races[_race].bank > 0, "Les gains son nul");
+        require(races[_race].bank > 0, "Recettes nul");
         
         races[_race].winners[msg.sender] = true;
         msg.sender.transfer(races[_race].bank);
         
     }
+
 }
+
+contract RaceHorseOwnership is Hippodrome, ERC721 {
+    
+    event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);
+    event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);
+        
+    mapping(uint256 => address) tokenApprovals;
+    
+    function verifApprouve(uint _tokenId) public view returns(bool){
+        if (tokenApprovals[_tokenId] == msg.sender) return true;
+    }
+    
+    function balanceOf(address _owner) public view returns (uint256 _balance){
+        return ownerHorseCount[_owner];
+    }
+     
+    function ownerOf(uint256 _tokenId) public view returns (address _owner){
+        require(horses.length > _tokenId);
+        return horseOwner[_tokenId];
+    }
+     
+    function exists(uint256 _tokenId) public view returns (bool exist){
+        if (horses.length > _tokenId) return true;
+    }
+    
+    /**
+	* @dev transférer un cheval
+	* @param _from  adresse du propriétaire
+	* @param _to  adresse de destination
+	* @param _tokenId num du cheval
+	*/
+    function _transfer(address _from, address _to, uint256 _tokenId) private {
+        horseOwner[_tokenId] = _to;
+        ownerHorseCount[_from]--;
+        ownerHorseCount[_to]++;
+        emit Transfer( _from, _to, _tokenId);
+    }
+    
+    /**
+	* @dev transférer un cheval
+	* @param _to  adresse de destination
+	* @param _tokenId num du cheval
+	*/
+    function transferFrom( address _to, uint256 _tokenId) public {
+        require( _tokenId < 200 );
+        require(horseOwner[_tokenId] == msg.sender);
+        _transfer(msg.sender, _to, _tokenId);
+
+    }
+    
+    /**
+	* @dev Approuver le changement de possession d'un cheval
+	* @param _to  adresse du prochain propriétaire
+	* @param _tokenId num du cheval
+	*/
+    function approve(address _to, uint256 _tokenId) public  {
+        require( _tokenId < 200 );
+        require(ownerOf(_tokenId) == msg.sender);
+        tokenApprovals[_tokenId] = _to;
+        emit Approval(msg.sender, _to, _tokenId);
+    }
+    
+    /**
+	* @dev Prendre possession d'un cheval approuvé
+	* @param _tokenId num du cheval
+	*/
+    function takeOwnership(uint256 _tokenId) public {
+        require( _tokenId < 200 );
+        require(tokenApprovals[_tokenId] == msg.sender);
+        address owner = ownerOf(_tokenId);
+        _transfer(owner, msg.sender, _tokenId);
+    }
+    
+}
+
 
 
 
