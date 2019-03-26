@@ -95,18 +95,18 @@ contract RaceHorses {
 contract Hippodrome is RaceHorses {
     
     struct Race {
-        address promoter;
-        uint time;
-        State state;
-        uint bank;
-        uint firstHorse;
-        address[] gamblers;
-        uint[] horsesParticipates;
-        mapping(uint => uint) horseStats;
-        mapping(uint => uint) horseOdds;
-        mapping(address => uint) playerBetOn;
-        mapping(address => uint) playerShoots;
-        mapping(address => bool) winners;
+        address promoter; // adresse de l'organisateur
+        uint time; // variable qui permet la gestion du temps
+        State state; // etat de la course
+        uint bank; // gain de la course
+        uint firstHorse; // cheval en tête
+        address[] gamblers; // les joueurs
+        uint[] horsesParticipates; // les chevaux de course
+        mapping(uint => uint) horseStats; // l'avancement
+        mapping(uint => uint) horseOdds; // la côte du chevale
+        mapping(address => uint) playerBetOn; // le cheval sur le quelle le joueuer a misé
+        mapping(address => uint) playerShoot; // le block ou le joeueur peut utiliser un shoot 
+        mapping(address => bool) winners; // les gagnants
         
     }
     
@@ -254,7 +254,7 @@ contract Hippodrome is RaceHorses {
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
         
         races[_race].bank += msg.value;
-        races[_race].playerShoots[msg.sender] = block.number + 1;
+        races[_race].playerShoot[msg.sender] = block.number + 1;
         
     }
     
@@ -267,13 +267,13 @@ contract Hippodrome is RaceHorses {
                                             
         require(races[_race].time > block.number, "La course est terminé");
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
-        require(races[_race].playerShoots[msg.sender] > 0, "Vous n'avez pas de charge");
-        require(races[_race].playerShoots[msg.sender] < block.number, "Veuillez attendre le prochain block");
+        require(races[_race].playerShoot[msg.sender] > 0, "Vous n'avez pas de charge");
+        require(races[_race].playerShoot[msg.sender] < block.number, "Veuillez attendre le prochain block");
         
         uint _horse = races[_race].playerBetOn[msg.sender];
+        uint power =  (uint(blockhash(races[_race].playerShoot[msg.sender])) + _horse) % 10;
+        races[_race].playerShoot[msg.sender] = 0;
         
-        races[_race].playerShoots[msg.sender] = 0;
-        uint power =  (uint(blockhash(races[_race].playerShoots[msg.sender])) + _horse) % 10;
         races[_race].horseStats[_horse] += power;
         
         emit HorseMoove( _race, _horse, power);
