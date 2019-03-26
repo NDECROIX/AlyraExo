@@ -42,10 +42,16 @@ contract RaceHorses {
         tresorier = msg.sender;
     }
     
+    /**
+     * @dev Creation d'un cheval de course
+     * @param _name prénom du cheval 
+     * @param _lastName nom du cheval
+     * @return uint de la position du cheval 
+     */
     function createHorse(string memory _name, string memory _lastName) public payable returns (uint) {
         require(msg.value >= 0.1 ether, " Cout 0.1 ether");
         uint _id = ((uint) (blockhash(block.number-1))) % 2000000;
-        require(!horseExist(_id), "Id produit déjà existant");
+        require(!horseIdExist(_id), "Id produit déjà existant");
         
         uint position = horses.push(Horse({ owner : msg.sender,
                                             name : _name,
@@ -60,7 +66,12 @@ contract RaceHorses {
         return position;
     }
     
-    function horseExist(uint _id) private view returns (bool){
+    /**
+     * @dev vérifie l'existance d'un cheval
+     * @param _id id du cheval
+     * @return vrais si existance
+     */
+    function horseIdExist(uint _id) private view returns (bool){
         uint nbrHorses = horses.length;
         for (uint i = 0; i < nbrHorses; i++){
             if (horses[i].id == _id) return true;
@@ -69,13 +80,15 @@ contract RaceHorses {
     
 }
 
-
+/**
+* @title Hippodrome
+*/  
 contract Hippodrome is RaceHorses {
     
     struct Race {
         address promoter;
         uint time;
-        Etat etat;
+        State state;
         uint bank;
         uint firstHorse;
         address[] gamblers;
@@ -88,7 +101,7 @@ contract Hippodrome is RaceHorses {
         
     }
     
-    enum Etat {
+    enum State {
         OPEN,
         RUN,
         LOAD,
@@ -107,22 +120,42 @@ contract Hippodrome is RaceHorses {
         _;
     }
     
+    modifier horseExist(uint _horse) {
+        require(horses.length > _horse);
+        _;
+    }
+    
+    modifier raceState(uint _race, State _state) {
+        require(races[_race].state == _state);
+        _;
+    }
+    
+    /**
+     * @dev Création d'une course de cheveaux
+     */
     function createRace() public payable {
         require(msg.value > 1.01 ether, "Caution de 1 ether + 0.01 de coût = 1.01");
         
         uint indiceRace = races.push(Race({promoter : msg.sender,
                                 time : block.number,
                                 bank : 0.01 ether,
-                                etat : Etat.OPEN,
+                                state : State.OPEN,
                                 horsesParticipates : new uint[](0),
                                 gamblers : new address[](0),
                                 firstHorse : 0 }));
         emit Create(indiceRace, msg.sender);
     }
     
-    function runner(uint _horse, uint _race) public payable raceExist(_race) {
+    /**
+     * @dev permet à un propriétaire de faire participer un cheval
+     * @param _horse le cheval qu'il veut faire courir
+     * @param _race la course choisi
+     */
+    function runner(uint _horse, uint _race) public payable raceExist(_race)
+                                                            raceState(_race, State.OPEN) 
+                                                            horseExist(_horse) {
+                                                                
         require(msg.value >= 0.01 ether, "Mettre son cheval en course coûte 0.01 ether");
-        require(races[_race].etat == Etat.OPEN, "La course n'est plus ouverte");
         require(horses[_horse].owner == msg.sender, "Vous n'êtes pas le propriétaire du cheval");
         require(!alreadyRunner(msg.sender, _race), "Vous participez déjà à la course");
         
@@ -134,6 +167,12 @@ contract Hippodrome is RaceHorses {
         
     }
     
+    /**
+     * @dev vérifie si le propriétaire participe déjà
+     * @param _owner proprio
+     * @param _race la course 
+     * @return bool vrais si participe déjà
+     */
     function alreadyRunner(address _owner, uint _race) private view returns (bool){
         
         uint nbrParticipants = races[_race].horsesParticipates.length;
@@ -142,8 +181,15 @@ contract Hippodrome is RaceHorses {
         }
     }
     
-    function gambler(uint _race, uint _horse) public payable raceExist(_race){
-        require(races[_race].etat == Etat.OPEN, "La course n'est plus ouverte");
+    /**
+     * @dev inscription à une course pour parier 
+     * @param _race course à laquelle je veux participer
+     * @param _horse Cheval sur le quelle je parie
+     */
+    function gambler(uint _race, uint _horse) public payable    horseExist(_horse) 
+                                                                raceExist(_race) 
+                                                                raceState(_race, State.OPEN) {
+                                                                
         require(runnerExist(_race, _horse), "Le cheval n'est pas inscript à la course pour le moment");
         require(msg.value >= 0.01 ether, "0.01 ether la place");
         
@@ -154,6 +200,12 @@ contract Hippodrome is RaceHorses {
         
     }
     
+    /**
+     * @dev vérifie l'existance d'un cheval dans une course
+     * @param _race la course 
+     * @param _horse le cheval
+     * @return bool vrais si le cheval participe à la course
+     */
     function runnerExist(uint _race, uint _horse) private view returns (bool){
         uint nbrParticipants = races[_race].horsesParticipates.length;
         for (uint i = 0; i < nbrParticipants ; i++ ){
@@ -161,20 +213,30 @@ contract Hippodrome is RaceHorses {
         }
     }
     
-    function raceLaunch(uint _race) public raceExist(_race) {
+    /**
+     * @dev Lancer la course
+     * @param _race course à Lancer
+     */
+    function raceLaunch(uint _race) public  raceExist(_race) 
+                                            raceState(_race, State.OPEN) {
+                                                
         require(races[_race].promoter == msg.sender, "Vous n'êtes pas l'organisateur de cette course");
-        require(races[_race].etat == Etat.OPEN, "La course n'est déjà plus ouverte");
         require(races[_race].horsesParticipates.length >= 2, "il n'y a pas assez de participants");
         
-        races[_race].etat = Etat.RUN;
+        races[_race].state = State.RUN;
         races[_race].time = block.number + 22;
         emit Launch(_race);
         
     }
     
-    function load(uint _race) public payable raceExist(_race) {
+    /**
+     * @dev charge pour faire avancer le cheval
+     * @param _race course dans la quelle on shouaite utiliser la charge
+     */
+    function load(uint _race) public payable    raceExist(_race) 
+                                                raceState(_race, State.RUN) {
+                                                    
         require(msg.value > 0.01 ether, "0.01 ether la charge");
-        require(races[_race].etat == Etat.RUN," La course est terminé");
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
         
         races[_race].bank += msg.value;
@@ -182,8 +244,13 @@ contract Hippodrome is RaceHorses {
         
     }
     
-    function shoot(uint _race) public raceExist(_race) {
-        require(races[_race].etat == Etat.RUN, "La course est terminée");
+    /**
+     * @dev utiliser la charge sur un cheval pour le faire avancer
+     * @param _race course dans la quelle on shouaite utiliser la charge
+     */
+    function shoot(uint _race) public   raceExist(_race)
+                                        raceState(_race, State.RUN) {
+                                            
         require(races[_race].time > block.number, "La course est terminé");
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
         require(races[_race].playerShoots[msg.sender] > 0, "Vous n'avez pas de charge");
@@ -202,6 +269,11 @@ contract Hippodrome is RaceHorses {
         
     }
     
+    /**
+     * @dev vérifie l'inscritpion d'un joueur dans une course
+     * @param _race Course ou vérifier
+     * @param _gambler adresse du joueur
+     */
     function gamblerExist(uint _race, address _gambler) private view raceExist(_race) returns(bool) {
         uint nbrParticipants = races[_race].gamblers.length;
         for (uint i = 0; i < nbrParticipants ; i++ ){
@@ -209,12 +281,17 @@ contract Hippodrome is RaceHorses {
         }
     }
     
-    function closeTheRace(uint _race) public raceExist(_race) {
+    /**
+     * @dev Terminé la course pour calculer les recettes
+     * @param _race course Terminé
+     */
+    function closeTheRace(uint _race) public    raceExist(_race)
+                                                raceState(_race, State.RUN) {
+                                                    
         require(races[_race].promoter == msg.sender, "Vous n'êtes pas l'organisateur de cette course");
-        require(races[_race].etat == Etat.RUN, "La course n'est pas en cours");
         require(races[_race].time < block.number, "La course n'est pas terminé");
         
-        races[_race].etat = Etat.LOAD;
+        races[_race].state = State.LOAD;
         
         horses[races[_race].firstHorse].win++;
         horses[races[_race].firstHorse].loose--;
@@ -232,14 +309,19 @@ contract Hippodrome is RaceHorses {
         reste = reste - (races[_race].bank * races[_race].horseOdds[races[_race].firstHorse]);
         if (reste > 0) horseOwner[races[_race].firstHorse].transfer(reste);
         
-        races[_race].etat = Etat.END;
+        races[_race].state = State.END;
         
     }
     
-    function jackpot(uint _race) public raceExist(_race) {
-        require(races[_race].etat == Etat.END, "La course n'est pas fini");
+    /**
+     * @dev Récupération des gains des joueurs
+     * @param _race course sur laquelle prendre ses gains
+     */
+    function jackpot(uint _race) public raceExist(_race)
+                                        raceState(_race, State.END) {
+                                            
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
-        require(races[_race].playerBetOn[msg.sender] == races[_race].firstHorse, "Vous n'avez pas misé sur le bon chval");
+        require(races[_race].playerBetOn[msg.sender] == races[_race].firstHorse, "Vous n'avez pas misé sur le bon cheval");
         require(!races[_race].winners[msg.sender], "Vous avez déjà pris vos gains");
         require(races[_race].bank > 0, "Les gains son nul");
         
