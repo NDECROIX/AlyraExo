@@ -104,7 +104,7 @@ contract Hippodrome is RaceHorses {
         uint[] horsesParticipates; // les chevaux de course
         mapping(uint => uint) horseStats; // l'avancement
         mapping(uint => uint) horseOdds; // la côte du chevale
-        mapping(address => uint) playerBetOn; // le cheval sur le quelle le joueuer a misé
+        mapping(address => uint) playerBetOn; // le cheval sur lequel le joueuer a misé
         mapping(address => uint) playerShoot; // le block ou le joeueur peut utiliser un shoot 
         mapping(address => bool) winners; // les gagnants
         
@@ -198,7 +198,7 @@ contract Hippodrome is RaceHorses {
     /**
      * @dev inscription à une course pour parier 
      * @param _race course à laquelle je veux participer
-     * @param _horse Cheval sur le quelle je parie
+     * @param _horse Cheval sur lequel je parie
      */
     function gambler(uint _race, uint _horse) public payable    horseExist(_horse) 
                                                                 raceExist(_race) 
