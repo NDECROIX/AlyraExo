@@ -135,7 +135,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
 	* @param _tokenId num de l'objet magique
 	*/
     function transferFrom( address _to, uint256 _tokenId) public {
-        require( _tokenId < 200 );
+        require( _tokenId < 2000 );
         require(objetMagiqueOwner[_tokenId] == msg.sender);
         _transfer(msg.sender, _to, _tokenId);
 
@@ -147,7 +147,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
 	* @param _tokenId num de l'objet magique
 	*/
     function approve(address _to, uint256 _tokenId) public  {
-        require( _tokenId < 200 );
+        require( _tokenId < 2000 );
         require(ownerOf(_tokenId) == msg.sender);
         tokenApprovals[_tokenId] = _to;
         emit Approval(msg.sender, _to, _tokenId);
@@ -158,7 +158,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
 	* @param _tokenId num de l'objet magique
 	*/
     function takeOwnership(uint256 _tokenId) public {
-        require( _tokenId < 200 );
+        require( _tokenId < 2000 );
         require(tokenApprovals[_tokenId] == msg.sender);
         address owner = ownerOf(_tokenId);
         _transfer(owner, msg.sender, _tokenId);

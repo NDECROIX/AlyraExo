@@ -24,7 +24,7 @@ public class OrderBook {
 
             ObjectMapper mapper = new ObjectMapper();
 
-            Bitmex obj = mapper.readValue(json.get(0).toString(), Bitmex.class);
+            Bitmex obj = mapper.readValue(json.get(9).toString(), Bitmex.class);
 
             System.out.println("BITMEX");
 
@@ -48,7 +48,7 @@ public class OrderBook {
             System.out.println("Nombre de Bitcoin disponible : " + nombreB1);
 
             //Sur quelle place de marché est-il le plus intéressant d’acheter 0.0001 bitcoin?
-            int b = 1;
+            int b = 9;
             Double nombre = 0.0001;
             Double calculTotalB = 0d;
             Double calculTotalB1 = 0d;
@@ -61,7 +61,7 @@ public class OrderBook {
                         nombre -= nombreB;
                         calculTotalB += nombreB * prixB;
                     }
-                    b++;
+                    b--;
                 }
 
                 calculTotalB += nombre * prixB;

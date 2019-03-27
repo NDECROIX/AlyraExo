@@ -135,7 +135,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
 	* @param _tokenId num de l'objet magique
 	*/
     function transferFrom( address _to, uint256 _tokenId) public {
-        require( _tokenId < 200 );
+        require( _tokenId < 2000 );
         require(objetMagiqueOwner[_tokenId] == msg.sender);
         _transfer(msg.sender, _to, _tokenId);
 
@@ -147,7 +147,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
 	* @param _tokenId num de l'objet magique
 	*/
     function approve(address _to, uint256 _tokenId) public  {
-        require( _tokenId < 200 );
+        require( _tokenId < 2000 );
         require(ownerOf(_tokenId) == msg.sender);
         tokenApprovals[_tokenId] = _to;
         emit Approval(msg.sender, _to, _tokenId);
@@ -158,7 +158,7 @@ contract ObjetsMagiquesOwnership is ObjetsMagiques, ERC721Simple {
 	* @param _tokenId num de l'objet magique
 	*/
     function takeOwnership(uint256 _tokenId) public {
-        require( _tokenId < 200 );
+        require( _tokenId < 2000 );
         require(tokenApprovals[_tokenId] == msg.sender);
         address owner = ownerOf(_tokenId);
         _transfer(owner, msg.sender, _tokenId);
@@ -198,11 +198,6 @@ contract Bazar {
     constructor(address _objetMagique) public {
         objetsMagiques = ObjetsMagiquesOwnership(_objetMagique);
         dureeEnchere = 1000;
-    }
-    
-    modifier enchereExist(uint indice) {
-        require(indice < encheres.length);
-        _;
     } 
     
     /**
@@ -246,7 +241,7 @@ contract Bazar {
 	* @dev Proposer une offre
 	* @param indice de l'enchère
 	*/
-    function offreClassique(uint indice) public payable enchereExist(indice){
+    function offreClassique(uint indice) public payable {
         require(encheres[indice].mecanisme == 0, "Ceci est une enchère holandaise");
         require(block.number < encheres[indice].finEnchere, "Enchère terminée" );
         require(msg.value > encheres[indice].meilleureOffre, "offre trop faible");
@@ -265,7 +260,7 @@ contract Bazar {
 	* @dev Proposer une offre
 	* @param indice de l'enchère
 	*/
-    function offreHolandaise(uint indice) public payable enchereExist(indice){
+    function offreHolandaise(uint indice) public payable {
         require(encheres[indice].mecanisme == 1, "Ceci est une enchère classique");
         require(!encheres[indice].cloturer, "Enchère cloturée");
         require(block.number < encheres[indice].finEnchere, "Enchère terminée" );
@@ -309,7 +304,7 @@ contract Bazar {
 	* @dev forcer une enchére si l'acquéreur
 	* @param indice de l'enchère
 	*/
-    function cloturerEnchere(uint indice) public enchereExist(indice){
+    function cloturerEnchere(uint indice) public {
         require(block.number >= encheres[indice].finEnchere, "Enchère en cours");
         require(!encheres[indice].cloturer, "Enchère cloturée");
         
@@ -331,7 +326,7 @@ contract Bazar {
 	* @dev Recuperer un Objet 
 	* @param indice de l'enchère
 	*/
-    function recupererObjet(uint indice) public enchereExist(indice){
+    function recupererObjet(uint indice) public {
         require(block.number >= encheres[indice].finEnchere, "Enchère en cours");
         require(encheres[indice].meilleurAcheteur == msg.sender, "Vous n'êtes pas l'acquéreur de cette enchère");
         require(encheres[indice].cloturer, "Enchère en cours");
