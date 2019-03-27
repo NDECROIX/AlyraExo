@@ -129,16 +129,6 @@ contract Hippodrome is RaceHorses {
     event LeaderHorse(uint _race, uint _horse);
     event HorseMoove(uint _race, uint _horse, uint _steps);
     
-    modifier raceExist(uint _race) {
-        require(races.length > _race, "Course inexistante");
-        _;
-    }
-    
-    modifier horseExist(uint _horse) {
-        require(horses.length > _horse, "Cheval inexistant");
-        _;
-    }
-    
     modifier raceState(uint _race, State _state) {
         require(races[_race].state == _state, "L'etat de la course ne permet pas l'accès à cette function");
         _;
@@ -165,9 +155,7 @@ contract Hippodrome is RaceHorses {
      * @param _horse le cheval qu'il veut faire courir
      * @param _race la course choisi
      */
-    function runner(uint _horse, uint _race) public payable raceExist(_race)
-                                                            raceState(_race, State.OPEN) 
-                                                            horseExist(_horse) {
+    function runner(uint _horse, uint _race) public payable raceState(_race, State.OPEN) {
                                                                 
         require(msg.value >= 0.01 ether, "Mettre son cheval en course coûte 0.01 ether");
         require(horses[_horse].owner == msg.sender, "Vous n'êtes pas le propriétaire du cheval");
@@ -200,9 +188,7 @@ contract Hippodrome is RaceHorses {
      * @param _race course à laquelle je veux participer
      * @param _horse Cheval sur lequel je parie
      */
-    function gambler(uint _race, uint _horse) public payable    horseExist(_horse) 
-                                                                raceExist(_race) 
-                                                                raceState(_race, State.OPEN) {
+    function gambler(uint _race, uint _horse) public payable raceState(_race, State.OPEN) {
                                                                 
         require(runnerExist(_race, _horse), "Le cheval n'est pas inscript à la course pour le moment");
         require(msg.value >= 0.01 ether, "0.01 ether la place");
@@ -231,8 +217,7 @@ contract Hippodrome is RaceHorses {
      * @dev Lancer la course
      * @param _race course à Lancer
      */
-    function raceLaunch(uint _race) public  raceExist(_race) 
-                                            raceState(_race, State.OPEN) {
+    function raceLaunch(uint _race) public raceState(_race, State.OPEN) {
                                                 
         require(races[_race].promoter == msg.sender, "Vous n'êtes pas l'organisateur de cette course");
         require(races[_race].horsesParticipates.length >= 2, "il n'y a pas assez de participants");
@@ -247,8 +232,7 @@ contract Hippodrome is RaceHorses {
      * @dev charge pour faire avancer le cheval
      * @param _race course dans la quelle on shouaite utiliser la charge
      */
-    function load(uint _race) public payable    raceExist(_race) 
-                                                raceState(_race, State.RUN) {
+    function load(uint _race) public payable raceState(_race, State.RUN) {
         require(races[_race].time > block.number, "La course est terminé");                                            
         require(msg.value >= 0.01 ether, "0.01 ether la charge");
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
@@ -262,8 +246,7 @@ contract Hippodrome is RaceHorses {
      * @dev utiliser la charge sur un cheval pour le faire avancer
      * @param _race course dans la quelle on shouaite utiliser la charge
      */
-    function shoot(uint _race) public   raceExist(_race)
-                                        raceState(_race, State.RUN) {
+    function shoot(uint _race) public   raceState(_race, State.RUN) {
                                             
         require(races[_race].time > block.number, "La course est terminé");
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
@@ -290,7 +273,7 @@ contract Hippodrome is RaceHorses {
      * @param _race Course ou vérifier
      * @param _gambler adresse du joueur
      */
-    function gamblerExist(uint _race, address _gambler) private view raceExist(_race) returns(bool) {
+    function gamblerExist(uint _race, address _gambler) private view returns(bool) {
         uint nbrParticipants = races[_race].gamblers.length;
         for (uint i = 0; i < nbrParticipants ; i++ ){
             if  (races[_race].gamblers[i] == _gambler) return true;
@@ -301,8 +284,7 @@ contract Hippodrome is RaceHorses {
      * @dev Terminé la course pour calculer les recettes
      * @param _race course Terminé
      */
-    function closeTheRace(uint _race) public    raceExist(_race)
-                                                raceState(_race, State.RUN) {
+    function closeTheRace(uint _race) public    raceState(_race, State.RUN) {
                                                     
         require(races[_race].promoter == msg.sender, "Vous n'êtes pas l'organisateur de cette course");
         require(races[_race].time < block.number, "La course n'est pas terminé");
@@ -333,8 +315,7 @@ contract Hippodrome is RaceHorses {
      * @dev Récupération des gains des joueurs
      * @param _race course sur laquelle prendre ses gains
      */
-    function jackpot(uint _race) public raceExist(_race)
-                                        raceState(_race, State.END) {
+    function jackpot(uint _race) public raceState(_race, State.END) {
                                             
         require(gamblerExist(_race, msg.sender), "Vous n'êtes pas inscrit à la course");
         require(races[_race].playerBetOn[msg.sender] == races[_race].firstHorse, "Vous n'avez pas misé sur le bon cheval");
