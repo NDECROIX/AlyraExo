@@ -278,7 +278,7 @@ contract Bazar {
 	* @param indice de l'enchère
 	*/
     function calculOffreH(uint indice) private view returns (uint){
-        uint blockDif = block.number * 1000 - encheres[indice].finEnchere;
+        uint blockDif = block.number + 1000 - encheres[indice].finEnchere;
         uint reduction = blockDif * encheres[indice].reduction;
         
         if ((reduction + encheres[indice].seuille) < encheres[indice].meilleureOffre ){
