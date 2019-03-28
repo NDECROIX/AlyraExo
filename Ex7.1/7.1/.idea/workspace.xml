@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f886952-a6d5-4cf8-b184-d4a5d8acd2f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/orderBook/OrderBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/orderBook/OrderBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/AsciiArt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/BitsToTarget.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/CheckEnter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/DecimalToHex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/ExtractChamps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/HexToDecimal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/LittleEndianToHex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/TargetToDifficulty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/VarIntToDecimal.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +26,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/orderBook/OrderBook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="510">
               <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -38,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dashboard/Jeton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="663">
               <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
             </state>
           </provider>
@@ -89,9 +98,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="355" />
-    <option name="y" value="-14" />
-    <option name="width" value="938" />
+    <option name="x" value="287" />
+    <option name="y" value="167" />
+    <option name="width" value="940" />
     <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -100,6 +109,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,13 +131,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553294557091" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -211,6 +220,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-8" width="1863" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.122902006" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -377,6 +387,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/7.1.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/orderBook/OrderBook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lastPrice/LastPrice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -384,23 +407,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/7.1.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dashboard/Jeton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
+        <state relative-caret-position="663">
           <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/orderBook/OrderBook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
