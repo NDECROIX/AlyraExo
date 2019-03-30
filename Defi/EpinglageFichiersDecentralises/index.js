@@ -74,7 +74,7 @@ async function connectMetaMask() {
 
 async function pinFile(hashIPFS) {
 	
-	const ipfs = new Ipfs({ repo: 'ipfs-' + Math.random() }) //window.IpfsHttpClient('localhost', '5001')
+	const ipfs = new Ipfs({ repo: 'ipfs-' + Math.random() }) 
 	
 	ipfs.once('ready', () => {
       console.log('Online status: ', ipfs.isOnline() ? 'online' : 'offline')
@@ -115,7 +115,7 @@ async function ajoutHashFile(fileHash){
 
 async function ajoutFileIPFS() {
 
-	const ipfs = new Ipfs({ repo: 'ipfs-' + Math.random() }) //window.IpfsHttpClient('localhost', '5001')
+	const ipfs = new Ipfs({ repo: 'ipfs-' + Math.random() }) 
 	
 	ipfs.once('ready', () => {
       console.log('Online status: ', ipfs.isOnline() ? 'online' : 'offline')
