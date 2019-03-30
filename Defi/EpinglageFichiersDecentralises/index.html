@@ -9,6 +9,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+		<style>
+			.loader {
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #3498db;
+			  width: 120px;
+			  height: 120px;
+			  -webkit-animation: spin 2s linear infinite; /* Safari */
+			  animation: spin 2s linear infinite;
+			}
+
+			/* Safari */
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+		</style>
 
         <title>SEFD</title>
 
@@ -23,20 +46,19 @@
         <div id="corps" style="display:none;">
             
             <p>
-
+				<div id="status"></div><br><br>
                 Charger un fichier : <input type="file" id="addFile"><br><br>
                 <button onclick="ajoutFileIPFS()"> Charger </button><br><br>
                 Hash IPFS : <bold id="hashReturn"></bold><br><br>
-                Epingler un fichier : <button onclick="ajoutHashFile(document.getElementById('hashReturn').textContent)"> Epingler </button>
-            
+                Epingler le fichier : <button onclick="ajoutHashFile(document.getElementById('hashReturn').textContent)"> Epingler </button><br><br>
+				<div class="loader" id="Loader" style="display:none;" ></div>
+				<div id="epingler"></div><br>
             </p>
 
         </div>
 
-        
-    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
-
-
+    <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>    
+	<script src="https://unpkg.com/ipfs-http-client@29.1.1/dist/index.min.js"></script>
     <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
 
         charset="utf-8"
@@ -45,7 +67,7 @@
 
     </script>
 
-    <script src="code.js"
+    <script src="index.js"
 
         charset="utf-8"
 

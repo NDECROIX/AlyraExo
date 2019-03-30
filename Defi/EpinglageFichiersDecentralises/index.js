@@ -53,7 +53,6 @@ let abi = [
 	}
 ];
 
-
 async function connectMetaMask() {
     try {
       // Demande à MetaMask l'autorisation de se connecter
@@ -74,19 +73,32 @@ async function connectMetaMask() {
    }
 
 async function pinFile(hashIPFS) {
-		
-	const ipfs = window.IpfsHttpClient('localhost', '5001')
+	
+	const ipfs = new Ipfs({ repo: 'ipfs-' + Math.random() }) //window.IpfsHttpClient('localhost', '5001')
+	
+	ipfs.once('ready', () => {
+      console.log('Online status: ', ipfs.isOnline() ? 'online' : 'offline')
+      document.getElementById("status").innerHTML= 'Noeud status: ' + (ipfs.isOnline() ? 'online' : 'offline')
 
 		ipfs.pin.add(hashIPFS, (err, files) => {
             
 			if (err) return console.error(err)
 			console.log('Epingler : ' + files[0].hash)
+			document.getElementById("epingler").innerHTML='Fichier épinglé : ' + files[0].hash
+			
 		})
-
+	  
+    })
+	
+	
+	document.getElementById("Loader").style.display="none";
+	
 }
 
 async function ajoutHashFile(fileHash){
 
+	document.getElementById("Loader").style.display="block";
+	
 	var contratEpinglage = new ethers.Contract("0x803cdf82c52f48ae47859fbbdb85b528f00d2681", abi, dapp.provider.getSigner());
 	
 	var overrideOptions = {
@@ -103,22 +115,31 @@ async function ajoutHashFile(fileHash){
 
 async function ajoutFileIPFS() {
 
-	const ipfs = window.IpfsHttpClient('localhost', '5001')
+	const ipfs = new Ipfs({ repo: 'ipfs-' + Math.random() }) //window.IpfsHttpClient('localhost', '5001')
+	
+	ipfs.once('ready', () => {
+      console.log('Online status: ', ipfs.isOnline() ? 'online' : 'offline')
+      document.getElementById("status").innerHTML= 'Node status: ' + (ipfs.isOnline() ? 'online' : 'offline')
+	  
+	  let file = document.getElementById('addFile').files[0]
 
-	let file = document.getElementById('addFile').files[0]
+		const reader = new FileReader();
 
-	const reader = new FileReader();
+		reader.readAsArrayBuffer(file);
 
-	reader.readAsArrayBuffer(file);
+		reader.onloadend = function() {
 
-	reader.onloadend = function() {
+			ipfs.add(new ipfs.types.Buffer.from(reader.result), {pin : true}, (err, files) => {    
+				if (err) return console.error(err)
+				console.log('Hash IPFS : ' + files[0].hash)
+				document.getElementById("hashReturn").innerHTML = files[0].hash
+			})
+		}
+	  
+	  
+    })
 
-		ipfs.add(new ipfs.types.Buffer.from(reader.result), {pin : true}, (err, files) => {    
-			if (err) return console.error(err)
-			console.log('Hash IPFS : ' + files[0].hash)
-			document.getElementById("hashReturn").innerHTML = files[0].hash
-		})
-	}
+	
 
 }
 
