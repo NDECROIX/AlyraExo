@@ -17,7 +17,7 @@ contract ERC721 {
 }
 
 /**
-* @title ObjetsMagiques
+* @title RaceHorses
 */   
 contract RaceHorses {
     
@@ -372,7 +372,6 @@ contract RaceHorseOwnership is Hippodrome, ERC721 {
 	* @param _tokenId num du cheval
 	*/
     function transferFrom( address _to, uint256 _tokenId) public {
-        require( _tokenId < 200 );
         require(horseOwner[_tokenId] == msg.sender);
         _transfer(msg.sender, _to, _tokenId);
 
@@ -384,7 +383,6 @@ contract RaceHorseOwnership is Hippodrome, ERC721 {
 	* @param _tokenId num du cheval
 	*/
     function approve(address _to, uint256 _tokenId) public  {
-        require( _tokenId < 200 );
         require(ownerOf(_tokenId) == msg.sender);
         tokenApprovals[_tokenId] = _to;
         emit Approval(msg.sender, _to, _tokenId);
@@ -395,7 +393,6 @@ contract RaceHorseOwnership is Hippodrome, ERC721 {
 	* @param _tokenId num du cheval
 	*/
     function takeOwnership(uint256 _tokenId) public {
-        require( _tokenId < 200 );
         require(tokenApprovals[_tokenId] == msg.sender);
         address owner = ownerOf(_tokenId);
         _transfer(owner, msg.sender, _tokenId);
