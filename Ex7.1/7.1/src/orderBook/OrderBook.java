@@ -15,123 +15,147 @@ import java.util.Scanner;
 
 public class OrderBook {
 
+    private static final int BTC_SATOSHIS = 100_000_000;
+
     public static void main(String[] args) {
 
         try{
             // BITMEX
             JSONParser parser = new JSONParser();
-            JSONArray json =  (JSONArray) parser.parse(display("https://www.bitmex.com/api/v1/orderBook/L2?symbol=XBT&depth=10"));
+            int nbrCall = 10;
+            JSONArray json =  (JSONArray) parser.parse(display("https://www.bitmex.com/api/v1/orderBook/L2?symbol=XBT&depth="+nbrCall));
 
             ObjectMapper mapper = new ObjectMapper();
 
-            Bitmex obj = mapper.readValue(json.get(9).toString(), Bitmex.class);
+            Bitmex obj = mapper.readValue(json.get(nbrCall-1).toString(), Bitmex.class);
 
             System.out.println("BITMEX");
 
-            Double prixB = obj.getPrice();
-            System.out.println("Prix du Bitcoin : " + prixB);
-            Double nombreB = obj.getSize() *  0.00000001;
-            System.out.println("Nombre de Bitcoin disponible : " + nombreB );
+            double prixBitmex = obj.getPrice();
+            System.out.println("Prix du Bitcoin : " + prixBitmex);
+            int nombreBitmex = obj.getSize();
+            System.out.println("Nombre de Satoshis disponible : " + nombreBitmex );
 
 
             // BITFINEX
             JSONParser parser1 = new JSONParser();
-            JSONObject json1 = (JSONObject) parser1.parse(display("https://api.bitfinex.com/v1/book/btcusd?limit_bids=10&limit_asks=10"));
+            JSONObject json1 = (JSONObject) parser1.parse(display("https://api.bitfinex.com/v1/book/btcusd?limit_bids="+nbrCall+"&limit_asks="+nbrCall));
 
             Bitfinex obj1 = mapper.readValue(json1.toString(), Bitfinex.class);
 
             System.out.println("\nBITFINEX");
 
-            Double prixB1 = Double.valueOf(obj1.getAsks().get(0).getPrice());
-            System.out.println("Prix du Bitcoin : " + prixB1 );
-            Double nombreB1 = Double.valueOf(obj1.getAsks().get(0).getAmount());
-            System.out.println("Nombre de Bitcoin disponible : " + nombreB1);
+            Double prixBitfinex = Double.valueOf(obj1.getAsks().get(0).getPrice());
+            System.out.println("Prix du Bitcoin : " + prixBitfinex );
+
+            Double nombreBitfinex = Double.valueOf(obj1.getAsks().get(0).getAmount());
+            System.out.println("Nombre de Bitcoin disponible : " + nombreBitfinex + "\n");
 
             //Sur quelle place de marché est-il le plus intéressant d’acheter 0.0001 bitcoin?
-            int b = 9;
-            Double nombre = 0.0001;
-            Double calculTotalB = 0d;
-            Double calculTotalB1 = 0d;
-            if (nombreB != 0 && nombreB1 != 0){
-                while(nombreB < nombre && b < 10){ // On boucle jusqu'à atteindre 0.0001 bitcoin sur BITMEX
-                    obj = mapper.readValue(json.get(b).toString(), Bitmex.class);
-                    prixB = obj.getPrice();
-                    nombreB = obj.getSize() *  0.00000001;
-                    if (nombre > nombreB){
-                        nombre -= nombreB;
-                        calculTotalB += nombreB * prixB;
-                    }
-                    b--;
+            int satoshiDemande = 10_000;
+            boolean calculFini = false;
+            int b = 0;
+
+            int satoshiBitmex;
+            int satoshiBitfinex;
+            double ttBitmex = 0d;
+            double ttBitfinex = 0d;
+
+            while(!calculFini){
+
+                obj = mapper.readValue(json.get(nbrCall-(1+b)).toString(), Bitmex.class);
+                prixBitmex = obj.getPrice();
+                satoshiBitmex = obj.getSize();
+
+                if (satoshiDemande < satoshiBitmex){
+                    ttBitmex += prixBitmex / BTC_SATOSHIS * satoshiDemande;
+                    calculFini = true;
                 }
-
-                calculTotalB += nombre * prixB;
-
-                nombre = 0.0001;
-
-                b = 1;
-                while(nombreB1 < nombre && b < 10){  // On boucle jusqu'à atteindre 0.0001 bitcoin sur BITFINEX
-                    prixB1 = Double.valueOf(obj1.getBids().get(b).getPrice());
-                    nombreB1 = Double.valueOf(obj1.getBids().get(b).getAmount());
-                    if (nombre > nombreB1){
-                        nombre -= nombreB1;
-                        calculTotalB1 += nombreB1 * prixB1;
-                    }
+                else{
+                    satoshiDemande = satoshiDemande - satoshiBitmex;
+                    ttBitmex += prixBitmex / BTC_SATOSHIS * satoshiBitmex;
                     b++;
                 }
-                calculTotalB1 += nombre * prixB1;
+
             }
 
-            System.out.println((calculTotalB < calculTotalB1)? "\nBITMEX est plus intéressant" : "\nBITFINEX est plus intéressant"); // On compare le prix
+            calculFini = false;
+            b = 0;
+            satoshiDemande = 10_000;
+
+            while(!calculFini){
+
+                prixBitfinex = Double.valueOf(obj1.getAsks().get(b).getPrice());
+                nombreBitfinex = Double.valueOf(obj1.getAsks().get(b).getAmount());
+                satoshiBitfinex = (int) (nombreBitfinex * BTC_SATOSHIS);
+
+                if (satoshiDemande < satoshiBitfinex){
+                    ttBitfinex += prixBitfinex / BTC_SATOSHIS * satoshiDemande;
+                    calculFini = true;
+                }
+                else{
+                    satoshiDemande = satoshiDemande - satoshiBitfinex;
+                    ttBitfinex += prixBitfinex / BTC_SATOSHIS * satoshiBitfinex;
+                    b++;
+                }
+            }
+
+            System.out.print("Sur quelle place de marché est-il le plus intéressant d’acheter 0.0001 bitcoin? ");
+            System.out.println((ttBitmex < ttBitfinex)? "BITMEX" : "BITFINEX");
 
             //Sur quelle place de marché est-il le plus intéressant d’acheter 20 dollars de bitcoins?
-            b = 1;
-            calculTotalB = 0d;
-            calculTotalB1 = 0d;
-            int prix = 20;
+            double prixDemande = 20;
+            calculFini = false;
+            b = 0;
+            ttBitmex = 0d;
+            ttBitfinex = 0d;
+            double prix;
 
-            obj = mapper.readValue(json.get(0).toString(), Bitmex.class);
-            prixB = obj.getPrice();
-            nombreB = obj.getSize() *  0.00000001;
+            while(!calculFini){
 
-            if (nombreB != 0 && nombreB1 != 0){
-                while(nombreB * prixB < prix && b < 10){ // On boucle jusqu'à atteindre 20 $ sur BITMEX
+                obj = mapper.readValue(json.get(nbrCall-(1+b)).toString(), Bitmex.class);
+                prixBitmex = obj.getPrice();
+                satoshiBitmex = obj.getSize();
 
-                    obj = mapper.readValue(json.get(b).toString(), Bitmex.class);
-                    prixB = obj.getPrice();
-                    nombreB = obj.getSize() *  0.00000001;
+                prix = prixBitmex / BTC_SATOSHIS * satoshiBitmex;
 
-                    if (nombreB * prixB < prix){
-
-                        prix -= nombreB * prixB;
-                        calculTotalB += nombreB;
-                    }
-
+                if (prixDemande < prix){
+                    ttBitmex += (int) (prixDemande / (prixBitmex / BTC_SATOSHIS));
+                    calculFini = true;
+                }
+                else{
+                    prixDemande = prixDemande - prix;
+                    ttBitmex += satoshiBitmex;
                     b++;
                 }
-                calculTotalB += prix * nombreB / prixB ;
 
-                b = 1;
-
-                prixB1 = Double.valueOf(obj1.getBids().get(0).getPrice());
-                nombreB1 = Double.valueOf(obj1.getBids().get(0).getAmount());
-
-                while(nombreB1 * prixB1 < prix && b < 10){ // On boucle jusqu'à atteindre 20 $ sur BITFINEX
-
-                    prixB1 = Double.valueOf(obj1.getBids().get(b).getPrice());
-                    nombreB1 = Double.valueOf(obj1.getBids().get(b).getAmount());
-
-                    if (nombreB1 * prixB1 < prix){
-
-                        prix -= nombreB1 * prixB1;
-                        calculTotalB1 += nombreB1;
-                    }
-                    b++;
-                }
-                calculTotalB1 += prix * nombreB / prixB ;
             }
 
-            System.out.println((calculTotalB > calculTotalB1)? "\nBITMEX est plus intéressant" : "\nBITFINEX est plus intéressant"); // On compare le nombre de bitcoin
+            prixDemande = 20;
+            calculFini = false;
+            b = 0;
 
+            while(!calculFini){
+
+                prixBitfinex = Double.valueOf(obj1.getAsks().get(b).getPrice());
+                nombreBitfinex = Double.valueOf(obj1.getAsks().get(b).getAmount());
+                satoshiBitfinex = (int) (nombreBitfinex * BTC_SATOSHIS);
+
+                prix = prixBitfinex / BTC_SATOSHIS * satoshiBitfinex;
+
+                if (prixDemande < prix){
+                    ttBitfinex += (int) (prixDemande / (prixBitfinex / BTC_SATOSHIS));
+                    calculFini = true;
+                }
+                else{
+                    prixDemande = prixDemande - prix;
+                    ttBitfinex += satoshiBitfinex;
+                    b++;
+                }
+            }
+
+            System.out.print("\nSur quelle place de marché est-il le plus intéressant d’acheter 20 dollars de bitcoins? ");
+            System.out.println((ttBitmex > ttBitfinex)? "BITMEX" : "BITFINEX");
 
 
         } catch (IOException e) {

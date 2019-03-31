@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f886952-a6d5-4cf8-b184-d4a5d8acd2f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/AsciiArt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/BitsToTarget.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/CheckEnter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/DecimalToHex.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/ExtractChamps.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/HexToDecimal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/LittleEndianToHex.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/TargetToDifficulty.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin/out/production/OutilAnalyseBitcoin/VarIntToDecimal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../7.1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/orderBook/OrderBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/orderBook/OrderBook.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,11 +18,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/orderBook/OrderBook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
+            <state relative-caret-position="-1156">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/orderBook/Ask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="21" selection-end-line="69" />
             </state>
           </provider>
         </entry>
@@ -98,9 +99,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="287" />
-    <option name="y" value="167" />
-    <option name="width" value="940" />
+    <option name="x" value="519" />
+    <option name="y" value="36" />
+    <option name="width" value="1405" />
     <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -110,7 +111,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,17 +125,24 @@
             </path>
             <path>
               <item name="7.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="7.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="orderBook" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="7.1" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553294557091" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Defi/OutilAnalyseBitcoin" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554063121352" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -161,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LastPrice">
+  <component name="RunManager" selected="Application.OrderBook">
     <configuration name="Jeton" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dashboard.Jeton" />
       <module name="7.1" />
@@ -198,8 +205,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LastPrice" />
         <item itemvalue="Application.OrderBook" />
+        <item itemvalue="Application.LastPrice" />
         <item itemvalue="Application.Jeton" />
         <item itemvalue="Application.LastTrade" />
       </list>
@@ -231,7 +238,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32994923" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3218274" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31878173" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.21015228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -256,16 +263,10 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/orderBook/OrderBook.java</url>
           <line>16</line>
-          <properties class="OrderBook" method="main">
+          <properties class="orderBook.OrderBook">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/orderBook/OrderBook.java</url>
-          <line>84</line>
-          <properties />
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dashboard/Jeton.java</url>
@@ -344,16 +345,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/orderBook/Ask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lastExchangePrice.java" />
     <entry file="file://$PROJECT_DIR$/src/orderBook/Bid.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -390,16 +381,6 @@
     <entry file="file://$PROJECT_DIR$/7.1.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/orderBook/OrderBook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lastPrice/LastPrice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -411,6 +392,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/orderBook/Ask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="21" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/orderBook/OrderBook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1156">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
