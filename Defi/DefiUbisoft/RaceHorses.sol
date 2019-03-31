@@ -10,8 +10,10 @@ contract ERC721 {
     
     function balanceOf(address _owner) public view returns (uint256 _balance);
     function ownerOf(uint256 _tokenId) public view returns (address _owner);
-    function transferFrom(address _to, uint256 _tokenId) public;
+    function exists(uint256 _tokenId) public view returns (bool _exists);
+    
     function approve(address _to, uint256 _tokenId) public;
+    function transferFrom(address _to, uint256 _tokenId) public;
     function takeOwnership(uint256 _tokenId) public;
  
 }
