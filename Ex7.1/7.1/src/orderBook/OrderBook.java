@@ -64,7 +64,7 @@ public class OrderBook {
             while(!calculFini){
 
                 obj = mapper.readValue(json.get(nbrCall-(1+b)).toString(), Bitmex.class);
-                if (obj.getSide() == "Sell") throw new IndexOutOfBoundsException("ERROR obj.getSide() != Sell ");
+                if (obj.getSide().toLowerCase() == "buy") throw new IndexOutOfBoundsException("ERROR obj.getSide() == Buy ");
 
                 prixBitmex = obj.getPrice();
                 satoshiBitmex = obj.getSize();
