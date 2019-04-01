@@ -64,17 +64,17 @@ contract CanalDePaiment {
     function fermeture( uint _nonce, 
                         uint _equilibreA,
                         uint _equilibreB,
-                        bytes memory _signature ) public    etatCanal(EtatCanal.ACTIF) 
-                                                            onlyParties() {
+                        bytes memory _signature ) public onlyParties() {
 															
+        require(etat == EtatCanal.ACTIF || etat == EtatCanal.ENCOURSFERMETURE);
         require(_nonce > dernierNonce);
         require(signatureValide(message(_nonce, _equilibreA, _equilibreB), _signature) == partieOpposee(msg.sender));
         
         dernierNonce = _nonce;
         equilibreA = _equilibreA;
         equilibreB = _equilibreB;
-        blocFermeture = block.number + 24;
-        etat = EtatCanal.ENCOURSFERMETURE;
+        blocFermeture = block.number + 23; // temps minimum pour contester la preuve d'équilibre avant fermeture du canal 
+        if (etat == EtatCanal.ACTIF) etat = EtatCanal.ENCOURSFERMETURE;
         
         
     } 
