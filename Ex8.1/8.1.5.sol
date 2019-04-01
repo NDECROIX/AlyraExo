@@ -66,11 +66,15 @@ contract CanalDePaiment {
                         uint _equilibreB,
                         bytes memory _signature ) public    etatCanal(EtatCanal.ACTIF) 
                                                             onlyParties() {
-        
+															
+        require(_nonce > dernierNonce);
         require(signatureValide(message(_nonce, _equilibreA, _equilibreB), _signature) == partieOpposee(msg.sender));
         
+        dernierNonce = _nonce;
+        equilibreA = _equilibreA;
+        equilibreB = _equilibreB;
+        blocFermeture = block.number + 24;
         etat = EtatCanal.ENCOURSFERMETURE;
-        blocFermeture = now + 25;
         
         
     } 

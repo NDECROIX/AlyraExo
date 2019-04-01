@@ -63,16 +63,19 @@ contract CanalDePaiment {
     }
     
     function fermeture(uint _nonce, uint _equilibreA, uint _equilibreB, bytes memory _signature) public etatCanal(EtatCanal.ACTIF) onlyParties(){
-        
-        require(ECDSA.recover(ECDSA.toEthSignedMessageHash(message(_nonce, _equilibreA, _equilibreB)), _signature) == partieOpposee(msg.sender));
+        require(_nonce > dernierNonce);
+        require(ECDSA.recover(
+                ECDSA.toEthSignedMessageHash(
+                message(_nonce, _equilibreA, _equilibreB)), _signature) == partieOpposee(msg.sender));
        
+        dernierNonce = _nonce;
+        equilibreA = _equilibreA;
+        equilibreB = _equilibreB;
+        blocFermeture = block.number + 24;
         etat = EtatCanal.ENCOURSFERMETURE;
-        blocFermeture = now + 25;
-        
-        
     } 
     
-    function partieOpposee(address partie) public view returns(address) {
+    function partieOpposee(address partie) private view returns(address) {
       
       if (partie == partieA) return partieB;
       else return partieA;
