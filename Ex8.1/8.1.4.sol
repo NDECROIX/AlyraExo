@@ -31,10 +31,10 @@ contract CanalDePaiment {
     modifier onlyMontant() {
 	
         uint reste = montant - (equilibreA + equilibreB);
+		_;
         if (msg.value > reste){
             msg.sender.transfer(msg.value - reste);
         }
-        _;
     }
     
     modifier onlyParties() {
@@ -47,7 +47,7 @@ contract CanalDePaiment {
         _;
     }
     
-    function () external payable onlyMontant() etatCanal(EtatCanal.VIDE) onlyParties(){
+    function financer() public payable onlyMontant() etatCanal(EtatCanal.VIDE) onlyParties(){
         
         if (msg.sender == partieA) equilibreA += msg.value;
         else if (msg.sender == partieB) equilibreB += msg.value;
